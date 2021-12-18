@@ -1,0 +1,54 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-section-one {
+  display: flex;
+  flex-direction: column;
+ 
+  width: 400px;
+}
+
+.form-section-one div {
+  margin-bottom: 30px;
+}
+
+.form-section-two {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-section-two div {
+  margin-bottom: 30px;
+}
+
+.form-section-three {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-section-three div {
+  margin-bottom: 30px;
+}
+
+.form-section-four {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-section-four div {
+  margin-bottom: 30px;
+}
+
+
+
+.form-button {
+  display: flex;
+  justify-content: center;
+
+}
+
