@@ -1,19 +1,24 @@
 import '../Form/FormStyle.css'
+import React, {useState} from 'react'
 import FormSchemas from '../Schemas/FormSchemas'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 
-type userForm = {}
+export const ComponentForm = () => {
 
-export const ComponentForm: React.FC<{}> = () => {
-  const onSubmit = ({ values }: any) => {
-    location.href = `https://api.whatsapp.com/send?phone=5573991578697&text=${values}%0a `
+
+  function handleSubmit (values) {
+     location.href = `https://api.whatsapp.com/send?phone=5573991578697&text= ${values.tamanho} %0a ${values.massa} %0a ${values.recheio} %0a ${values.recheioAdd} `
+  }
+
+  function handleCheck () {
+    
   }
 
   return (
+   
     <div>
       <Formik
         validationSchema={FormSchemas}
-        onSubmit={onSubmit}
         initialValues={{
           toggle: false,
           checked: []
@@ -31,7 +36,7 @@ export const ComponentForm: React.FC<{}> = () => {
                 <p>(Escolha somente uma opção)</p>
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="15" />
+                    <Field type="checkbox" name="tamanho"  value="15" onClick={handleCheck} />
                     15cm ------------------------------ R$85,00
                     <p>( 10 a 15 fatias )</p>
                   </label>
@@ -39,15 +44,15 @@ export const ComponentForm: React.FC<{}> = () => {
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="20" />
+                    <Field type="checkbox" name="tamanho" value="20" onClick={handleCheck}   />
                     20cm ------------------------------ R$135,00
-                    <p>( 20 a 25 fatias )</p>
+                    <p>( 20 a 25 fatias )</p>     
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="25" />
+                    <Field type="checkbox" name="tamanho" value="25" />
                     25cm ------------------------------ R$185,00
                     <p>( 35 a 40 fatias )</p>
                   </label>
@@ -55,7 +60,7 @@ export const ComponentForm: React.FC<{}> = () => {
 
                 <div>
                   <label htmlFor="user">
-                    <Field type="checkbox" name="checked" value="30" />
+                    <Field type="checkbox" name="tamanho" value="30" />
                     30cm ------------------------------ R$235,00
                     <p>( 55 a 60 fatias )</p>
                   </label>
@@ -75,8 +80,9 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="massa"
                       value="Massa Branca"
+                
                     />
                     - Massa Branca
                   </label>
@@ -86,7 +92,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="massa"
                       value="Massa Chocolate"
                     />
                     - Massa Chocolate
@@ -96,7 +102,7 @@ export const ComponentForm: React.FC<{}> = () => {
                 <div>
                   <Field
                     type="checkbox"
-                    name="checked"
+                    name="massa"
                     value="Massa Baunilha"
                   />
                   <label> - Massa Baunilha</label>
@@ -106,7 +112,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="massa"
                       value="Massa Mesclada"
                     />
                     - Massa Mesclada
@@ -118,7 +124,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="massa"
                       value="Massa Formigueiro"
                     />
                     - Massa Formigueiro
@@ -145,14 +151,14 @@ export const ComponentForm: React.FC<{}> = () => {
                 <h2>Recheios</h2>
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Ameixa" />-
+                    <Field type="checkbox" name="recheio" value="Ameixa" />-
                     Ameixa
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Amendoim" />-
+                    <Field type="checkbox" name="recheio" value="Amendoim" />-
                     Amendoim
                   </label>
                 </div>
@@ -160,7 +166,7 @@ export const ComponentForm: React.FC<{}> = () => {
                 <div>
                   <Field
                     type="checkbox"
-                    name="checked"
+                    name="recheio"
                     value="Brigadeiro Tradicional"
                   />
                   <label> - Brigadeiro Tradicional</label>
@@ -170,7 +176,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="recheio"
                       value="Brigadeiro Branco"
                     />
                     - Brigadeiro Branco
@@ -181,7 +187,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="recheio"
                       value="Brigadeiro de Café"
                     />
                     - Brigadeiro de Café
@@ -190,7 +196,7 @@ export const ComponentForm: React.FC<{}> = () => {
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Beijinho" />-
+                    <Field type="checkbox" name="recheio" value="Beijinho" />-
                     Beijinho
                   </label>
                 </div>
@@ -199,7 +205,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="recheio"
                       value="Doce de Leite"
                     />
                     - Doce de Leite
@@ -208,14 +214,14 @@ export const ComponentForm: React.FC<{}> = () => {
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Ninho" />-
+                    <Field type="checkbox" name="recheio" value="Ninho" />-
                     Ninho
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="4 Leites" />- 4
+                    <Field type="checkbox" name="recheio" value="4 Leites" />- 4
                     Leites
                   </label>
                 </div>
@@ -231,7 +237,7 @@ export const ComponentForm: React.FC<{}> = () => {
                 <h2>Recheios com valor adicional</h2>
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Abacaxi" />-
+                    <Field type="checkbox" name="recheioAdd" value="Abacaxi" />-
                     Abacaxi
                   </label>
                 </div>
@@ -240,7 +246,7 @@ export const ComponentForm: React.FC<{}> = () => {
                   <label>
                     <Field
                       type="checkbox"
-                      name="checked"
+                      name="recheioAdd"
                       value="Limão Siciliano"
                     />
                     - Limão Siciliano
@@ -249,41 +255,41 @@ export const ComponentForm: React.FC<{}> = () => {
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Maracujá" />-
+                    <Field type="checkbox" name="recheioAdd" value="Maracujá" />-
                     Maracujá
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Morango" />-
+                    <Field type="checkbox" name="recheioAdd" value="Morango" />-
                     Morango
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Nozes" />-
+                    <Field type="checkbox" name="recheioAdd" value="Nozes" />-
                     Nozes
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Ovomaltine" />-
+                    <Field type="checkbox" name="recheioAdd" value="Ovomaltine" />-
                     Ovomaltine
                   </label>
                 </div>
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="checked" value="Oreo" />- Oreo
+                    <Field type="checkbox" name="recheioAdd" value="Oreo" />- Oreo
                   </label>
                 </div>
               </section>
             </div>
             <div className="form-button">
-              <button type="submit">Enviar pedido</button>
+              <button type="submit" onClick={() =>handleSubmit(values)}>Enviar pedido</button>
             </div>
           </Form>
         )}
