@@ -1,30 +1,23 @@
 import '../Form/FormStyle.css'
-import React, {useState} from 'react'
-import FormSchemas from '../Schemas/FormSchemas'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { Formik, Field, Form } from 'formik'
 
 export const ComponentForm = () => {
 
-
   function handleSubmit (values) {
      location.href = `https://api.whatsapp.com/send?phone=5573991578697&text= ${values.tamanho} %0a ${values.massa} %0a ${values.recheio} %0a ${values.recheioAdd} `
-  }
-
-  function handleCheck () {
-    
   }
 
   return (
    
     <div>
       <Formik
-        validationSchema={FormSchemas}
         initialValues={{
-          toggle: false,
+          toggle: false, // Esses dois valores iniciais estão no exemplo da documentação de Checkbox com Formik
           checked: []
         }}
       >
-        {({ values }) => (
+        {({ values }) => ( // Funciona como se fosse um useState guardando os dados dos <Fields>(inputs type="checkbox")
+                          
           <Form>
             <div className="form-container">
               <section
@@ -36,7 +29,7 @@ export const ComponentForm = () => {
                 <p>(Escolha somente uma opção)</p>
                 <div>
                   <label>
-                    <Field type="checkbox" name="tamanho"  value="15" onClick={handleCheck} />
+                    <Field type="checkbox" name="tamanho"  value="15"  />
                     15cm ------------------------------ R$85,00
                     <p>( 10 a 15 fatias )</p>
                   </label>
@@ -44,7 +37,7 @@ export const ComponentForm = () => {
 
                 <div>
                   <label>
-                    <Field type="checkbox" name="tamanho" value="20" onClick={handleCheck}   />
+                    <Field type="checkbox" name="tamanho" value="20"    />
                     20cm ------------------------------ R$135,00
                     <p>( 20 a 25 fatias )</p>     
                   </label>
