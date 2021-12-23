@@ -6,7 +6,6 @@
 .form-section-one {
   display: flex;
   flex-direction: column;
- 
   width: 400px;
 }
 
@@ -44,11 +43,7 @@
   margin-bottom: 30px;
 }
 
-
-
 .form-button {
   display: flex;
   justify-content: center;
-
 }
-
