@@ -47,7 +47,8 @@ export const ComponentForm = () => {
       default:
         break;
     }
-     
+    
+        
   }
 
   //Estado Massas de Bolo
@@ -58,6 +59,8 @@ export const ComponentForm = () => {
       setBatterState([batterState[1], evt.target.value])
     }
   }
+
+  
 
   // Estado Recheios
   const changeFilling = (evt) =>{
@@ -76,8 +79,6 @@ export const ComponentForm = () => {
   function handleSubmit () {
     location.href = `https://api.whatsapp.com/send?phone=5573991578697&text= _Tamanho_: *${diameterState == null ? `` : `${diameterState} cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)}` : `${batterState.join(' e ')}`}* %0a_Recheios_: *${filling[0] == null? `${filling.slice(1)}` : `${filling.join(' e ')}`}* Valor do bolo: R$${parseInt(value.valueCakeDiameter)}`
  }
-
-
 
   return (
     <div>

@@ -21,9 +21,16 @@ p {
   text-align: center;
 }
 
+
 .containerLabel {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+}
+.form-section-one {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
 }
 
 .form-section-one {
@@ -47,18 +54,17 @@ p {
 }
 
 
-
 .form-section-four {
   display: grid;
   border: 1px solid gray;
   width: 100%;
 }
 
-
 .form-button {
   display: grid;
   justify-content: center;
 }
+
 
 /* @media (max-width: 1875px) {
   .form-container {
@@ -67,6 +73,5 @@ p {
     text-align: center;
   }
 }  */
-
 
 
