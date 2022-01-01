@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import '../Form/FormStyle.css'
 import { Formik, Field, Form} from 'formik'
 
+
 export const ComponentForm = () => {
 
   const [diameterState, setDiameter] = useState(null);
@@ -12,13 +13,27 @@ export const ComponentForm = () => {
 
   const [value, setValue] = useState({
     valueCakeDiameter: null,
+    valueFilling: {
+      abacaxi: {
+        small: 8,
+        medium: 10,
+        larger: 14,
+        extraLarge: 16
+      },
+      ameixa: {
+        small: 8,
+        medium: 10,
+        larger: 14,
+        extraLarge: 16
+      }
+    }
   })
 
   //Estado diâmetros do bolo
   const changeDiameter = (evt)=> {
     let diameter = evt.target.value
-    console.log(diameter)
     setDiameter(evt.target.value)
+    console.log(diameter)
 
     switch (diameter) {
       case '15':
@@ -47,7 +62,6 @@ export const ComponentForm = () => {
       default:
         break;
     }
-    
         
   }
 
@@ -59,11 +73,10 @@ export const ComponentForm = () => {
       setBatterState([batterState[1], evt.target.value])
     }
   }
-
   
-
   // Estado Recheios
   const changeFilling = (evt) =>{
+    let recheio = evt.target.value
     //Verifica se o valor já existe nos dois selecionados
     if(filling.find(val => val == evt.target.value)){
       // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
@@ -71,9 +84,15 @@ export const ComponentForm = () => {
     }else {
       // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
       setFilling([filling[1], evt.target.value])
-    }
+    }        
+
     
+
+
 }
+
+
+
 
 
   function handleSubmit () {

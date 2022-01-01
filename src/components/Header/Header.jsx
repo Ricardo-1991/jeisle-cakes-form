@@ -15,14 +15,14 @@ export const Header = () => {
             <li>
               <div className='div-icons'>
                 <a href="https://instagram.com/jeislecakes?utm_medium=copy_link">
-                  <BsInstagram size={23} color='#71431f'/>
+                  <BsInstagram size={20} color='#71431f'/>
                 </a>
               </div>
             </li>
             <li>
               <div className='div-icons'>
                 <a href="https://mywhats.net/JeisleCakes">
-                  <BsWhatsapp size={23} color='#71431f' className='icon' />
+                  <BsWhatsapp size={20} color='#71431f' className='icon' />
                 </a>
               </div>
             </li>
