@@ -5,6 +5,7 @@ h2 {
 label {
   color: var(--nameEnterprise);
   font-weight: bold;
+  font-size: 1.4rem;
 }
 
 p {
@@ -20,17 +21,23 @@ p {
   gap: 50px;
   text-align: center;
 }
+.container-img {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 33rem;
+  margin-top: -7rem;
+}
 
+.imagem-avatar {
+  width: 28rem;
+}
 
 .containerLabel {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-}
-.form-section-one {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-
 }
 
 .form-section-one {

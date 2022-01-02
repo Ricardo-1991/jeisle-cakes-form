@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import '../Form/FormStyle.css'
 import { Formik, Field, Form} from 'formik'
+import avatar from '../../images/jeysle-menu.jpeg'
 
 
 export const ComponentForm = () => {
@@ -11,53 +12,32 @@ export const ComponentForm = () => {
 
   const [filling, setFilling] = useState([null,null]);
 
-  const [value, setValue] = useState({
-    valueCakeDiameter: null,
-    valueFilling: {
-      abacaxi: {
-        small: 8,
-        medium: 10,
-        larger: 14,
-        extraLarge: 16
-      },
-      ameixa: {
-        small: 8,
-        medium: 10,
-        larger: 14,
-        extraLarge: 16
-      }
-    }
-  })
+  const [aditionalFilling, setAditionalFilling] = useState([null, null])
+
+  let [price, setPrice] = useState(0) // Adicional o total do pedido.
+
 
   //Estado diâmetros do bolo
-  const changeDiameter = (evt)=> {
+  const changeDiameter = (evt) => {
     let diameter = evt.target.value
     setDiameter(evt.target.value)
     console.log(diameter)
 
     switch (diameter) {
       case '15':
-        setValue({
-          valueCakeDiameter: 110
-        })
+         setPrice(110)
         break;
 
         case '20':
-        setValue({
-          valueCakeDiameter: 160
-        })
+         setPrice(110)
         break;
 
         case '25':
-        setValue({
-          valueCakeDiameter: 220
-        })
+         setPrice(110)
         break;
 
         case '30':
-        setValue({
-          valueCakeDiameter: 280
-        })
+         setPrice(110)
         break;
       default:
         break;
@@ -75,32 +55,56 @@ export const ComponentForm = () => {
   }
   
   // Estado Recheios
-  const changeFilling = (evt) =>{
-    let recheio = evt.target.value
-    //Verifica se o valor já existe nos dois selecionados
-    if(filling.find(val => val == evt.target.value)){
-      // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
-      setFilling(filling.filter( val => val != evt.target.value))
-    }else {
-      // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
-      setFilling([filling[1], evt.target.value])
-    }        
-
+  const changeFilling = evt =>{
+    let recheioType = evt.target.name;
     
+    if(recheioType == 'recheio'){
+      //Verifica se o valor já existe nos dois selecionados
+      if(filling.find(val => val == evt.target.value)){
+        // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
+        setFilling(filling.filter( val => val != evt.target.value))
+      }else {
+        // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
+        setFilling([filling[1], evt.target.value])
+      }
 
+      //filling = chega os dois recheios normais no Array. Exemplo: [Amendoim, Ninho]
+      //RecheioType = Se é Recheio normal ou Adicional (recheio , recheioAdd)
 
-}
+    } else {
+       //Verifica se o valor já existe nos dois selecionados
+       if(aditionalFilling.find(val => val == evt.target.value)){
+        // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
+        setAditionalFilling(aditionalFilling.filter( val => val != evt.target.value))
+      } else {
+        // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
+        setAditionalFilling([aditionalFilling[1], evt.target.value])
+      }
+      // aditionalFilling = Chega os dois recheios Adicionais no Array. Exemplo: [abacaxi, ameixa]
+      // diameterState = tamanho dos bolos( 15, 20, 25...)
+      //RecheioType = Se é Recheio normal ou Adicional (recheio , recheioAdd)
 
+    }
+  
+  }
 
-
+ console.log(aditionalFilling)
+ console.log(filling)
 
 
   function handleSubmit () {
-    location.href = `https://api.whatsapp.com/send?phone=5573991578697&text= _Tamanho_: *${diameterState == null ? `` : `${diameterState} cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)}` : `${batterState.join(' e ')}`}* %0a_Recheios_: *${filling[0] == null? `${filling.slice(1)}` : `${filling.join(' e ')}`}* Valor do bolo: R$${parseInt(value.valueCakeDiameter)}`
+    location.href = `https://api.whatsapp.com/send?phone=5573991578697&text=
+    _Tamanho_: *${diameterState == null? `` : `${diameterState} cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)} ` : `${batterState.join(' e ')}`}* 
+    %0a_Recheios_: *${filling[0] == null? `${filling.slice(1)}` : `${filling.join(' e ')}`}* 
+    %0a_Recheios_: *${aditionalFilling[0] == null? `${aditionalFilling.slice(1)}` : `${aditionalFilling.join(' e ')}`}* 
+    Valor do bolo: R$${price}`
  }
 
   return (
-    <div>
+    <>
+      <div className='container-img'>
+        <img src={avatar} className='imagem-avatar' alt="imagem-avatar" />
+      </div>
       <Formik
         initialValues={{
           toggle: false, // Esses dois valores iniciais estão no exemplo da documentação de Checkbox com Formik
@@ -241,13 +245,6 @@ export const ComponentForm = () => {
                 <h2>Recheios</h2>
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheio" value="Ameixa" onChange={changeFilling} checked={filling.find( val => val == 'Ameixa')  ? true : false } />-
-                    Ameixa
-                  </label>
-                </div>
-
-                <div className='containerLabel'>
-                  <label>
                     <Field type="checkbox" name="recheio" value="Amendoim" onChange={changeFilling} checked={filling.find( val => val == 'Amendoim')  ? true : false } />-
                     Amendoim
                   </label>
@@ -331,7 +328,7 @@ export const ComponentForm = () => {
                 <h2>Recheios com valor adicional</h2>
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Abacaxi(Recheio Adicional)" onChange={changeFilling} checked={filling.find( val => val == 'Abacaxi(Recheio Adicional)')  ? true : false } />-
+                    <Field type="checkbox" name="recheioAdd" value="Abacaxi" onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Abacaxi')  ? true : false } />-
                     Abacaxi
                   </label>
                 </div>
@@ -341,8 +338,8 @@ export const ComponentForm = () => {
                     <Field
                       type="checkbox"
                       name="recheioAdd"
-                      value="Ameixa(Recheio Adicional)"
-                      onChange={changeFilling} checked={filling.find( val => val == 'Ameixa(Recheio Adicional)')  ? true : false }
+                      value="Ameixa"
+                      onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Ameixa')  ? true : false }
                     />
                     - Ameixa
                   </label>
@@ -353,8 +350,8 @@ export const ComponentForm = () => {
                     <Field
                       type="checkbox"
                       name="recheioAdd"
-                      value="Limão Siciliano(Recheio Adicional)"
-                      onChange={changeFilling} checked={filling.find( val => val == 'Limão Siciliano(Recheio Adicional)')  ? true : false }
+                      value="Limão Siciliano"
+                      onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Limão Siciliano')  ? true : false }
                     />
                     - Limão Siciliano
                   </label>
@@ -362,35 +359,35 @@ export const ComponentForm = () => {
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Maracujá(Recheio Adicional)" onChange={changeFilling} checked={filling.find( val => val == 'Maracujá(Recheio Adicional)')  ? true : false } />-
+                    <Field type="checkbox" name="recheioAdd" value="Maracujá" onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Maracujá')  ? true : false } />-
                     Maracujá
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Morango(Recheio Adicional)" onChange={changeFilling} checked={filling.find( val => val == 'Morango(Recheio Adicional)')  ? true : false } />-
+                    <Field type="checkbox" name="recheioAdd" value="Morango" onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Morango')  ? true : false } />-
                     Morango
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Nozes(Recheio Adicional)" onChange={changeFilling} checked={filling.find( val => val == 'Nozes(Recheio Adicional)')  ? true : false } />-
+                    <Field type="checkbox" name="recheioAdd" value="Nozes" onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Nozes')  ? true : false } />-
                     Nozes
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Ovomaltine(Recheio Adicional)" onChange={changeFilling} checked={filling.find( val => val == 'Ovomaltine(Recheio Adicional)')  ? true : false } />-
+                    <Field type="checkbox" name="recheioAdd" value="Ovomaltine" onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Ovomaltine')  ? true : false } />-
                     Ovomaltine
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Oreo(Recheio Adicional)" onChange={changeFilling} checked={filling.find( val => val == 'Oreo(Recheio Adicional)')  ? true : false } />- Oreo
+                    <Field type="checkbox" name="recheioAdd" value="Oreo" onChange={changeFilling} checked={aditionalFilling.find( val => val == 'Oreo')  ? true : false } />- Oreo
                   </label>
                 </div>
               </section>
@@ -401,6 +398,6 @@ export const ComponentForm = () => {
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   )
 }

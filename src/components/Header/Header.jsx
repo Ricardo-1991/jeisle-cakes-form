@@ -15,22 +15,19 @@ export const Header = () => {
             <li>
               <div className='div-icons'>
                 <a href="https://instagram.com/jeislecakes?utm_medium=copy_link">
-                  <BsInstagram size={20} color='#71431f'/>
+                  <BsInstagram size={23} color='#E1306C'/>
                 </a>
               </div>
             </li>
             <li>
               <div className='div-icons'>
                 <a href="https://mywhats.net/JeisleCakes">
-                  <BsWhatsapp size={20} color='#71431f' className='icon' />
+                  <BsWhatsapp size={23} color='#34af23' className='icon' />
                 </a>
               </div>
             </li>
           </ul>
         </div>
-      </div>
-      <div className="header-div">
-        <h1>Menu da Confeiteira</h1>
       </div>
     </header>
   )
