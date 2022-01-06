@@ -28,7 +28,7 @@ p {
   width: 100%;
   margin: 0 auto;
   height: 33rem;
-  margin-top: -7rem;
+  margin-top: 5rem;
 }
 
 .imagem-avatar {
@@ -40,31 +40,25 @@ p {
   margin-bottom: 1rem;
 }
 
-.form-section-one {
+.form-section-one, .form-section-two, .form-section-three, .form-section-four {
   display: grid;
-  border: 1px solid green;
   width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
 }
 
+/* .form-section-one:hover, .form-section-two:hover, .form-section-three:hover, .form-section-four:hover{
+  transition: 1s;
+  box-shadow: 0 0 10px var(--nameEnterprise);
+} */
 
-.form-section-two {
+.hover{
   display: grid;
-  border: 1px solid red;
-  width: 100%;;
-}
-
-
-.form-section-three {
-  display: grid;
-  border: 1px solid blue;
   width: 100%;
-}
-
-
-.form-section-four {
-  display: grid;
-  border: 1px solid gray;
-  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
+  transition: 1s;
+  box-shadow: 0 0 20px var(--nameEnterprise);
 }
 
 .form-button {
@@ -80,5 +74,6 @@ p {
     text-align: center;
   }
 }  */
+
 
 

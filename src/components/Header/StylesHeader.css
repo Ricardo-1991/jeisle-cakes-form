@@ -5,7 +5,9 @@
   justify-content: center;
   align-items: center;
   background: var(--background);
-  margin-bottom: 7rem;
+  position: fixed;
+  top:0;
+  left: 0;
 
 }
 .content-box-header {
@@ -18,7 +20,7 @@
 
 .logo-empresa {
   width: 100%;
-  height: 110px;
+  height: 100px;
 }
 
 .header-list {

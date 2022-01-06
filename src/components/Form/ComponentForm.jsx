@@ -4,6 +4,109 @@ import { Formik, Field, Form} from 'formik'
 import avatar from '../../images/jeysle-menu.jpeg'
 
 
+/*Vê se essa lógica te ajuda:
+A ideia é que se o recheio selecionado não existir na variável de "recheiosAdicionais", ele coloca o preço como 0 na conta. */
+
+
+/*
+  Ela primeiro pega o valor do bolo, e salva na variável valorDoBolo.
+No estado do bolo bolo vai ter uma string contendo o tamanho do bolo, ex: 15. 
+Supondo que seja "15", ali na declaração da constante valorDoBolo eu defino que ela é tamanhosDeBolo["15"]. 
+
+tamanhosDeBolo["15"] tem o valor 800, que é o que tá lá no objeto.
+
+Depois ela faz a mesma coisa pros recheios 1 e 2. E no final soma. 
+
+
+Exato. E se no objeto de "recheiosAdicionais" não existir o recheio que a pessoa adicionou, por exemplo: recheiosAdicionais["15"]["banana"], a variável fica igual a 0, e não interfere no preço final.
+
+Ali na função eu uso um operador ternário pra isso.
+
+const valorDoRecheio1 = recheiosAdicionais["banana"] ? recheiosAdicionais["banana"]["15"] : 0
+} 
+
+const [bolo, setBolo] = useState(); //setBolo("15");
+const [recheio1, setRecheio1] = useState(); //setRecheio1({ sabor: "banana", tamanho: "15" });
+const [recheio2, setRecheio2] = useState(); //setRecheio2({ sabor: "banana", tamanho: "15" });
+
+const calcularValorFinal = () => {
+  const valorDoBolo = tamanhosDeBolo[ bolo ] || 0;
+  const valorDoRecheio1 = recheiosAdicionais[ recheio1.sabor ] ? recheiosAdicionais[ recheio1.sabor ][ recheio1.tamanho ] : 0;
+  const valorDoRecheio2 = recheiosAdicionais[ recheio2.sabor ] ? recheiosAdicionais[ recheio2.sabor ][ recheio2.tamanho ] : 0;
+
+  return valorDoBolo + recheioAdicional1 + recheioAdicional2;
+}
+
+*/
+
+
+const tamanhosDeBolo = {
+  "15": 110, 
+  "20": 160,
+  "25": 220,
+  "30": 280
+
+}
+
+const recheiosAdicionais = {
+  "Abacaxi": {
+    "15": 8,
+    "20": 10,
+    "25": 14,
+    "30": 16
+  },
+
+  "Ameixa": {
+    "15": 8,
+    "20": 10,
+    "25": 14,
+    "30": 16
+  },
+
+  "Limão Siciliano": {
+    "15": 5,
+    "20": 8,
+    "25": 10,
+    "30": 12.
+  },
+
+  "Maracujá": {
+    "15": 5,
+    "20": 8,
+    "25": 10,
+    "30": 12.
+  },
+
+  "Morango": {
+    "15": 8,
+    "20": 16,
+    "25": 24,
+    "30": 32,
+  },
+
+  
+  "Nozes": {
+    "15": 7,
+    "20": 14,
+    "25": 21,
+    "30": 28,
+  },
+
+  "Ovomaltine": {
+    "15": 7,
+    "20": 14,
+    "25": 21,
+    "30": 28,
+  },
+
+  "Oreo": {
+    "15": 8,
+    "20": 16,
+    "25": 24,
+    "30": 32,
+  },
+}
+
 export const ComponentForm = () => {
 
   const [diameterState, setDiameter] = useState(null);
@@ -14,34 +117,33 @@ export const ComponentForm = () => {
 
   const [aditionalFilling, setAditionalFilling] = useState([null, null])
 
-  let [price, setPrice] = useState(0) // Adicional o total do pedido.
+  // let [price, setPrice] = useState(0) // total do pedido.
 
 
   //Estado diâmetros do bolo
   const changeDiameter = (evt) => {
     let diameter = evt.target.value
     setDiameter(evt.target.value)
-    console.log(diameter)
+   
+    // switch (diameter) {
+    //   case '15':
+    //      setPrice(110)
+    //     break;
 
-    switch (diameter) {
-      case '15':
-         setPrice(110)
-        break;
+    //     case '20':
+    //      setPrice(160)
+    //     break;
 
-        case '20':
-         setPrice(110)
-        break;
+    //     case '25':
+    //      setPrice(220)
+    //     break;
 
-        case '25':
-         setPrice(110)
-        break;
-
-        case '30':
-         setPrice(110)
-        break;
-      default:
-        break;
-    }
+    //     case '30':
+    //      setPrice(280)
+    //     break;
+    //   default:
+    //     break;
+    // }
         
   }
 
@@ -56,9 +158,9 @@ export const ComponentForm = () => {
   
   // Estado Recheios
   const changeFilling = evt =>{
-    let recheioType = evt.target.name;
-    
-    if(recheioType == 'recheio'){
+    let fillingType = evt.target.name;
+
+    if(fillingType == 'recheio'){
       //Verifica se o valor já existe nos dois selecionados
       if(filling.find(val => val == evt.target.value)){
         // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
@@ -68,8 +170,7 @@ export const ComponentForm = () => {
         setFilling([filling[1], evt.target.value])
       }
 
-      //filling = chega os dois recheios normais no Array. Exemplo: [Amendoim, Ninho]
-      //RecheioType = Se é Recheio normal ou Adicional (recheio , recheioAdd)
+      //filling = chega os dois recheios normais no Array. Exemplo: [Amendoim, Ninho]   
 
     } else {
        //Verifica se o valor já existe nos dois selecionados
@@ -79,25 +180,44 @@ export const ComponentForm = () => {
       } else {
         // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
         setAditionalFilling([aditionalFilling[1], evt.target.value])
-      }
-      // aditionalFilling = Chega os dois recheios Adicionais no Array. Exemplo: [abacaxi, ameixa]
-      // diameterState = tamanho dos bolos( 15, 20, 25...)
-      //RecheioType = Se é Recheio normal ou Adicional (recheio , recheioAdd)
-
+      }  
     }
-  
   }
 
- console.log(aditionalFilling)
- console.log(filling)
+  function totalPriceOfCake (){
+    let cakeValue = tamanhosDeBolo[diameterState]
+    const valorDosRecheios = aditionalFilling.reduce((acumulator, recheio) => {
+      const valorDoRecheioAtual = recheiosAdicionais[recheio] ? recheiosAdicionais[recheio][diameterState] : 0
+      return Number(acumulator) + Number(valorDoRecheioAtual)
+    }, 0)
+    return Number(cakeValue) + Number(valorDosRecheios)
+  }
+  
+  let total = totalPriceOfCake()
+  console.log(total)
+ 
+  
+ 
+
+  // totalPriceOfCake()
+
+  // Object.keys(recheiosAdicionais).map(function(recheiosAdd, index, arr){
+  //   console.log(index)
+  //   console.log(recheiosAdd)
+  //   console.log(arr)
+  // }) 
+ 
+
+
+
 
 
   function handleSubmit () {
-    location.href = `https://api.whatsapp.com/send?phone=5573991578697&text=
-    _Tamanho_: *${diameterState == null? `` : `${diameterState} cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)} ` : `${batterState.join(' e ')}`}* 
+    location.href = `https://api.whatsapp.com/send?phone=5574999990520&text=
+    _Tamanho_: *${diameterState == null? `` : `${diameterState}  cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)} ` : `${batterState.join(' e ')}`}* 
     %0a_Recheios_: *${filling[0] == null? `${filling.slice(1)}` : `${filling.join(' e ')}`}* 
-    %0a_Recheios_: *${aditionalFilling[0] == null? `${aditionalFilling.slice(1)}` : `${aditionalFilling.join(' e ')}`}* 
-    Valor do bolo: R$${price}`
+    ${aditionalFilling[0,1] == null? `%0a_Recheios Adicionais_: *Nenhum Recheio Adicional foi escolhido*` : `%0a_Recheios Adicionais_: *${aditionalFilling[0] == null? `${aditionalFilling.slice(1)}` : `${aditionalFilling.join(' e ')}`}* ` }
+    Valor total do bolo: R$${price}`
  }
 
   return (
@@ -116,11 +236,13 @@ export const ComponentForm = () => {
           <Form>
             
             <div className="form-container">
+  
               <section
                 role="group"
                 aria-labelledby="checkbox-group"
-                className="form-section-one"
-              >
+                className={diameterState? `hover` : 'form-section-one'}
+              >  
+          
                 <h2>Diâmetros</h2>
                 <p>(Escolha somente uma opção)</p>
                 <div className='containerLabel'>
@@ -394,7 +516,7 @@ export const ComponentForm = () => {
             </div>
             <div className="form-button">
               <button type="submit">Enviar pedido</button>
-            </div>
+            </div>   
           </Form>
         )}
       </Formik>

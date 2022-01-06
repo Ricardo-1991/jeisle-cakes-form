@@ -5,6 +5,7 @@ import { BsInstagram, BsWhatsapp } from 'react-icons/bs'
 
 export const Header = () => {
   return (
+   
     <header className="header-container">
       <div className='content-box-header'>
           <div>
@@ -30,5 +31,6 @@ export const Header = () => {
         </div>
       </div>
     </header>
+  
   )
 }
