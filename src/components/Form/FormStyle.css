@@ -40,23 +40,19 @@ p {
   margin-bottom: 1rem;
 }
 
+
 .form-section-one, .form-section-two, .form-section-three, .form-section-four {
   display: grid;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 20px;
+  padding: 2.5rem;
 }
-
-/* .form-section-one:hover, .form-section-two:hover, .form-section-three:hover, .form-section-four:hover{
-  transition: 1s;
-  box-shadow: 0 0 10px var(--nameEnterprise);
-} */
 
 .hover{
   display: grid;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 20px;
+  padding: 2.5rem;
   transition: 1s;
   box-shadow: 0 0 20px var(--nameEnterprise);
 }
@@ -67,13 +63,32 @@ p {
 }
 
 
-/* @media (max-width: 1875px) {
-  .form-container {
-    display: grid;
-    gap: 50px;
-    text-align: center;
-  }
-}  */
+/* Estilizando Checkbox */
+span{
+  display: inline-block;
+  position: relative;
+  margin-left: 0.5rem; 
+  top: 0.2rem;
+}
 
+input[type='checkbox']::before {
+  content: ' ';
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #bf360c;
+}
+input[type='checkbox']:checked::after {
+  content: ' ';
+  width: 0.2rem;
+  height: 0.5rem;
+  margin-left: 0.3rem;
+  border-color: var(--headers);
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  position: absolute;
+  transform: rotate(45deg);
+}
 
 

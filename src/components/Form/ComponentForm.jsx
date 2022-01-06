@@ -1,18 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import '../Form/FormStyle.css'
-import { Formik, Field, Form} from 'formik'
 import avatar from '../../images/jeysle-menu.jpeg'
 
-
-const tamanhosDeBolo = {
+const cakeSize = {
   "15": 110, 
   "20": 160,
   "25": 220,
   "30": 280
-
 }
 
-const recheiosAdicionais = {
+const aditionalFilling = {
   "Abacaxi": {
     "15": 8,
     "20": 10,
@@ -72,6 +69,7 @@ const recheiosAdicionais = {
 }
 
 export const ComponentForm = () => {
+  const input = useRef(null)
 
   const [diameterState, setDiameter] = useState(null);
 
@@ -106,18 +104,24 @@ export const ComponentForm = () => {
   }
 
   function totalPriceOfCake (){
-    const cakeValue = tamanhosDeBolo[diameterState]
-    const valorDosRecheios = filling.reduce((acumulator, recheio) => {
-      const valorDoRecheioAtual = recheiosAdicionais[recheio] ? recheiosAdicionais[recheio][diameterState] : 0
-      return Number(acumulator) + Number(valorDoRecheioAtual)
+    const cakeValue = cakeSize[diameterState]
+    const valueFillings = filling.reduce((acumulator, filling) => {
+      const currentValueFillings = aditionalFilling[filling] ? aditionalFilling[filling][diameterState] : 0
+      return Number(acumulator) + Number(currentValueFillings)
     }, 0)
-    return Number(cakeValue) + Number(valorDosRecheios)
+    return Number(cakeValue) + Number(valueFillings)
   }
-  
   const total = totalPriceOfCake()
  
+  function handleSubmit (evt) {
+    evt.preventDefault()
+    
+    if(diameterState == null){
+      alert("Selecione pelo menos um diâmetro de bolo.")
+      input.current.focus()
+      return false
+    }
 
-  function handleSubmit () {
     location.href = `https://api.whatsapp.com/send?phone=5574999990520&text=
     _Tamanho_: *${diameterState == null? `` : `${diameterState}  cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)} ` : `${batterState.join(' e ')}`}* 
     %0a_Recheios_: *${filling[0] == null? `${filling.slice(1)}` : `${filling.join(' e ')}`}*
@@ -129,54 +133,43 @@ export const ComponentForm = () => {
       <div className='container-img'>
         <img src={avatar} className='imagem-avatar' alt="imagem-avatar" />
       </div>
-      <Formik
-        initialValues={{
-          toggle: false, // Esses dois valores iniciais estão no exemplo da documentação de Checkbox com Formik
-          checked: [],
-        }}
-        onSubmit={handleSubmit}
-      >
-        {({ values }) => ( // Funciona como se fosse um useState guardando os dados dos <Fields>(inputs type="checkbox"
-          <Form>
-            
+          <form onSubmit={handleSubmit}> 
             <div className="form-container">
-  
               <section
                 role="group"
                 aria-labelledby="checkbox-group"
                 className={diameterState? `hover` : 'form-section-one'}
               >  
-          
                 <h2>Diâmetros</h2>
                 <p>(Escolha somente uma opção)</p>
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 15}  value="15" />
-                     15cm ------------------------------ R$110,00
+                    <input type="checkbox" name="tamanho" ref={input} onChange={changeDiameter} checked={diameterState == 15}  value="15" />
+                     <span> - 15cm ------------------------------ R$110,00</span>
                     <p>( 10 a 15 fatias )</p>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 20} value="20" />
-                    20cm ------------------------------ R$160,00
+                    <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 20} value="20" />
+                    <span> - 20cm ------------------------------ R$160,00 </span>
                     <p>( 20 a 25 fatias )</p>     
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 25}  value="25" />
-                    25cm ------------------------------ R$220,00
+                    <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 25}  value="25" />
+                    <span> - 25cm ------------------------------ R$220,00</span>
                     <p>( 35 a 40 fatias )</p>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 30} value="30"  />
-                    30cm ------------------------------ R$280,00
+                    <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 30} value="30"  />
+                    <span> - 30cm ------------------------------ R$280,00</span>
                     <p>( 55 a 60 fatias )</p>
                   </label>
                 </div>
@@ -193,71 +186,73 @@ export const ComponentForm = () => {
                 <h2>Massas</h2>
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="massa"
                       value="Massa Branca"
                       className='checkbox'
-                      onClick={changeBatter} checked={batterState.find(val => val == "Massa Branca") ? true : false } 
+                      onChange={changeBatter} checked={batterState.find(val => val == "Massa Branca") ? true : false } 
                     />
-                    - Massa Branca
+                    <span>- Massa Branca</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="massa"
                       value="Massa Chocolate"
-                      onClick={changeBatter} checked={batterState.find(val => val == "Massa Chocolate")  ? true : false} 
+                      onChange={changeBatter} checked={batterState.find(val => val == "Massa Chocolate")  ? true : false} 
                     />
-                    - Massa Chocolate
+                    <span>- Massa Chocolate</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
-                  <Field
+                <label>
+                  <input
                     type="checkbox"
                     name="massa"
                     value="Massa Baunilha"
-                    onClick={changeBatter} checked={batterState.find(val => val == "Massa Baunilha")  ? true : false} 
+                    onChange={changeBatter} checked={batterState.find(val => val == "Massa Baunilha")  ? true : false} 
                   />
-                  <label> - Massa Baunilha</label>
+                  <span>- Massa Baunilha</span>
+                  </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="massa"
                       value="Massa Mesclada"
-                      onClick={changeBatter} checked={batterState.find(val => val == "Massa Mesclada")  ? true : false} 
+                      onChange={changeBatter} checked={batterState.find(val => val == "Massa Mesclada")  ? true : false} 
                     />
-                    - Massa Mesclada
+                    <span>- Massa Mesclada</span>
+                    <p>( Massa branca misturada com chocolate )</p>
                   </label>
-                  <p>( Massa branca misturada com chocolate )</p>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="massa"
                       value="Massa Formigueiro"
-                      onClick={changeBatter} checked={batterState.find(val => val == "Massa Formigueiro")  ? true : false} 
+                      onChange={changeBatter} checked={batterState.find(val => val == "Massa Formigueiro")  ? true : false} 
                     />
-                    - Massa Formigueiro
+                    <span>- Massa Formigueiro</span>
+                    <p> ( Massa branca misturada com granulado )</p>
                   </label>
-                  <p> ( Massa branca misturada com granulado )</p>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="massa" value="Massa Mista" onClick={changeBatter} checked={batterState.find(val => val == "Massa Mista")  ? true : false } />
-                    - Massa Mista
-                  </label>
+                    <input type="checkbox" name="massa" value="Massa Mista" onChange={changeBatter} checked={batterState.find(val => val == "Massa Mista")  ? true : false } />
+                    <span>- Massa Mista</span>
                   <p>( Massa branca e massa de chocolate/separadas )</p>
+                  </label>
                 </div>
               </section>
 
@@ -271,75 +266,77 @@ export const ComponentForm = () => {
                 <h2>Recheios</h2>
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheio" value="Amendoim" onChange={changeFilling} checked={filling.find( val => val == 'Amendoim')  ? true : false } />-
-                    Amendoim
+                    <input type="checkbox" name="recheio" value="Amendoim" onChange={changeFilling} checked={filling.find( val => val == 'Amendoim')  ? true : false } />
+                    <span> - Amendoim</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
-                  <Field
+                <label> 
+                  <input
                     type="checkbox"
                     name="recheio"
                     value="Brigadeiro Tradicional"
                     onChange={changeFilling} checked={filling.find( val => val == 'Brigadeiro Tradicional')  ? true : false }
                   />
-                  <label> - Brigadeiro Tradicional</label>
+                  <span> - Brigadeiro Tradicional</span>
+                  </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="recheio"
                       value="Brigadeiro Branco"
                       onChange={changeFilling} checked={filling.find( val => val == 'Brigadeiro Branco')  ? true : false }
                     />
-                    - Brigadeiro Branco
+                    <span> - Brigadeiro Branco</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="recheio"
                       value="Brigadeiro de Café"
                       onChange={changeFilling} checked={filling.find( val => val == 'Brigadeiro de Café')  ? true : false }
                     />
-                    - Brigadeiro de Café
+                    <span> - Brigadeiro de Café</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheio" value="Beijinho" onChange={changeFilling} checked={filling.find( val => val == 'Beijinho')  ? true : false } />-
-                    Beijinho
+                    <input type="checkbox" name="recheio" value="Beijinho" onChange={changeFilling} checked={filling.find( val => val == 'Beijinho')  ? true : false } />
+                    <span> - Beijinho</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="recheio"
                       value="Doce de Leite"
                       onChange={changeFilling} checked={filling.find( val => val == 'Doce de Leite')  ? true : false }
                     />
-                    - Doce de Leite
+                    <span> - Doce de Leite</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheio" value="Ninho" onChange={changeFilling} checked={filling.find( val => val == 'Ninho')  ? true : false } />-
-                    Ninho
+                    <input type="checkbox" name="recheio" value="Ninho" onChange={changeFilling} checked={filling.find( val => val == 'Ninho')  ? true : false } />
+                    <span> - Ninho</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheio" value="4 Leites" onChange={changeFilling} checked={filling.find( val => val == '4 Leites')  ? true : false } />- 4
-                    Leites
+                    <input type="checkbox" name="recheio" value="4 Leites" onChange={changeFilling} checked={filling.find( val => val == '4 Leites')  ? true : false } />
+                    <span> - 4 Leites</span>
                   </label>
                 </div>
               </section>
@@ -354,76 +351,76 @@ export const ComponentForm = () => {
                 <h2>Recheios com valor adicional</h2>
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Abacaxi" onChange={changeFilling} checked={filling.find( val => val == 'Abacaxi')  ? true : false } />-
-                    Abacaxi
+                    <input type="checkbox" name="recheioAdd" value="Abacaxi" onChange={changeFilling} checked={filling.find( val => val == 'Abacaxi')  ? true : false } />
+                    <span> - Abacaxi</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="recheioAdd"
                       value="Ameixa"
                       onChange={changeFilling} checked={filling.find( val => val == 'Ameixa')  ? true : false }
                     />
-                    - Ameixa
+                    <span> - Ameixa</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field
+                    <input
                       type="checkbox"
                       name="recheioAdd"
                       value="Limão Siciliano"
                       onChange={changeFilling} checked={filling.find( val => val == 'Limão Siciliano')  ? true : false }
                     />
-                    - Limão Siciliano
+                    <span> - Limão Siciliano</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Maracujá" onChange={changeFilling} checked={filling.find( val => val == 'Maracujá')  ? true : false } />-
-                    Maracujá
+                    <input type="checkbox" name="recheioAdd" value="Maracujá" onChange={changeFilling} checked={filling.find( val => val == 'Maracujá')  ? true : false } />
+                    <span> - Maracujá</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Morango" onChange={changeFilling} checked={filling.find( val => val == 'Morango')  ? true : false } />-
-                    Morango
+                    <input type="checkbox" name="recheioAdd" value="Morango" onChange={changeFilling} checked={filling.find( val => val == 'Morango')  ? true : false } />
+                    <span> - Morango</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Nozes" onChange={changeFilling} checked={filling.find( val => val == 'Nozes')  ? true : false } />-
-                    Nozes
+                    <input type="checkbox" name="recheioAdd" value="Nozes" onChange={changeFilling} checked={filling.find( val => val == 'Nozes')  ? true : false } />
+                    <span> - Nozes</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Ovomaltine" onChange={changeFilling} checked={filling.find( val => val == 'Ovomaltine')  ? true : false } />-
-                    Ovomaltine
+                    <input type="checkbox" name="recheioAdd" value="Ovomaltine" onChange={changeFilling} checked={filling.find( val => val == 'Ovomaltine')  ? true : false } />
+                    <span> - Ovomaltine</span>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <Field type="checkbox" name="recheioAdd" value="Oreo" onChange={changeFilling} checked={filling.find( val => val == 'Oreo')  ? true : false } />- Oreo
+                    <input type="checkbox" name="recheioAdd" value="Oreo" onChange={changeFilling} checked={filling.find( val => val == 'Oreo')  ? true : false } />
+                    <span> - Oreo</span>
                   </label>
                 </div>
               </section>
             </div>
             <div className="form-button">
-              <button type="submit">Enviar pedido</button>
+              <input type="submit" value="enviar" />
             </div>   
-          </Form>
-        )}
-      </Formik>
+          </form>
     </>
   )
 }
+
