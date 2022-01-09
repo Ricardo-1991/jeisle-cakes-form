@@ -1,6 +1,7 @@
 import React, {useState, useRef} from 'react'
 import '../Form/FormStyle.css'
 import avatar from '../../images/jeysle-menu.jpeg'
+import Modal from 'react-modal'
 
 const cakeSize = {
   "15": 110, 
@@ -68,8 +69,8 @@ const aditionalFilling = {
   },
 }
 
-export const ComponentForm = () => {
-  const input = useRef(null)
+export const ComponentForm = ({onOpenHandleResumeModal}) => {
+  const inputRef = useRef(false)
 
   const [diameterState, setDiameter] = useState(null);
 
@@ -77,9 +78,13 @@ export const ComponentForm = () => {
 
   const [filling, setFilling] = useState([null,null]);
 
+  const [fillingAdd, setFillingAdd] = useState([null, null])
+
+ 
+
   //Estado diâmetros do bolo
   const changeDiameter = (evt) => {
-    setDiameter(evt.target.value)   
+     setDiameter(evt.target.value)
   }
 
   //Estado Massas de Bolo
@@ -93,6 +98,10 @@ export const ComponentForm = () => {
   
   // Estado Recheios
   const changeFilling = evt =>{
+      if(evt.target.name == 'recheioAdd'){
+        setFillingAdd([fillingAdd[1],evt.target.value])
+      }
+  
       //Verifica se o valor já existe nos dois selecionados
       if(filling.find(val => val == evt.target.value)){
         // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
@@ -112,13 +121,14 @@ export const ComponentForm = () => {
     return Number(cakeValue) + Number(valueFillings)
   }
   const total = totalPriceOfCake()
+  
  
   function handleSubmit (evt) {
     evt.preventDefault()
     
     if(diameterState == null){
       alert("Selecione pelo menos um diâmetro de bolo.")
-      input.current.focus()
+      inputRef.current.focus()
       return false
     }
 
@@ -138,13 +148,13 @@ export const ComponentForm = () => {
               <section
                 role="group"
                 aria-labelledby="checkbox-group"
-                className={diameterState? `hover` : 'form-section-one'}
+                className={diameterState? `hover` : `form-section-one`}
               >  
                 <h2>Diâmetros</h2>
                 <p>(Escolha somente uma opção)</p>
                 <div className='containerLabel'>
                   <label>
-                    <input type="checkbox" name="tamanho" ref={input} onChange={changeDiameter} checked={diameterState == 15}  value="15" />
+                    <input type="checkbox" name="tamanho" ref={inputRef} onChange={changeDiameter} checked={diameterState == 15}  value="15" />
                      <span> - 15cm ------------------------------ R$110,00</span>
                     <p>( 10 a 15 fatias )</p>
                   </label>
@@ -152,26 +162,26 @@ export const ComponentForm = () => {
 
                 <div className='containerLabel'>
                   <label>
-                    <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 20} value="20" />
-                    <span> - 20cm ------------------------------ R$160,00 </span>
-                    <p>( 20 a 25 fatias )</p>     
+                    <input type="checkbox" name="tamanho"  onChange={changeDiameter} checked={diameterState == 20} value="20" />
+                    <span  > - 20cm ------------------------------ R$160,00 </span>
+                    <p>( 20 a 25 fatias )</p>    
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
                     <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 25}  value="25" />
-                    <span> - 25cm ------------------------------ R$220,00</span>
+                    <span > - 25cm ------------------------------ R$220,00</span>
                     <p>( 35 a 40 fatias )</p>
                   </label>
                 </div>
 
                 <div className='containerLabel'>
                   <label>
-                    <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 30} value="30"  />
+                    <input type="checkbox" name="tamanho"  onChange={changeDiameter} checked={diameterState == 30} value="30"  />
                     <span> - 30cm ------------------------------ R$280,00</span>
                     <p>( 55 a 60 fatias )</p>
-                  </label>
+                  </label>          
                 </div>
               </section>
 
@@ -191,7 +201,7 @@ export const ComponentForm = () => {
                       name="massa"
                       value="Massa Branca"
                       className='checkbox'
-                      onChange={changeBatter} checked={batterState.find(val => val == "Massa Branca") ? true : false } 
+                      onChange={changeBatter}checked={batterState.find(val => val == "Massa Branca") ? true : false } 
                     />
                     <span>- Massa Branca</span>
                   </label>
@@ -263,6 +273,7 @@ export const ComponentForm = () => {
                 className="form-section-three"
                 aria-labelledby="checkbox-group"
               >
+               
                 <h2>Recheios</h2>
                 <div className='containerLabel'>
                   <label>
@@ -347,7 +358,7 @@ export const ComponentForm = () => {
                 role="group"
                 className="form-section-four"
                 aria-labelledby="checkbox-group"
-              >
+              > 
                 <h2>Recheios com valor adicional</h2>
                 <div className='containerLabel'>
                   <label>
@@ -417,10 +428,10 @@ export const ComponentForm = () => {
               </section>
             </div>
             <div className="form-button">
-              <input type="submit" value="enviar" />
+              <input type="button" value="Resumo do Pedido" onClick={onOpenHandleResumeModal} />
             </div>   
-          </form>
-    </>
-  )
+           </form>   
+      </>
+ )
 }
 

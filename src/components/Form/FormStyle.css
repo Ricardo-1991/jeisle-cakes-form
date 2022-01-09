@@ -44,6 +44,7 @@ p {
 .form-section-one, .form-section-two, .form-section-three, .form-section-four {
   display: grid;
   width: 100%;
+  transition: 1s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2.5rem;
 }
@@ -89,6 +90,30 @@ input[type='checkbox']:checked::after {
   border-width: 0 3px 3px 0;
   position: absolute;
   transform: rotate(45deg);
+}
+/* ---- */
+
+.form-button {
+  width: 100%;
+  display: grid;
+  margin-top: 1rem;
+}
+
+input[type='button'] {
+  width: 100%;
+  padding: 0 1.5rem;
+  height: 4rem;
+  background: #33cc95;
+  color: #fff;
+  border-radius: 0.25rem;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+}
+
+input[type='button']:hover {
+  filter: brightness(0.9);
 }
 
 
