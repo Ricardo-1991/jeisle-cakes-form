@@ -50,14 +50,14 @@ p {
   padding: 2rem;
 }
 
-.hover{
+/* .hover{
   display: grid;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
   transition: 1s;
   box-shadow: 0 0 20px var(--nameEnterprise);
-}
+} */
 
 
 /* Estilizando Checkbox */
@@ -128,7 +128,7 @@ input[type='button']:hover {
 @media (max-width: 720px) {
   .form-section-one, .form-section-two, .form-section-three, .form-section-four {
     justify-content: center;
-    width: 27rem;
+    width: 29rem;
   }
 
   h2 {
