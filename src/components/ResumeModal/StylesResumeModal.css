@@ -17,6 +17,7 @@
   padding: 3rem;
   position: relative;
   border-radius: 0.25rem;
+  margin-top: 4rem;
 }
 
 .react-modal-close{
@@ -31,6 +32,14 @@
 .react-modal-close:hover {
   transition: filter 0.2s; 
   filter: brightness(0.8);
+}
+
+.data-container {
+  color: var(--nameEnterprise);
+}
+
+.data-container h1, h3 {
+  line-height: 3rem;
 }
 
 button[type='submit'] {

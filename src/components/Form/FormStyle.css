@@ -18,9 +18,10 @@ p {
   width: 100%;
   display: grid;
   justify-content: center;
-  gap: 50px;
+  gap: 3rem;
   text-align: center;
 }
+
 .container-img {
   display: grid;
   justify-content: center;
@@ -46,21 +47,16 @@ p {
   width: 100%;
   transition: 1s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2.5rem;
+  padding: 2rem;
 }
 
 .hover{
   display: grid;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2.5rem;
+  padding: 2rem;
   transition: 1s;
   box-shadow: 0 0 20px var(--nameEnterprise);
-}
-
-.form-button {
-  display: grid;
-  justify-content: center;
 }
 
 
@@ -97,6 +93,7 @@ input[type='checkbox']:checked::after {
   width: 100%;
   display: grid;
   margin-top: 1rem;
+  justify-content: center;
 }
 
 input[type='button'] {
@@ -115,5 +112,42 @@ input[type='button'] {
 input[type='button']:hover {
   filter: brightness(0.9);
 }
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.8rem;
+  background-color: #dfecea;
+  color: #3C4858;
+  font-size: 0.7rem;
+  height:2.5rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 720px) {
+  .form-section-one, .form-section-two, .form-section-three, .form-section-four {
+    justify-content: center;
+    width: 26rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+  
+  label {
+    font-size: 1rem;
+  }
+  
+  p {
+    font-size: 1rem;
+  }
+
+  span{
+    margin-left: 0.5rem; 
+    top: -0.2rem;
+  }
+} 
+
 
 

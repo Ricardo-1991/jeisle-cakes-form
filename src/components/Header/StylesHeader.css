@@ -42,3 +42,12 @@
   transition: 1s;
   filter: brightness(1.4);
 }
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 720px) {
+  .logo-empresa {
+    width: 100%;
+    height: 80px;
+  }
+} 

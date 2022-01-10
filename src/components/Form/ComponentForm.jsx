@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react'
 import '../Form/FormStyle.css'
 import avatar from '../../images/jeysle-menu.jpeg'
-import Modal from 'react-modal'
+import { ResumeModal } from '../ResumeModal/ResumeModal'
 
 const cakeSize = {
   "15": 110, 
@@ -69,8 +69,10 @@ const aditionalFilling = {
   },
 }
 
-export const ComponentForm = ({onOpenHandleResumeModal}) => {
-  const inputRef = useRef(false)
+export const ComponentForm = () => {
+  const inputDiameter = useRef(false)
+  const inputBatter = useRef(false)
+  const inputFilling = useRef(false)
 
   const [diameterState, setDiameter] = useState(null);
 
@@ -80,7 +82,31 @@ export const ComponentForm = ({onOpenHandleResumeModal}) => {
 
   const [fillingAdd, setFillingAdd] = useState([null, null])
 
- 
+  const [handleResumeModal, setHandleResumeModal] = useState(false)
+
+  function handleOpenResumeModal () {
+    if(diameterState == null){
+      alert("Selecione pelo menos um diâmetro de bolo.")
+      inputDiameter.current.focus()
+      return false
+    } else if(batterState[0] == null && batterState[1] == null){
+      alert("Selecione pelo menos uma massa de bolo")
+      inputBatter.current.focus()
+      return false
+    } else if (filling[0] == null && filling[1] == null){
+      alert("Selecione pelo menos um recheio")
+      inputFilling.current.focus()
+      return false
+    }
+  
+
+    setHandleResumeModal(true)
+  }
+  console.log(batterState)
+
+  function handleCloseResumeModal() {
+    setHandleResumeModal(false)
+  }
 
   //Estado diâmetros do bolo
   const changeDiameter = (evt) => {
@@ -115,22 +141,16 @@ export const ComponentForm = ({onOpenHandleResumeModal}) => {
   function totalPriceOfCake (){
     const cakeValue = cakeSize[diameterState]
     const valueFillings = filling.reduce((acumulator, filling) => {
-      const currentValueFillings = aditionalFilling[filling] ? aditionalFilling[filling][diameterState] : 0
+      const currentValueFillings = aditionalFilling[filling] ? aditionalFilling[filling][diameterState]  : 0
       return Number(acumulator) + Number(currentValueFillings)
     }, 0)
-    return Number(cakeValue) + Number(valueFillings)
+    return Number(cakeValue) + Number(valueFillings)  
   }
+
   const total = totalPriceOfCake()
   
- 
   function handleSubmit (evt) {
     evt.preventDefault()
-    
-    if(diameterState == null){
-      alert("Selecione pelo menos um diâmetro de bolo.")
-      inputRef.current.focus()
-      return false
-    }
 
     location.href = `https://api.whatsapp.com/send?phone=5574999990520&text=
     _Tamanho_: *${diameterState == null? `` : `${diameterState}  cm`}* %0a_Massa do bolo_: *${ batterState[0] == null ? `${batterState.slice(1)} ` : `${batterState.join(' e ')}`}* 
@@ -150,11 +170,11 @@ export const ComponentForm = ({onOpenHandleResumeModal}) => {
                 aria-labelledby="checkbox-group"
                 className={diameterState? `hover` : `form-section-one`}
               >  
-                <h2>Diâmetros</h2>
+                <h2>Diâmetro do bolo</h2>
                 <p>(Escolha somente uma opção)</p>
                 <div className='containerLabel'>
                   <label>
-                    <input type="checkbox" name="tamanho" ref={inputRef} onChange={changeDiameter} checked={diameterState == 15}  value="15" />
+                    <input type="checkbox" name="tamanho" ref={inputDiameter} onChange={changeDiameter} checked={diameterState == 15}  value="15" />
                      <span> - 15cm ------------------------------ R$110,00</span>
                     <p>( 10 a 15 fatias )</p>
                   </label>
@@ -200,6 +220,7 @@ export const ComponentForm = ({onOpenHandleResumeModal}) => {
                       type="checkbox"
                       name="massa"
                       value="Massa Branca"
+                      ref={inputBatter}
                       className='checkbox'
                       onChange={changeBatter}checked={batterState.find(val => val == "Massa Branca") ? true : false } 
                     />
@@ -277,7 +298,7 @@ export const ComponentForm = ({onOpenHandleResumeModal}) => {
                 <h2>Recheios</h2>
                 <div className='containerLabel'>
                   <label>
-                    <input type="checkbox" name="recheio" value="Amendoim" onChange={changeFilling} checked={filling.find( val => val == 'Amendoim')  ? true : false } />
+                    <input type="checkbox" name="recheio" value="Amendoim" ref={inputFilling} onChange={changeFilling} checked={filling.find( val => val == 'Amendoim')  ? true : false } />
                     <span> - Amendoim</span>
                   </label>
                 </div>
@@ -428,8 +449,13 @@ export const ComponentForm = ({onOpenHandleResumeModal}) => {
               </section>
             </div>
             <div className="form-button">
-              <input type="button" value="Resumo do Pedido" onClick={onOpenHandleResumeModal} />
+              <input type="button" value="Resumo do Pedido" onClick={handleOpenResumeModal} />
+
+              <ResumeModal isOpen={handleResumeModal} onRequestClose={handleCloseResumeModal} states={{diameterState, batterState, filling, fillingAdd, aditionalFilling, cakeSize, total}} onHandleSubmit={handleSubmit}/>
             </div>   
+            <footer className='form-footer'>
+              <h3>Desenvolvido por: Paulo Ricardo Santos Nascimento</h3>
+            </footer>
            </form>   
       </>
  )
