@@ -168,14 +168,14 @@ export const ComponentForm = () => {
               <section
                 role="group"
                 aria-labelledby="checkbox-group"
-                className={diameterState? `hover` : `form-section-one`}
+                className="form-section-one"
               >  
                 <h2>Diâmetro do bolo</h2>
                 <p>(Escolha somente uma opção)</p>
                 <div className='containerLabel'>
                   <label>
                     <input type="checkbox" name="tamanho" ref={inputDiameter} onChange={changeDiameter} checked={diameterState == 15}  value="15" />
-                     <span> - 15cm ------------------------------ R$110,00</span>
+                     <span> - 15cm --------------------------- R$110,00</span>
                     <p>( 10 a 15 fatias )</p>
                   </label>
                 </div>
@@ -183,7 +183,7 @@ export const ComponentForm = () => {
                 <div className='containerLabel'>
                   <label>
                     <input type="checkbox" name="tamanho"  onChange={changeDiameter} checked={diameterState == 20} value="20" />
-                    <span  > - 20cm ------------------------------ R$160,00 </span>
+                    <span  > - 20cm --------------------------- R$160,00 </span>
                     <p>( 20 a 25 fatias )</p>    
                   </label>
                 </div>
@@ -191,7 +191,7 @@ export const ComponentForm = () => {
                 <div className='containerLabel'>
                   <label>
                     <input type="checkbox" name="tamanho" onChange={changeDiameter} checked={diameterState == 25}  value="25" />
-                    <span > - 25cm ------------------------------ R$220,00</span>
+                    <span > - 25cm --------------------------- R$220,00</span>
                     <p>( 35 a 40 fatias )</p>
                   </label>
                 </div>
@@ -199,7 +199,7 @@ export const ComponentForm = () => {
                 <div className='containerLabel'>
                   <label>
                     <input type="checkbox" name="tamanho"  onChange={changeDiameter} checked={diameterState == 30} value="30"  />
-                    <span> - 30cm ------------------------------ R$280,00</span>
+                    <span> - 30cm --------------------------- R$280,00</span>
                     <p>( 55 a 60 fatias )</p>
                   </label>          
                 </div>

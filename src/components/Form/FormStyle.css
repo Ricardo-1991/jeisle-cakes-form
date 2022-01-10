@@ -45,7 +45,6 @@ p {
 .form-section-one, .form-section-two, .form-section-three, .form-section-four {
   display: grid;
   width: 100%;
-  transition: 1s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -127,8 +126,7 @@ input[type='button']:hover {
 /* RESPONSIVIDADE */
 @media (max-width: 720px) {
   .form-section-one, .form-section-two, .form-section-three, .form-section-four {
-    justify-content: center;
-    width: 29rem;
+    width: 30rem;
   }
 
   h2 {
