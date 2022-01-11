@@ -84,6 +84,13 @@ export const ComponentForm = () => {
 
   const [handleResumeModal, setHandleResumeModal] = useState(false)
 
+  function eraseInputs() {
+    setDiameter(null)
+    setBatterState([null, null])
+    setFilling([null,null])
+    setFillingAdd([null, null])
+  }
+
   function handleOpenResumeModal () {
     if(diameterState == null){
       alert("Selecione pelo menos um diâmetro de bolo.")
@@ -98,14 +105,12 @@ export const ComponentForm = () => {
       inputFilling.current.focus()
       return false
     }
-  
-
     setHandleResumeModal(true)
   }
-  console.log(batterState)
 
   function handleCloseResumeModal() {
     setHandleResumeModal(false)
+    eraseInputs()
   }
 
   //Estado diâmetros do bolo
