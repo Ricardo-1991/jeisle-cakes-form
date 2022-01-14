@@ -2,7 +2,9 @@ import './App.css'
 import { ComponentForm } from './components/Form/ComponentForm'
 import { Header } from './components/Header/Header'
 import { Container } from './components/UIcontainer/Container'
+import Modal from 'react-modal'
 
+Modal.setAppElement('#root') // Acessibilidade
 function App() {
   return (
     <>
@@ -14,4 +16,3 @@ function App() {
   )
 }
 export default App
-
