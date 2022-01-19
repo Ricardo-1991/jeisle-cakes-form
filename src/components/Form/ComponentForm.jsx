@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react'
 import '../Form/FormStyle.css'
 import avatar from '../../images/jeysle-menu.jpeg'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
+import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
+import { RenderGlitter } from '../Glitter/RenderGlitter'
 
 const cakeSize = {
   15: 110,
@@ -68,7 +70,7 @@ const aditionalFilling = {
   }
 }
 
-export const ComponentForm = () => {
+export function ComponentForm() {
   const inputDiameter = useRef(false)
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
@@ -80,39 +82,53 @@ export const ComponentForm = () => {
   const [batterState, setBatterState] = useState([null, null])
 
   const [filling, setFilling] = useState([])
+  const [addFilling, setAddFilling] = useState([])
 
   const [handleResumeModal, setHandleResumeModal] = useState(false)
+  const [handlePriceTableModal, setHandlePriceTableModal] = useState(false)
 
+  const [priceGlitter, setPriceGlitter] = useState(null)
+
+  // Modal Resumo Pedido
   function handleOpenResumeModal() {
-    // if(diameterState == null){
-    //   alert("Selecione pelo menos um diâmetro de bolo.")
-    //   inputDiameter.current.focus()
-    //   return false
-
-    // } else if(batterState[0] == null && batterState[1] == null){
-    //   alert("Selecione pelo menos uma massa de bolo")
-    //   inputBatter.current.focus()
-    //   return false
-
-    // } else if (filling[0] == null && filling[1] == null ){
-    //   alert("Selecione pelo menos um recheio")
-    //   inputFilling.current.focus()
-    //   return false
-    // }
+    if (diameterState == null) {
+      alert('Selecione pelo menos um diâmetro de bolo.')
+      inputDiameter.current.focus()
+      return false
+    } else if (batterState[0] == null && batterState[1] == null) {
+      alert('Selecione pelo menos uma massa de bolo')
+      inputBatter.current.focus()
+      return false
+    } else if (filling[0] == null && filling[1] == null) {
+      alert('Selecione pelo menos um recheio')
+      inputFilling.current.focus()
+      return false
+    }
     setHandleResumeModal(true)
   }
 
   function handleCloseResumeModal() {
+    setFilling([])
+    setAddFilling([])
     setHandleResumeModal(false)
+  }
+  //------ //
+
+  function handleOpenPriceTableModal() {
+    setHandlePriceTableModal(true)
+  }
+
+  function handleClosePriceTableModal() {
+    setHandlePriceTableModal(false)
   }
 
   //Estado diâmetros do bolo
-  const changeDiameter = evt => {
+  function changeDiameter(evt) {
     setDiameter(evt.target.value)
   }
 
   //Estado Massas de Bolo
-  const changeBatter = evt => {
+  function changeBatter(evt) {
     if (batterState.find(val => val == evt.target.value)) {
       setBatterState(batterState.filter(val => val != evt.target.value))
     } else {
@@ -121,7 +137,14 @@ export const ComponentForm = () => {
   }
 
   // Estado Recheios
-  const changeFilling = evt => {
+  function changeFilling(evt) {
+    if (evt.target.name == 'recheioAdd') {
+      if (addFilling.find(val => val == evt.target.value)) {
+        setAddFilling(addFilling.filter(val => val != evt.target.value))
+      } else {
+        setAddFilling([addFilling[1], evt.target.value])
+      }
+    }
     //Verifica se o valor já existe nos dois selecionados
     if (filling.find(val => val == evt.target.value)) {
       // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
@@ -132,6 +155,12 @@ export const ComponentForm = () => {
     }
   }
 
+  function handlePriceGlitter(price) {
+    setPriceGlitter(price)
+  }
+
+  console.log(priceGlitter)
+
   function totalPriceOfCake() {
     const cakeValue = cakeSize[diameterState]
     const valueFillings = filling.reduce((acumulator, filling) => {
@@ -140,10 +169,13 @@ export const ComponentForm = () => {
         : 0
       return Number(acumulator) + Number(currentValueFillings)
     }, 0)
-    return Number(cakeValue) + Number(valueFillings)
+    return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter)
   }
 
-  const total = totalPriceOfCake()
+  const total = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(totalPriceOfCake())
 
   function handleSubmit(evt) {
     evt.preventDefault()
@@ -161,22 +193,6 @@ export const ComponentForm = () => {
     }*
     Valor total do bolo: R$${total}`
   }
-
-  // const filteredNormal = filling.map(filling => {
-  //   for (let index in normalFilling) {
-  //     if (filling == normalFilling[index]) {
-  //       return normalFilling[index]
-  //     }
-  //   }
-  // })
-
-  // const filteredAdd = filling.map(filling => {
-  //   for (let index in addFilling) {
-  //     if (filling == addFilling[index]) {
-  //       return addFilling[index]
-  //     }
-  //   }
-  // })
 
   return (
     <>
@@ -263,6 +279,11 @@ export const ComponentForm = () => {
               </label>
             </div>
           </section>
+
+          <RenderGlitter
+            state={{ diameterState }}
+            clickCheckBox={handlePriceGlitter}
+          />
 
           {/* --- */}
 
@@ -521,6 +542,14 @@ export const ComponentForm = () => {
             aria-labelledby="checkbox-group"
           >
             <h2>Recheios com valor adicional</h2>
+            <div>
+              <input
+                type="button"
+                value="Tabela de preços Recheios Adicionais"
+                className="button-price-modal"
+                onClick={handleOpenPriceTableModal}
+              />
+            </div>
             <div className="containerLabel">
               <label>
                 <input
@@ -636,6 +665,7 @@ export const ComponentForm = () => {
           <input
             type="button"
             value="Resumo do Pedido"
+            className="button-resume-modal"
             onClick={handleOpenResumeModal}
           />
 
@@ -646,12 +676,19 @@ export const ComponentForm = () => {
               diameterState,
               batterState,
               filling,
+              addFilling,
               name,
               aditionalFilling,
               cakeSize,
+              priceGlitter,
               total
             }}
             onHandleSubmit={handleSubmit}
+          />
+
+          <PriceTableModal
+            isOpen={handlePriceTableModal}
+            onRequestClose={handleClosePriceTableModal}
           />
         </div>
         <footer className="form-footer">

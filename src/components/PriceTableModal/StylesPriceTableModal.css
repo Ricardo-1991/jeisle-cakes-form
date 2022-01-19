@@ -1,0 +1,29 @@
+
+.panel-table__group {
+  text-align: center;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.panel-table__group th {
+  background-color: white;
+  color: var(--headers);
+  padding: 1rem;
+  font-size: 1.2rem;
+
+}
+
+.panel-table__group td {
+  padding: 1rem;
+  color: var(--nameEnterprise);
+  font-weight: bold;
+  
+}
+
+tr:nth-child(odd) {
+  background-color: var(--sectionCircle);
+}
+
+footer {
+  margin-top: 1rem;
+}

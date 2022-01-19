@@ -62,10 +62,10 @@ export function ResumeModal({
           {states.diameterState == null ? `` : ` ${states.diameterState}cm`}.
         </h3>
         <h3>
-          <i>Massas</i>:
+          <i>Massas</i>:{' '}
           {states.batterState[0] == null
-            ? ` Recheio: ${states.batterState.slice(1)}`
-            : ` Recheios: ${states.batterState.join(' e ')}`}
+            ? states.batterState.slice(1)
+            : states.batterState.join(' e ')}
           .
         </h3>
 
@@ -75,12 +75,84 @@ export function ResumeModal({
             : ` Recheios: ${states.filling.join(' e ')}`}
         </h3>
 
+        {states.addFilling[0] == undefined && states.addFilling[1] && (
+          <>
+            <h3>Subtotal:</h3>
+            <h3>
+              Recheio adicional: {states.addFilling.slice(1)} -{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(valueAddFillings)}
+            </h3>
+            <p>+</p>
+            <h3>
+              Valor do diâmetro do bolo:{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(states.cakeSize[states.diameterState])}
+            </h3>
+          </>
+        )}
+
+        {states.addFilling[0] && states.addFilling[1] && (
+          <>
+            <h3>Subtotal:</h3>
+            <h3>
+              Recheios adicionais: {states.addFilling.join(' e ')} -{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(valueAddFillings)}
+            </h3>
+            <p>+</p>
+            <h3>
+              Valor do diâmetro do bolo:{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(states.cakeSize[states.diameterState])}
+            </h3>
+          </>
+        )}
+
+        {states.addFilling.length == 1 && (
+          <>
+            <h3>Subtotal:</h3>
+            <h3>
+              Recheio adicional: {states.addFilling.slice(0)} -{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(valueAddFillings)}
+            </h3>
+            <p>+</p>
+            <h3>
+              Valor do diâmetro do bolo:{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(states.cakeSize[states.diameterState])}
+            </h3>
+          </>
+        )}
+
+        {states.priceGlitter && (
+          <>
+            <p>+</p>
+            <h3>
+              Adicional de glitter:{' '}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(states.priceGlitter)}
+            </h3>
+          </>
+        )}
+
         <h3>
-          <u>Valor total</u>:{' '}
-          {new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(states.total)}
+          <u>Valor total</u>: {states.total}
         </h3>
       </div>
       <button type="submit" onClick={onHandleSubmit}>
