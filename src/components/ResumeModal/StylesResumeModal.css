@@ -68,7 +68,7 @@ button[type='submit']:hover {
     position: relative;
     border-radius: 0.25rem;
     margin-top: 4rem;
-    font-size: 0.8rem;
+    font-size: 9px;
   }
 
   .data-container h1, h3 {
