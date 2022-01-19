@@ -36,6 +36,13 @@ p {
   width: 28rem;
 }
 
+.warning-text {
+  width:100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1.5rem;
+
+}
+
 .containerLabel {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
@@ -47,21 +54,27 @@ p {
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
+
 }
 
-/* .form-section-name {
-  
-} */
-
-/* .hover{
+.form-section-name {
   display: grid;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
-  transition: 1s;
-  box-shadow: 0 0 20px var(--nameEnterprise);
-} */
 
+}
+
+.form-section-name input {
+  width: 70%;
+  margin-top: 2rem;
+  border: 0;
+  border-bottom: 2px solid #9e9e9e;
+  outline: none;
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+  text-align: center;
+} 
 
 /* Estilizando Checkbox */
 span{

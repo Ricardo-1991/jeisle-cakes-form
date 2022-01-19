@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import '../Form/FormStyle.css'
 import avatar from '../../images/jeysle-menu.jpeg'
+import { BsFileArrowDown } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
 import { RenderGlitter } from '../Glitter/RenderGlitter'
@@ -286,8 +287,15 @@ export function ComponentForm() {
           />
 
           {/* --- */}
-
-          <img src="#" alt="Selecione a massa e 2 recheios" />
+          <div className="warning-text">
+            <p>Selecione Massas e Recheios</p>
+            <br />
+            <h2>
+              OBS:<u> Máximo dois de cada</u>
+            </h2>
+            <br />
+            <BsFileArrowDown size={30} color="green" />
+          </div>
           <section
             role="group"
             className="form-section-two"
