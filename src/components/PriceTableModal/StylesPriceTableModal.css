@@ -14,7 +14,7 @@
 }
 
 .panel-table__group td {
-  padding: 1rem;
+  padding: 0.8rem;
   color: var(--nameEnterprise);
   font-weight: bold;
   
