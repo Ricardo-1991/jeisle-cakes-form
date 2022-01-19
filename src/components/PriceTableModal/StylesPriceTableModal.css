@@ -1,15 +1,42 @@
 
+.react-modal-overlay-price{
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.react-modal-content-price{
+  width: 93%;
+  max-width: 576px;
+  background: white;
+  padding: 3rem;
+  position: relative;
+  border-radius: 0.25rem;
+  margin-top: 4rem;
+}
+
+.container-table {
+  display: flex;
+  justify-content: center;
+}
+
 .panel-table__group {
   text-align: center;
   border-collapse: collapse;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .panel-table__group th {
   background-color: white;
   color: var(--headers);
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 
 }
 
@@ -17,7 +44,6 @@
   padding: 0.8rem;
   color: var(--nameEnterprise);
   font-weight: bold;
-  
 }
 
 tr:nth-child(odd) {

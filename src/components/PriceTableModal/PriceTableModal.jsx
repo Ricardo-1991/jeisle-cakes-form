@@ -7,8 +7,8 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      overlayClassName="react-modal-overlay"
-      className="react-modal-content"
+      overlayClassName="react-modal-overlay-price"
+      className="react-modal-content-price"
     >
       <button
         type="button"
@@ -18,7 +18,7 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
         <img src={closeImg} alt="Botão de Fechar Modal" />
       </button>
 
-      <div>
+      <div className="container-table">
         <table className="panel-table__group">
           <thead>
             <tr>
