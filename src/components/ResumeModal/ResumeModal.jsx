@@ -64,52 +64,17 @@ export function ResumeModal({
         <h3>
           <i>Massas</i>:
           {states.batterState[0] == null
-            ? ` ${states.batterState.slice(1)}`
-            : ` ${states.batterState.join(' e ')}`}
+            ? ` Recheio: ${states.batterState.slice(1)}`
+            : ` Recheios: ${states.batterState.join(' e ')}`}
           .
         </h3>
-        {/* {Lógica marcado 2 de um ou de outro} */}
-        {states.filteredAdd[0] == null && states.filteredAdd[1] == null && (
-          <>
-            <h3>
-              {states.filteredNormal[0] == null
-                ? `Recheio normal: ${states.filteredNormal.slice(1)}`
-                : `Recheios Normais: ${states.filteredNormal.join(' e ')}`}
-            </h3>
-          </>
-        )}
 
-        {states.filteredNormal[0] == null && states.filteredNormal[1] == null && (
-          <>
-            <h3>
-              {states.filteredAdd[0] == null
-                ? `Recheio adicional: ${states.filteredAdd.slice(1)}`
-                : `Recheios Adicionais: ${states.filteredAdd.join(' e ')}`}
-            </h3>
-          </>
-        )}
+        <h3>
+          {states.filling[0] == null
+            ? ` Recheio: ${states.filling.slice(1)}`
+            : ` Recheios: ${states.filling.join(' e ')}`}
+        </h3>
 
-        {/* {Lógica marcado um de cada ao contrário} */}
-        {states.filteredNormal[1] == null && states.filteredAdd[0] == null && (
-          <>
-            {states.filteredNormal[0] && (
-              <h3>Recheio Normal: {states.filteredNormal.slice(0)}</h3>
-            )}
-            {states.filteredAdd[1] && (
-              <h3>Recheio Adicional: {states.filteredAdd.slice(1)}</h3>
-            )}
-          </>
-        )}
-        {states.filteredNormal[0] == null && states.filteredAdd[1] == null && (
-          <>
-            {states.filteredNormal[1] && (
-              <h3>Recheio normal: {states.filteredNormal.slice(1)}</h3>
-            )}
-            {states.filteredAdd[0] && (
-              <h3>Recheio Adicional: {states.filteredAdd.slice(0)}</h3>
-            )}
-          </>
-        )}
         <h3>
           <u>Valor total</u>:{' '}
           {new Intl.NumberFormat('pt-BR', {

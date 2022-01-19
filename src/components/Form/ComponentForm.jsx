@@ -81,9 +81,6 @@ export const ComponentForm = () => {
 
   const [filling, setFilling] = useState([])
 
-  const [normalFilling, setNormalFilling] = useState([])
-  const [addFilling, setAddFilling] = useState([])
-
   const [handleResumeModal, setHandleResumeModal] = useState(false)
 
   function handleOpenResumeModal() {
@@ -125,17 +122,10 @@ export const ComponentForm = () => {
 
   // Estado Recheios
   const changeFilling = evt => {
-    if (evt.target.name == 'recheio') {
-      setNormalFilling([normalFilling[1], evt.target.value])
-    } else if (evt.target.name == 'recheioAdd') {
-      // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
-      setAddFilling([addFilling[1], evt.target.value])
-    }
-
     //Verifica se o valor já existe nos dois selecionados
     if (filling.find(val => val == evt.target.value)) {
       // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
-      setFilling(filling.filter(val => val == evt.target.value))
+      setFilling(filling.filter(val => val != evt.target.value))
     } else {
       // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
       setFilling([filling[1], evt.target.value])
@@ -172,21 +162,21 @@ export const ComponentForm = () => {
     Valor total do bolo: R$${total}`
   }
 
-  const filteredNormal = filling.map(filling => {
-    for (let index in normalFilling) {
-      if (filling == normalFilling[index]) {
-        return normalFilling[index]
-      }
-    }
-  })
+  // const filteredNormal = filling.map(filling => {
+  //   for (let index in normalFilling) {
+  //     if (filling == normalFilling[index]) {
+  //       return normalFilling[index]
+  //     }
+  //   }
+  // })
 
-  const filteredAdd = filling.map(filling => {
-    for (let index in addFilling) {
-      if (filling == addFilling[index]) {
-        return addFilling[index]
-      }
-    }
-  })
+  // const filteredAdd = filling.map(filling => {
+  //   for (let index in addFilling) {
+  //     if (filling == addFilling[index]) {
+  //       return addFilling[index]
+  //     }
+  //   }
+  // })
 
   return (
     <>
@@ -658,8 +648,6 @@ export const ComponentForm = () => {
               filling,
               name,
               aditionalFilling,
-              filteredNormal,
-              filteredAdd,
               cakeSize,
               total
             }}
