@@ -140,12 +140,17 @@ export function ComponentForm() {
   // Estado Recheios
   function changeFilling(evt) {
     if (evt.target.name == 'recheioAdd') {
-      if (addFilling.find(val => val == evt.target.value)) {
-        setAddFilling(addFilling.filter(val => val != evt.target.value))
+      if (addFilling.find(val => val != evt.target.value)) {
+        setAddFilling(addFilling.filter(val => val == evt.target.value))
       } else {
         setAddFilling([addFilling[1], evt.target.value])
       }
     }
+
+    if (filling[0] && filling[1] && evt.target.name == 'recheio') {
+      setAddFilling([null, null])
+    }
+
     //Verifica se o valor já existe nos dois selecionados
     if (filling.find(val => val == evt.target.value)) {
       // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
@@ -155,12 +160,11 @@ export function ComponentForm() {
       setFilling([filling[1], evt.target.value])
     }
   }
+  console.log(addFilling)
 
   function handlePriceGlitter(price) {
     setPriceGlitter(price)
   }
-
-  console.log(priceGlitter)
 
   function totalPriceOfCake() {
     const cakeValue = cakeSize[diameterState]
