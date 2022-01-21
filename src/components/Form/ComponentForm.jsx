@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import '../Form/FormStyle.css'
-import avatar from '../../images/jeysle-menu.jpeg'
+import avatar from '../../images/avatar-jeisle.jpeg'
+import balaoMenu from '../../images/balao-menu.png'
 import { BsFileArrowDown } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
@@ -140,15 +141,15 @@ export function ComponentForm() {
   // Estado Recheios
   function changeFilling(evt) {
     if (evt.target.name == 'recheioAdd') {
-      if (addFilling.find(val => val != evt.target.value)) {
-        setAddFilling(addFilling.filter(val => val == evt.target.value))
+      if (addFilling.find(val => val == evt.target.value)) {
+        setAddFilling(addFilling.filter(val => val != evt.target.value))
       } else {
         setAddFilling([addFilling[1], evt.target.value])
       }
     }
 
     if (filling[0] && filling[1] && evt.target.name == 'recheio') {
-      setAddFilling([null, null])
+      addFilling.shift()
     }
 
     //Verifica se o valor já existe nos dois selecionados
@@ -160,7 +161,6 @@ export function ComponentForm() {
       setFilling([filling[1], evt.target.value])
     }
   }
-  console.log(addFilling)
 
   function handlePriceGlitter(price) {
     setPriceGlitter(price)
@@ -203,6 +203,7 @@ export function ComponentForm() {
     <>
       <div className="container-img">
         <img src={avatar} className="imagem-avatar" alt="imagem-avatar" />
+        <img src={balaoMenu} className="imagem-balao" alt="" />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-container">
@@ -292,7 +293,7 @@ export function ComponentForm() {
 
           {/* --- */}
           <div className="warning-text">
-            <p>Selecione Massas e Recheios</p>
+            <p>Selecione Massas e Recheios </p>
             <br />
             <h2>
               OBS:<u> Máximo dois de cada</u>

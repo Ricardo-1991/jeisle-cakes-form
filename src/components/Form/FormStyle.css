@@ -26,14 +26,19 @@ p {
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 50%;
   margin: 0 auto;
   height: 33rem;
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 
 .imagem-avatar {
-  width: 28rem;
+  width: 18rem;
+  margin-bottom: -10.8rem;
+}
+
+.imagem-balao {
+  width: 18rem;
 }
 
 .warning-text {
