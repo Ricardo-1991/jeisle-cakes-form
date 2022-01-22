@@ -79,6 +79,22 @@ p {
   margin-top: 1rem;
 }
 
+input[type="time"] {
+  margin-left: 2rem;
+  width: 7rem;
+  text-align: center;
+}
+
+.form-section-input-top {
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 2rem;
+}
+
+.form-section-input-top select {
+    padding: 0.5rem;
+}
+
 .form-section-input-text input {
   width: 70%;
   margin-top: 2rem;

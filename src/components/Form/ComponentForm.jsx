@@ -81,6 +81,8 @@ export function ComponentForm() {
 
   const [name, setName] = useState('')
   const [theme, setTheme] = useState('')
+  const [time, setTime] = useState(null)
+  const [top, setTop] = useState(null)
 
   const [dateForeCast, setDateForecast] = useState(null)
   const formatedDateForeCast = new Intl.DateTimeFormat('pt-BR').format(
@@ -220,7 +222,7 @@ export function ComponentForm() {
           </section>
 
           <section className="form-section-input-text">
-            <h2>Quer tematizar o bolo?</h2>
+            <h2>Deseja tematizar o bolo?</h2>
             <div className="container-label">
               <label>
                 <input
@@ -233,8 +235,28 @@ export function ComponentForm() {
             </div>
           </section>
 
+          <section className="form-section-input-top">
+            <h2>Adicionar Topo?</h2>
+            <p>(Preço a combinar)</p>
+            <br />
+            <div className="container-label">
+              <label>
+                <select
+                  name="topo"
+                  id="topo"
+                  onChange={evt => setTop(evt.target.value)}
+                >
+                  <option>Escolha a opção</option>
+                  <option value="Sim">Sim</option>
+                  <option value="Não">Não</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
           <section className="form-section-input-date">
             <h2>Para quando deseja a entrega?</h2>
+            <p>(Escolha data e horário)</p>
             <div className="container-label">
               <label>
                 <input
@@ -242,6 +264,12 @@ export function ComponentForm() {
                   name="date"
                   ref={inputDate}
                   onChange={evt => setDateForecast(evt.target.value)}
+                />
+                <input
+                  type="time"
+                  name="time"
+                  ref={inputDate}
+                  onChange={evt => setTime(evt.target.value)}
                 />
               </label>
             </div>
@@ -718,6 +746,8 @@ export function ComponentForm() {
               addFilling,
               name,
               theme,
+              time,
+              top,
               formatedDateForeCast,
               aditionalFilling,
               cakeSize,
