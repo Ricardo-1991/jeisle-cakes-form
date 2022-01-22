@@ -264,7 +264,6 @@ export function ComponentForm() {
             <p>(Escolha data e horário)</p>
             <div className="container-label">
               <label>
-                dd/mm/aaaa
                 <input
                   type="date"
                   name="date"
@@ -273,7 +272,6 @@ export function ComponentForm() {
                 />
               </label>
               <label>
-                --:--
                 <input
                   type="time"
                   name="time"
