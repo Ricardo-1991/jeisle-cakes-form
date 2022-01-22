@@ -5,7 +5,7 @@ import balaoMenu from '../../images/balao-menu.png'
 import { BsFileArrowDown } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
-import { RenderGlitter } from '../Glitter/RenderGlitter'
+import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
 
 const cakeSize = {
   15: 110,
@@ -73,6 +73,7 @@ const aditionalFilling = {
 }
 
 export function ComponentForm() {
+  const inputName = useRef(false)
   const inputDiameter = useRef(false)
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
@@ -93,7 +94,11 @@ export function ComponentForm() {
 
   // Modal Resumo Pedido
   function handleOpenResumeModal() {
-    if (diameterState == null) {
+    if (name == '') {
+      alert('Digite o seu nome antes de prosseguir.')
+      inputDiameter.current.focus()
+      return false
+    } else if (diameterState == null) {
       alert('Selecione pelo menos um diâmetro de bolo.')
       inputDiameter.current.focus()
       return false
@@ -166,6 +171,13 @@ export function ComponentForm() {
     setPriceGlitter(price)
   }
 
+  const valueFillings = filling.reduce((acumulator, filling) => {
+    const currentValueFillings = aditionalFilling[filling]
+      ? aditionalFilling[filling][diameterState]
+      : 0
+    return Number(acumulator) + Number(currentValueFillings)
+  }, 0)
+
   function totalPriceOfCake() {
     const cakeValue = cakeSize[diameterState]
     const valueFillings = filling.reduce((acumulator, filling) => {
@@ -177,6 +189,9 @@ export function ComponentForm() {
     return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter)
   }
 
+  const date = new Date()
+  const formatedDate = new Intl.DateTimeFormat('pt-BR').format(new Date(date))
+
   const total = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
@@ -185,18 +200,28 @@ export function ComponentForm() {
   function handleSubmit(evt) {
     evt.preventDefault()
 
-    location.href = `https://api.whatsapp.com/send?phone=5574999990520&text=
-    _Tamanho_: *${
-      diameterState == null ? `` : `${diameterState}  cm`
-    }* %0a_Massa do bolo_: *${
+    location.href = `https://api.whatsapp.com/send?phone=5573991578697&text=✅NOVO PEDIDO:
+    
+    %0a%0a_Nome do cliente_: *${name}*
+    %0a%0aData do pedido_: *${formatedDate}*
+    %0a%0a_Horário do pedido_: *${date.getHours()}:${date.getMinutes()}* 
+    %0a%0a_Diâmetro do bolo_: *${`${diameterState} cm`}* 
+    %0a%0a_Massa do bolo_: *${
       batterState[0] == null
         ? `${batterState.slice(1)} `
         : `${batterState.join(' e ')}`
     }* 
-    %0a_Recheios_: *${
+    %0a%0a_Recheios_: *${
       filling[0] == null ? `${filling.slice(1)}` : `${filling.join(' e ')}`
     }*
-    Valor total do bolo: R$${total}`
+
+    %0a%0a*_Subtotal_*: 
+    %0a_Valor do diâmetro do bolo_: *R$${`${cakeSize[diameterState]}`},00*
+    ${
+      priceGlitter ? `%0a%0a_Adicional de Glitter_: *R$${priceGlitter},00*` : ''
+    }
+
+    %0a%0a%0a_Valor total do bolo_: *${total}*`
   }
 
   return (
@@ -216,6 +241,7 @@ export function ComponentForm() {
                   name="nome"
                   onChange={evt => setName(evt.target.value)}
                   placeholder="Digite seu nome..."
+                  ref={inputName}
                 />
               </label>
             </div>
@@ -233,10 +259,10 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="tamanho"
-                  ref={inputDiameter}
                   onChange={changeDiameter}
                   checked={diameterState == 15}
                   value="15"
+                  ref={inputDiameter}
                 />
                 <span> - 15cm --------------------------- R$110,00</span>
                 <p>( 10 a 15 fatias )</p>

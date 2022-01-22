@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../RenderGlitter/StylesRenderGlitter.css'
 
 export function RenderGlitter({ state, clickCheckBox }) {
   const [handleGlitter, setHandleGlitter] = useState(null)

@@ -58,7 +58,7 @@ export function ResumeModal({
           )}`}
         </h3>
         <h3>
-          <i>Tamanho do Bolo</i>:
+          <i>Diâmetro do Bolo</i>:
           {states.diameterState == null ? `` : ` ${states.diameterState}cm`}.
         </h3>
         <h3>
@@ -75,9 +75,18 @@ export function ResumeModal({
             : ` Recheios: ${states.filling.join(' e ')}`}
         </h3>
 
+        <h3>Subtotal:</h3>
+        <h3>
+          Valor do diâmetro do bolo:{' '}
+          {new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(states.cakeSize[states.diameterState])}
+        </h3>
+
         {states.addFilling[0] == undefined && states.addFilling[1] && (
           <>
-            <h3>Subtotal:</h3>
+            <p>+</p>
             <h3>
               Recheio adicional: {states.addFilling.slice(1)} -{' '}
               {new Intl.NumberFormat('pt-BR', {
@@ -85,20 +94,12 @@ export function ResumeModal({
                 currency: 'BRL'
               }).format(valueAddFillings)}
             </h3>
-            <p>+</p>
-            <h3>
-              Valor do diâmetro do bolo:{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(states.cakeSize[states.diameterState])}
-            </h3>
           </>
         )}
 
         {states.addFilling[0] && states.addFilling[1] && (
           <>
-            <h3>Subtotal:</h3>
+            <p>+</p>
             <h3>
               Recheios adicionais: {states.addFilling.join(' e ')} -{' '}
               {new Intl.NumberFormat('pt-BR', {
@@ -106,34 +107,18 @@ export function ResumeModal({
                 currency: 'BRL'
               }).format(valueAddFillings)}
             </h3>
-            <p>+</p>
-            <h3>
-              Valor do diâmetro do bolo:{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(states.cakeSize[states.diameterState])}
-            </h3>
           </>
         )}
 
         {states.addFilling.length == 1 && (
           <>
-            <h3>Subtotal:</h3>
+            <p>+</p>
             <h3>
               Recheio adicional: {states.addFilling.slice(0)} -{' '}
               {new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
               }).format(valueAddFillings)}
-            </h3>
-            <p>+</p>
-            <h3>
-              Valor do diâmetro do bolo:{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(states.cakeSize[states.diameterState])}
             </h3>
           </>
         )}

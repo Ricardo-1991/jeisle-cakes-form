@@ -45,7 +45,6 @@ p {
   width:100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 1.5rem;
-
 }
 
 .containerLabel {
@@ -54,12 +53,14 @@ p {
 }
 
 
-.form-section-glitter,.form-section-one, .form-section-two, .form-section-three, .form-section-four {
+.form-section-one, .form-section-two, .form-section-three, .form-section-four {
   display: grid;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
+
+
 
 .form-section-name {
   display: grid;
@@ -141,6 +142,7 @@ input[type='checkbox']:checked::after {
   font-weight: 600;
   transition: filter 0.2s;
 }
+
 
 input[type='button']:hover {
   filter: brightness(0.9);
