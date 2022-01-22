@@ -41,11 +41,11 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     }*
      ${states.theme ? `%0a%0a_Tema do bolo_: *${states.theme}*` : ''}
     %0a%0a_Diâmetro do bolo_: *${`${states.diameterState} cm`}* 
-    %0a%0a_Massa do bolo_: *${
+    %0a%0a_Massa do bolo_: ${
       states.batterState[0] == null
-        ? `${states.batterState.slice(1)} `
-        : `${states.batterState.join(' e ')}`
-    }* 
+        ? `*${states.batterState.slice(1)}*`
+        : `*${states.batterState.join(' e ')}*`
+    }
     %0a%0a_Recheios_: *${
       states.filling[0] == null
         ? `${states.filling.slice(1)}`
