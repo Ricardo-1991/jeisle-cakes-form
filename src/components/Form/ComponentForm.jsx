@@ -264,19 +264,21 @@ export function ComponentForm() {
             <p>(Escolha data e horário)</p>
             <div className="container-label">
               <label>
+                dd/mm/aaaa
                 <input
                   type="date"
                   name="date"
                   ref={inputDate}
                   onChange={evt => setDateForecast(evt.target.value)}
-                  value="dd/mm/aaaa"
                 />
+              </label>
+              <label>
+                --:--
                 <input
                   type="time"
                   name="time"
                   ref={inputTime}
                   onChange={evt => setTime(evt.target.value)}
-                  value="--:--"
                 />
               </label>
             </div>
