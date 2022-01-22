@@ -10,9 +10,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 
 .ui-container {
   width: 100%;
@@ -28,6 +30,7 @@ html {
 @media (max-width: 720px) {
   html {
     font-size: 70%;
+    scroll-behavior: smooth;
   }
 } 
 
