@@ -60,7 +60,7 @@ button[type='submit']:hover {
   filter: brightness(0.9);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1875px) {
   .react-modal-content{
     width: 90%;
     max-width: 576px;
@@ -69,11 +69,11 @@ button[type='submit']:hover {
     position: relative;
     border-radius: 0.25rem;
     margin-top: 4rem;
-    font-size: 9px;
+    font-size: 0.6rem;
   }
 
   .data-container h1, h3 {
-    line-height: 2.3rem;
+    line-height: 0.5rem;
   }
   
 } 
