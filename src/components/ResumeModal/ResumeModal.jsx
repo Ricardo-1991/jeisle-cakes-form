@@ -38,7 +38,8 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`
     }:${
       date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`
-    }* 
+    }*
+     ${states.theme ? `%0a%0a_Tema do bolo_: *${states.theme}*` : ''}
     %0a%0a_Diâmetro do bolo_: *${`${states.diameterState} cm`}* 
     %0a%0a_Massa do bolo_: *${
       states.batterState[0] == null
