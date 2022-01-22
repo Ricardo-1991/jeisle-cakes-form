@@ -75,6 +75,7 @@ const aditionalFilling = {
 export function ComponentForm() {
   const inputName = useRef(false)
   const inputDate = useRef(false)
+  const inputTime = useRef(false)
   const inputDiameter = useRef(false)
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
@@ -108,6 +109,10 @@ export function ComponentForm() {
     } else if (dateForeCast == null) {
       alert('Selecione uma data que deseja para a entrega do bolo.')
       inputDate.current.focus()
+      return false
+    } else if (time == null) {
+      alert('Selecione um horário que deseja para a entrega do bolo.')
+      inputTime.current.focus()
       return false
     } else if (diameterState == null) {
       alert('Selecione pelo menos um diâmetro de bolo.')
@@ -269,7 +274,7 @@ export function ComponentForm() {
                 <input
                   type="time"
                   name="time"
-                  ref={inputDate}
+                  ref={inputTime}
                   onChange={evt => setTime(evt.target.value)}
                   placeholder="Clique para adicionar um horário..."
                 />
