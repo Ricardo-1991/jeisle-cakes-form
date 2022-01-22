@@ -133,7 +133,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           )}`}
         </h3>
         <h3>
-          Diâmetro do Bolo:
+          Diâmetro do bolo:
           {states.diameterState == null ? `` : ` ${states.diameterState}cm`}.
         </h3>
         <h3>
