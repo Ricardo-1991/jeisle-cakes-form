@@ -40,7 +40,7 @@
 }
 
 .data-container h3, h1 {
-  line-height: 3rem;
+  line-height: 2.7rem;
 }
 
 button[type='submit'] {
@@ -62,9 +62,6 @@ button[type='submit']:hover {
 
 @media (max-width: 1875px) {
   .react-modal-content{
-    width: 90%;
-    max-width: 576px;
-    background: white;
     padding: 3rem;
     position: relative;
     border-radius: 0.25rem;
@@ -77,6 +74,7 @@ button[type='submit']:hover {
   }
   
 } 
+
 
 
 
