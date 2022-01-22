@@ -28,11 +28,9 @@
   }
 } 
 
-
-
 @media (max-width: 370px) {
   html {
-    font-size: 60%;
+    font-size: 65%;
   }
 } 
 
