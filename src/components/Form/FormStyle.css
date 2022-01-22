@@ -79,6 +79,10 @@ p {
   margin-top: 1rem;
 }
 
+input[type="date"]{
+  text-align: center;
+}
+
 input[type="time"] {
   margin-left: 2rem;
   width: 7rem;
