@@ -14,6 +14,8 @@ p {
   font-size: 1.2rem;
 }
 
+/* ----------------*/
+
 .form-container {
   width: 100%;
   display: grid;
@@ -59,8 +61,6 @@ p {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
-
-
 
 .form-section-name {
   display: grid;
@@ -110,6 +110,8 @@ input[type='checkbox']:checked::after {
 }
 /* ---- */
 
+
+/* Estilizando Botões */
 .form-button {
   width: 100%;
   display: grid;
@@ -147,10 +149,14 @@ input[type='checkbox']:checked::after {
 input[type='button']:hover {
   filter: brightness(0.9);
 }
+/* ---- */
+
+/*Estilizando Footer */
 
 .form-footer {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin-top: 0.8rem;
   background-color: #dfecea;
@@ -158,6 +164,18 @@ input[type='button']:hover {
   font-size: 0.7rem;
   height:2.5rem;
 }
+
+.form-footer a {
+  color: black;
+  margin-left: 1rem; 
+  position: relative;
+  top: 0.31rem;  
+}
+.form-footer a:visited {
+  text-decoration: none;
+}
+
+/* ---- */
 
 /* RESPONSIVIDADE */
 @media (max-width: 720px) {
@@ -191,6 +209,10 @@ input[type='button']:hover {
     content: ' ';
     width: 0.6rem;
     height: 0.6rem;
+  }
+
+  .form-footer {
+    padding: 1.5rem;
   }
 } 
 

@@ -32,6 +32,7 @@
   margin: 1rem;
 }
 
+/* Link / React-Icons */
 .div-icons {
   border: 2px solid var(--nameEnterprise);
   border-radius: 5px;
@@ -42,6 +43,7 @@
   transition: 1s;
   filter: brightness(1.4);
 }
+/*---*/
 
 /* RESPONSIVIDADE */
 

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import '../Form/FormStyle.css'
 import avatar from '../../images/avatar-jeisle.jpeg'
 import balaoMenu from '../../images/balao-menu.png'
-import { BsFileArrowDown } from 'react-icons/bs'
+import { BsFileArrowDown, BsLinkedin, BsInstagram } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
 import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
@@ -143,7 +143,7 @@ export function ComponentForm() {
     }
   }
 
-  // Estado Recheios
+  // Estado Recheios + Estado Recheios Adicionais (auxiliar)
   function changeFilling(evt) {
     if (evt.target.name == 'recheioAdd') {
       if (addFilling.find(val => val == evt.target.value)) {
@@ -171,13 +171,6 @@ export function ComponentForm() {
     setPriceGlitter(price)
   }
 
-  const valueFillings = filling.reduce((acumulator, filling) => {
-    const currentValueFillings = aditionalFilling[filling]
-      ? aditionalFilling[filling][diameterState]
-      : 0
-    return Number(acumulator) + Number(currentValueFillings)
-  }, 0)
-
   function totalPriceOfCake() {
     const cakeValue = cakeSize[diameterState]
     const valueFillings = filling.reduce((acumulator, filling) => {
@@ -189,40 +182,10 @@ export function ComponentForm() {
     return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter)
   }
 
-  const date = new Date()
-  const formatedDate = new Intl.DateTimeFormat('pt-BR').format(new Date(date))
-
   const total = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
   }).format(totalPriceOfCake())
-
-  function handleSubmit(evt) {
-    evt.preventDefault()
-
-    location.href = `https://api.whatsapp.com/send?phone=5573991578697&text=✅NOVO PEDIDO:
-    
-    %0a%0a_Nome do cliente_: *${name}*
-    %0a%0aData do pedido_: *${formatedDate}*
-    %0a%0a_Horário do pedido_: *${date.getHours()}:${date.getMinutes()}* 
-    %0a%0a_Diâmetro do bolo_: *${`${diameterState} cm`}* 
-    %0a%0a_Massa do bolo_: *${
-      batterState[0] == null
-        ? `${batterState.slice(1)} `
-        : `${batterState.join(' e ')}`
-    }* 
-    %0a%0a_Recheios_: *${
-      filling[0] == null ? `${filling.slice(1)}` : `${filling.join(' e ')}`
-    }*
-
-    %0a%0a*_Subtotal_*: 
-    %0a_Valor do diâmetro do bolo_: *R$${`${cakeSize[diameterState]}`},00*
-    ${
-      priceGlitter ? `%0a%0a_Adicional de Glitter_: *R$${priceGlitter},00*` : ''
-    }
-
-    %0a%0a%0a_Valor total do bolo_: *${total}*`
-  }
 
   return (
     <>
@@ -230,7 +193,7 @@ export function ComponentForm() {
         <img src={avatar} className="imagem-avatar" alt="imagem-avatar" />
         <img src={balaoMenu} className="imagem-balao" alt="" />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="form-container">
           <section className="form-section-name">
             <h2>Digite o seu nome</h2>
@@ -722,16 +685,22 @@ export function ComponentForm() {
               priceGlitter,
               total
             }}
-            onHandleSubmit={handleSubmit}
           />
-
           <PriceTableModal
             isOpen={handlePriceTableModal}
             onRequestClose={handleClosePriceTableModal}
           />
         </div>
         <footer className="form-footer">
-          <h3>Desenvolvido por: Paulo Ricardo Santos Nascimento</h3>
+          <h3>
+            Contatos profissionais do desenvolvedor:{' '}
+            <a href="https://www.linkedin.com/in/paulo-ricardo-santos-nascimento-400877211/">
+              <BsLinkedin size={20} />
+            </a>
+            <a href="https://www.instagram.com/ricardo_n4scimento/">
+              <BsInstagram size={20} />
+            </a>
+          </h3>
         </footer>
       </form>
     </>

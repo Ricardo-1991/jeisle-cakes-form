@@ -21,7 +21,7 @@ export const Header = () => {
             <li>
               <div className="div-icons">
                 <a href="https://mywhats.net/JeisleCakes">
-                  <BsWhatsapp size={23} color="#34af23" className="icon" />
+                  <BsWhatsapp size={23} color="#34af23" />
                 </a>
               </div>
             </li>

@@ -14,6 +14,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.ui-container {
+  width: 100%;
+}
+
+
 @media (max-width: 1875px) {
   html {
     font-size: 93.75%;
@@ -35,9 +40,6 @@ button {
   cursor: pointer;
 }
 
-.ui-container {
-  width: 100%;
-}
 
 
 
