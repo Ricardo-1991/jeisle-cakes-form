@@ -81,11 +81,12 @@ p {
 
 input[type="date"]{
   text-align: center;
+  width: 10rem;
 }
 
 input[type="time"] {
   margin-left: 2rem;
-  width: 7rem;
+  width: 10rem;
   text-align: center;
 }
 
