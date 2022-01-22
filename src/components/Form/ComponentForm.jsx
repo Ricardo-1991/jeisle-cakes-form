@@ -269,14 +269,14 @@ export function ComponentForm() {
                   name="date"
                   ref={inputDate}
                   onChange={evt => setDateForecast(evt.target.value)}
-                  placeholder="Clique para adicionar uma data..."
+                  value="dd/mm/aaaa"
                 />
                 <input
                   type="time"
                   name="time"
                   ref={inputTime}
                   onChange={evt => setTime(evt.target.value)}
-                  placeholder="Clique para adicionar um horário..."
+                  value="--:--"
                 />
               </label>
             </div>
