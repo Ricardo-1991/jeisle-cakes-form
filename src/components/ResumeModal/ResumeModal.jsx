@@ -11,6 +11,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
   }, 0)
 
   const date = new Date()
+  const formatedDate = new Intl.DateTimeFormat('pt-BR').format(new Date(date))
   const orderHour = {
     hour: date.getHours(),
     minutes: date.getMinutes(),
@@ -32,9 +33,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     %0a📄 *RESUMO DO PEDIDO*
     
     %0a%0a_Nome do cliente_: *${states.name}*
-    %0a%0a_Data do pedido_: *${new Intl.DateTimeFormat('pt-BR').format(
-      new Date(date)
-    )}*
+    %0a%0a_Data do pedido_: *${formatedDate}*
     %0a%0a_Horário do pedido_: *${
       date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`
     }:${
@@ -99,8 +98,9 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           }).format(valueAddFillings)}*`
         : ''
     } 
-
-    %0a%0a%0a_Valor total do bolo_: *${states.total}*`
+    %0a______________________________
+    %0a_Data prevista para entrega_: *${states.formatedDateForeCast}*
+    %0a%0a_Valor total do bolo_: *${states.total}*`
   }
 
   return (
@@ -121,9 +121,10 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         <h1>RESUMO DO PEDIDO:</h1>
         <br />
         <h3>Nome do cliente: {states.name} </h3>
+        {states.theme && <h3>Tema do bolo: {states.theme}</h3>}
         <h3>
           Data do pedido:
-          {` ${new Intl.DateTimeFormat('pt-BR').format(new Date(date))}`}
+          {` ${formatedDate}`}
         </h3>
         <h3>
           Horário do pedido:
@@ -207,7 +208,8 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
             </h3>
           </>
         )}
-
+        <hr />
+        <h3>Data prevista para a entrega: {states.formatedDateForeCast}</h3>
         <h3>
           <u>Valor total</u>: {states.total}
         </h3>

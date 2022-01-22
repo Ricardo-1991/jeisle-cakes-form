@@ -74,16 +74,21 @@ const aditionalFilling = {
 
 export function ComponentForm() {
   const inputName = useRef(false)
+  const inputDate = useRef(false)
   const inputDiameter = useRef(false)
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
 
   const [name, setName] = useState('')
+  const [theme, setTheme] = useState('')
+
+  const [dateForeCast, setDateForecast] = useState(null)
+  const formatedDateForeCast = new Intl.DateTimeFormat('pt-BR').format(
+    new Date(dateForeCast)
+  )
 
   const [diameterState, setDiameter] = useState(null)
-
   const [batterState, setBatterState] = useState([null, null])
-
   const [filling, setFilling] = useState([])
   const [addFilling, setAddFilling] = useState([])
 
@@ -97,6 +102,10 @@ export function ComponentForm() {
     if (name == '') {
       alert('Digite o seu nome antes de prosseguir.')
       inputDiameter.current.focus()
+      return false
+    } else if (dateForeCast == null) {
+      alert('Selecione uma data que deseja para a entrega do bolo.')
+      inputDate.current.focus()
       return false
     } else if (diameterState == null) {
       alert('Selecione pelo menos um diâmetro de bolo.')
@@ -195,7 +204,7 @@ export function ComponentForm() {
       </div>
       <form>
         <div className="form-container">
-          <section className="form-section-name">
+          <section className="form-section-input-text">
             <h2>Digite o seu nome</h2>
             <div className="container-label">
               <label>
@@ -205,6 +214,34 @@ export function ComponentForm() {
                   onChange={evt => setName(evt.target.value)}
                   placeholder="Digite seu nome..."
                   ref={inputName}
+                />
+              </label>
+            </div>
+          </section>
+
+          <section className="form-section-input-text">
+            <h2>Quer tematizar o bolo?</h2>
+            <div className="container-label">
+              <label>
+                <input
+                  type="text"
+                  name="theme"
+                  onChange={evt => setTheme(evt.target.value)}
+                  placeholder="Digite aqui o tema do bolo..."
+                />
+              </label>
+            </div>
+          </section>
+
+          <section className="form-section-input-date">
+            <h2>Para quando deseja a entrega?</h2>
+            <div className="container-label">
+              <label>
+                <input
+                  type="date"
+                  name="date"
+                  ref={inputDate}
+                  onChange={evt => setDateForecast(evt.target.value)}
                 />
               </label>
             </div>
@@ -680,6 +717,8 @@ export function ComponentForm() {
               filling,
               addFilling,
               name,
+              theme,
+              formatedDateForeCast,
               aditionalFilling,
               cakeSize,
               priceGlitter,
