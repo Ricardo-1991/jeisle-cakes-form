@@ -16,17 +16,17 @@
 }
 
 
-@media (max-width: 1875px) {
+@media (max-width: 1080px) {
   html {
-    font-size: 75%;
+    font-size: 93.75%;
   }
 } 
-/* 
+
 @media (max-width: 720px) {
   html {
-    
+    font-size: 70%;
   }
-}  */
+} 
 
 body, input, textarea, button  {
   font-family: 'Poppins', sans-serif;
