@@ -1,0 +1,32 @@
+.form-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.8rem;
+  background-color: #dfecea;
+  color: #3C4858;
+  font-size: 0.7rem;
+  padding: 1rem;
+}
+
+.form-footer a {
+  color: black;
+  margin-left: 1rem; 
+  position: relative;
+  top: 0.31rem;  
+}
+
+
+.form-footer a:visited {
+  text-decoration: none;
+}
+
+
+/* Reponsividade */
+
+@media (max-width: 1080px) {
+  .form-footer {
+    padding: 1.5rem;
+  }
+}

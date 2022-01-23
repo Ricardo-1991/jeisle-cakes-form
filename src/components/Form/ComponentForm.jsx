@@ -2,10 +2,11 @@ import React, { useState, useRef } from 'react'
 import '../Form/FormStyle.css'
 import avatar from '../../images/avatar-jeisle.jpeg'
 import balaoMenu from '../../images/balao-menu.png'
-import { BsFileArrowDown, BsLinkedin, BsInstagram } from 'react-icons/bs'
+import { BsFileArrowDown } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
 import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
+import { Footer } from '../Footer/Footer'
 
 const cakeSize = {
   15: 110,
@@ -80,15 +81,16 @@ export function ComponentForm() {
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
 
-  const [name, setName] = useState('')
-  const [theme, setTheme] = useState('')
-  const [time, setTime] = useState(null)
-  const [top, setTop] = useState(null)
-
   const [dateForeCast, setDateForecast] = useState(null)
   const formatedDateForeCast = new Intl.DateTimeFormat('pt-BR').format(
     new Date(dateForeCast)
   )
+
+  const [name, setName] = useState('')
+  const [theme, setTheme] = useState('')
+  const [time, setTime] = useState(null)
+  const [top, setTop] = useState(null)
+  const [textArea, setTextArea] = useState('')
 
   const [diameterState, setDiameter] = useState(null)
   const [batterState, setBatterState] = useState([null, null])
@@ -720,7 +722,6 @@ export function ComponentForm() {
                 <span> - Ovomaltine</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -734,6 +735,22 @@ export function ComponentForm() {
               </label>
             </div>
           </section>
+
+          <section className="form-section-input-text">
+            <h2>Deseja constar alguma observação?</h2>
+            <p>(Constará no envio final do pedido)</p>
+            <br />
+            <div className="container-label">
+              <label>
+                <textarea
+                  value={textArea}
+                  onChange={evt => setTextArea(evt.target.value)}
+                  rows="5"
+                  cols="40"
+                ></textarea>
+              </label>
+            </div>
+          </section>
         </div>
         <div className="form-button">
           <input
@@ -742,43 +759,33 @@ export function ComponentForm() {
             className="button-resume-modal"
             onClick={handleOpenResumeModal}
           />
-
-          <ResumeModal
-            isOpen={handleResumeModal}
-            onRequestClose={handleCloseResumeModal}
-            states={{
-              diameterState,
-              batterState,
-              filling,
-              addFilling,
-              name,
-              theme,
-              time,
-              top,
-              formatedDateForeCast,
-              aditionalFilling,
-              cakeSize,
-              priceGlitter,
-              total
-            }}
-          />
-          <PriceTableModal
-            isOpen={handlePriceTableModal}
-            onRequestClose={handleClosePriceTableModal}
-          />
         </div>
-        <footer className="form-footer">
-          <h3>
-            Contatos profissionais do desenvolvedor:{' '}
-            <a href="https://www.linkedin.com/in/paulo-ricardo-santos-nascimento-400877211/">
-              <BsLinkedin size={20} />
-            </a>
-            <a href="https://www.instagram.com/ricardo_n4scimento/">
-              <BsInstagram size={20} />
-            </a>
-          </h3>
-        </footer>
+        <Footer />
       </form>
+      <ResumeModal
+        isOpen={handleResumeModal}
+        onRequestClose={handleCloseResumeModal}
+        states={{
+          diameterState,
+          batterState,
+          filling,
+          addFilling,
+          name,
+          theme,
+          time,
+          top,
+          textArea,
+          formatedDateForeCast,
+          aditionalFilling,
+          cakeSize,
+          priceGlitter,
+          total
+        }}
+      />
+      <PriceTableModal
+        isOpen={handlePriceTableModal}
+        onRequestClose={handleClosePriceTableModal}
+      />
     </>
   )
 }

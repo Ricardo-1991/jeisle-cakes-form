@@ -185,34 +185,6 @@ input[type='button']:hover {
 }
 /* ---- */
 
-/*Estilizando Footer */
-
-.form-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 0.8rem;
-  background-color: #dfecea;
-  color: #3C4858;
-  font-size: 0.7rem;
-  height:2.5rem;
-}
-
-.form-footer a {
-  color: black;
-  margin-left: 1rem; 
-  position: relative;
-  top: 0.31rem;  
-}
-
-
-.form-footer a:visited {
-  text-decoration: none;
-}
-
-/* ---- */
-
 /* RESPONSIVIDADE */
 @media (max-width: 1080px) {
   .form-section-one, .form-section-two, .form-section-three, .form-section-four {
@@ -247,9 +219,7 @@ input[type='button']:hover {
     height: 0.6rem;
   }
 
-  .form-footer {
-    padding: 1.5rem;
-  }
+ 
 }
 
 @media (max-width: 370px) {
