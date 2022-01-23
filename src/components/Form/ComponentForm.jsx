@@ -745,8 +745,6 @@ export function ComponentForm() {
                 <textarea
                   value={textArea}
                   onChange={evt => setTextArea(evt.target.value)}
-                  rows="5"
-                  cols="40"
                 ></textarea>
               </label>
             </div>
