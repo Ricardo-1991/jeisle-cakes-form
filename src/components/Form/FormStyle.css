@@ -115,6 +115,11 @@ input[type="time"], input[type="date"]{
   text-align: center;
 } 
 
+.form-section-input-text textarea {
+  padding: 1rem;
+  width: 100%;
+}
+
 /* Estilizando Checkbox */
 span{
   display: inline-block;
