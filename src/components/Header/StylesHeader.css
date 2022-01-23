@@ -33,10 +33,10 @@
 }
 
 /* Link / React-Icons */
-.div-icons {
+.div-icons  {
   border: 2px solid var(--nameEnterprise);
   border-radius: 5px;
-  padding: 3px;
+  padding: 2px;
 }
 
 .div-icons:hover {
