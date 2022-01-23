@@ -6,7 +6,6 @@ import { BsFileArrowDown } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
 import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
-import { Footer } from '../Footer/Footer'
 
 const cakeSize = {
   15: 110,
@@ -758,7 +757,6 @@ export function ComponentForm() {
             onClick={handleOpenResumeModal}
           />
         </div>
-        <Footer />
       </form>
       <ResumeModal
         isOpen={handleResumeModal}
