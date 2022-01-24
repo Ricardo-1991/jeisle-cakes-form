@@ -40,7 +40,7 @@
 }
 
 .data-container h3, h1 {
-  line-height: 2.7rem;
+  line-height: 2.4rem;
 }
 
 button[type='submit'] {
@@ -70,7 +70,7 @@ button[type='submit']:hover {
   }
 
   .data-container h1, h3 {
-    line-height: 0.1rem;
+    line-height: 0.3rem;
   }
   
 } 
