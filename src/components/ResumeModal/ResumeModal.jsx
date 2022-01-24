@@ -101,13 +101,14 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           }).format(valueAddFillings)}*`
         : ''
     }
-      }
+      
      
     %0a______________________________
     %0a_Data prevista para entrega_: *${states.formatedDateForeCast}*
     %0a_Hora prevista para entrega_: *${states.time}hrs*
     %0a%0a_Valor total do bolo_: *${states.total}*
-    %0a%0a_Observações_:%0a*${states.textArea}*`
+    ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ''}
+    `
   }
 
   return (
