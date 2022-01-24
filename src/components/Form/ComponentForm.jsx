@@ -80,7 +80,7 @@ export function ComponentForm() {
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
 
-  const [dateForeCast, setDateForecast] = useState(new Date())
+  const [dateForeCast, setDateForecast] = useState(null)
 
   console.log(dateForeCast)
 
