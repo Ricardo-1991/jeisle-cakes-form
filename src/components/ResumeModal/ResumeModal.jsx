@@ -11,7 +11,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
   }, 0)
 
   const date = new Date()
-  const formatedDate = new Intl.DateTimeFormat('pt-BR').format(new Date(date))
+
   const orderHour = {
     hour: date.getHours(),
     minutes: date.getMinutes(),
@@ -33,7 +33,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     %0a📄 *RESUMO DO PEDIDO*
     
     %0a%0a_Nome do cliente_: *${states.name}*
-    %0a%0a_Data do pedido_: *${formatedDate}*
+    %0a%0a_Data do pedido_: *${states.formatedDateForeCast}*
     %0a%0a_Horário do pedido_: *${
       date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`
     }:${
@@ -141,7 +141,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.theme && <h3>Tema do bolo: {states.theme}</h3>}
         <h3>
           Data do pedido:
-          {` ${formatedDate}`}
+          {` ${states.formatedDateForeCast}`}
         </h3>
         <h3>
           Horário do pedido:
