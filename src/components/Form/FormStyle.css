@@ -94,13 +94,13 @@ input[type="time"], input[type="date"]{
   height: 2.375rem;
 }
 
-.form-section-input-top {
+.form-section-input-select {
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
 
-.form-section-input-top select {
+.form-section-input-select select {
     padding: 0.5rem;
 }
 
@@ -178,7 +178,7 @@ input[type='checkbox']:checked::after {
   background: #33cc95;
   color: #fff;
   border-radius: 0.25rem;
-  border: 0;
+  border: 1;
   font-size: 1rem;
   font-weight: 600;
   transition: filter 0.2s;

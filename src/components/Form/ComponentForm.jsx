@@ -87,9 +87,10 @@ export function ComponentForm() {
 
   const [name, setName] = useState('')
   const [theme, setTheme] = useState('')
-  const [time, setTime] = useState(null)
-  const [top, setTop] = useState(null)
   const [textArea, setTextArea] = useState('')
+  const [top, setTop] = useState()
+  const [payment, setPayment] = useState()
+  const [time, setTime] = useState(null)
 
   const [diameterState, setDiameter] = useState(null)
   const [batterState, setBatterState] = useState([null, null])
@@ -108,11 +109,11 @@ export function ComponentForm() {
       inputDiameter.current.focus()
       return false
     } else if (dateForeCast == null) {
-      alert('Selecione uma data que deseja para a entrega do bolo.')
+      alert('Selecione uma data que deseja para a retirada do bolo.')
       inputDate.current.focus()
       return false
     } else if (time == null) {
-      alert('Selecione um horário que deseja para a entrega do bolo.')
+      alert('Selecione um horário que deseja para a retirada do bolo.')
       inputTime.current.focus()
       return false
     } else if (diameterState == null) {
@@ -126,6 +127,9 @@ export function ComponentForm() {
     } else if (filling[0] == null && filling[1] == null) {
       alert('Selecione pelo menos um recheio')
       inputFilling.current.focus()
+      return false
+    } else if (payment == null) {
+      alert('Selecione pelo menos um método de pagamento')
       return false
     }
     setHandleResumeModal(true)
@@ -241,7 +245,7 @@ export function ComponentForm() {
             </div>
           </section>
 
-          <section className="form-section-input-top">
+          <section className="form-section-input-select">
             <h2>Adicionar Topo?</h2>
             <p>(Preço a combinar)</p>
             <br />
@@ -253,15 +257,15 @@ export function ComponentForm() {
                   onChange={evt => setTop(evt.target.value)}
                 >
                   <option>Escolha a opção</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Não">Não</option>
+                  <option value={top}>Sim</option>
+                  <option value={top}>Não</option>
                 </select>
               </label>
             </div>
           </section>
 
           <section className="form-section-input-date">
-            <h2>Para quando deseja a entrega?</h2>
+            <h2>Para quando deseja a retirada do bolo?</h2>
             <p>(Escolha data e horário)</p>
             <div className="container-label">
               <label>
@@ -620,7 +624,7 @@ export function ComponentForm() {
             <div>
               <input
                 type="button"
-                value="Tabela de preços Recheios Adicionais"
+                value="Clique aqui para a tabela de preços"
                 className="button-price-modal"
                 onClick={handleOpenPriceTableModal}
               />
@@ -735,6 +739,24 @@ export function ComponentForm() {
             </div>
           </section>
 
+          <section className="form-section-input-select">
+            <h2>Método de pagamento</h2>
+            <br />
+            <div className="container-label">
+              <label>
+                <select
+                  name="payment"
+                  id="payment"
+                  onChange={evt => setPayment(evt.target.value)}
+                >
+                  <option>Escolha a opção</option>
+                  <option value="À vista">À vista</option>
+                  <option value="Pix">Pix</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
           <section className="form-section-input-text">
             <h2>Deseja constar alguma observação?</h2>
             <p>(Constará no envio final do pedido)</p>
@@ -775,6 +797,7 @@ export function ComponentForm() {
           aditionalFilling,
           cakeSize,
           priceGlitter,
+          payment,
           total
         }}
       />

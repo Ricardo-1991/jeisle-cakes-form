@@ -67,7 +67,11 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         : ''
     }
 
-    ${states.top ? `%0a_Adicional de Topo_: *${states.top}*` : ''}
+    ${
+      states.top != 'Escolha a opção'
+        ? `%0a_Adicional de Topo_: *${states.top}*`
+        : ''
+    }
 
     ${
       states.addFilling[0] == undefined && states.addFilling[1]
@@ -104,8 +108,13 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       
      
     %0a______________________________
-    %0a_Data prevista para entrega_: *${states.formatedDateForeCast}*
-    %0a_Hora prevista para entrega_: *${states.time}hrs*
+    %0a_Data prevista para retirada do bolo_: *${states.formatedDateForeCast}*
+    %0a_Hora prevista para retirada do bolo_: %0a*${states.time}hrs*
+    %0a_Método de pagamento_: %0a${
+      states.payment == 'Pix'
+        ? '*_Pix_: 03324768551 - Jeisle Soares Cardoso Pereira*'
+        : `*À vista (espécie)*`
+    }
     %0a%0a_Valor total do bolo_: *${states.total}*
     ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ''}
     `
@@ -140,7 +149,9 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
             orderHour.seconds
           )}`}
         </h3>
-        {states.top && <h3>Adicional de Topo: {states.top}.</h3>}
+        {states.top != 'Escolha a opção' && (
+          <h3>Adicional de Topo: {states.top}.</h3>
+        )}
         <h3>
           Diâmetro do bolo:
           {states.diameterState == null ? `` : ` ${states.diameterState}cm`}.
@@ -219,8 +230,14 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         )}
         <hr />
         <h3>
-          Data prevista para a entrega: {states.formatedDateForeCast} às{' '}
+          Data prevista para retirada do bolo: {states.formatedDateForeCast} às{' '}
           {states.time}hrs
+        </h3>
+        <h3>
+          Pagamento:{' '}
+          {states.payment == 'Pix'
+            ? 'Pix: 03324768551 - Jeisle Soares Cardoso Pereira'
+            : `À vista (espécie)`}
         </h3>
         <h3>
           <u>Valor total</u>: {states.total}

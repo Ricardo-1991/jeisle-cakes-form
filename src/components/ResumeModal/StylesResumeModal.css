@@ -70,7 +70,7 @@ button[type='submit']:hover {
   }
 
   .data-container h1, h3 {
-    line-height: 0.5rem;
+    line-height: 0.1rem;
   }
   
 } 
