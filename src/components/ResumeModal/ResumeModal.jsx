@@ -33,7 +33,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     %0a📄 *RESUMO DO PEDIDO*
     
     %0a%0a_Nome do cliente_: *${states.name}*
-    %0a%0a_Data do pedido_: *${states.formatedDateForeCast}*
+    %0a%0a_Data do pedido_: *${states.dateForeCast}*
     %0a%0a_Horário do pedido_: *${
       date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`
     }:${
@@ -108,7 +108,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       
      
     %0a______________________________
-    %0a_Data prevista para retirada do bolo_: *${states.formatedDateForeCast}*
+    %0a_Data prevista para retirada do bolo_: *${states.dateForeCast}*
     %0a_Hora prevista para retirada do bolo_: %0a*${states.time}hrs*
     %0a_Método de pagamento_: %0a${
       states.payment == 'Pix'
@@ -141,7 +141,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.theme && <h3>Tema do bolo: {states.theme}</h3>}
         <h3>
           Data do pedido:
-          {` ${states.formatedDateForeCast}`}
+          {` ${states.dateForeCast}`}
         </h3>
         <h3>
           Horário do pedido:

@@ -80,10 +80,9 @@ export function ComponentForm() {
   const inputBatter = useRef(false)
   const inputFilling = useRef(false)
 
-  const [dateForeCast, setDateForecast] = useState(null)
-  const formatedDateForeCast = new Intl.DateTimeFormat('pt-BR').format(
-    new Date(dateForeCast)
-  )
+  const [dateForeCast, setDateForecast] = useState(new Date())
+
+  console.log(dateForeCast)
 
   const [name, setName] = useState('')
   const [theme, setTheme] = useState('')
@@ -793,7 +792,7 @@ export function ComponentForm() {
           time,
           top,
           textArea,
-          formatedDateForeCast,
+          dateForeCast,
           aditionalFilling,
           cakeSize,
           priceGlitter,
