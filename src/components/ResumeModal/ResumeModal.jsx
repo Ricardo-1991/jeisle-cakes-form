@@ -248,8 +248,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         )}
         <hr />
         <h3>
-          Data prevista para retirada do bolo: {userForeCastDate} às{' '}
-          {states.time}hrs
+          Data prevista para retirada: {userForeCastDate} às {states.time}hrs
         </h3>
         <h3>
           Pagamento:{' '}
