@@ -46,7 +46,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     %0a______________________________
     %0a📄 *RESUMO DO PEDIDO*
     
-    %0a%0a_Nome do cliente_: *${states.name}*
+    %0a%0a_Nome do cliente_: *${states.name.trim()}*
     %0a%0a_Data do pedido_: *${todayDate}*
     %0a%0a_Horário do pedido_: *${
       todayHourDate.getHours() < 10
@@ -57,7 +57,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         ? `0${todayHourDate.getMinutes()}`
         : `${todayHourDate.getMinutes()}`
     }*
-     ${states.theme ? `%0a%0a_Tema do bolo_: *${states.theme}*` : ''}
+     ${states.theme ? `%0a%0a_Tema do bolo_: *${states.theme.trim()}*` : ''}
     %0a%0a_Diâmetro do bolo_: *${`${states.diameterState} cm`}* 
     %0a%0a_Massa do bolo_: ${
       states.batterState[0] == null

@@ -82,8 +82,6 @@ export function ComponentForm() {
 
   const [dateForeCast, setDateForecast] = useState(null)
 
-  console.log(dateForeCast)
-
   const [name, setName] = useState('')
   const [theme, setTheme] = useState('')
   const [textArea, setTextArea] = useState('')
