@@ -7,6 +7,10 @@ import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
 import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
 import { ComponentCreditCardPrice } from '../ComponentCreditCardPrice/ComponentCreditCardPrice'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init()
 
 const cakeSize = {
   15: 110,
@@ -260,7 +264,7 @@ export function ComponentForm() {
             </div>
           </section>
 
-          <section className="form-section-input-text">
+          <section className="form-section-input-text" data-aos="flip-right">
             <h2>Deseja tematizar o bolo?</h2>
             <div className="container-label">
               <label>
@@ -274,7 +278,7 @@ export function ComponentForm() {
             </div>
           </section>
 
-          <section className="form-section-input-select">
+          <section className="form-section-input-select" data-aos="flip-right">
             <h2>Adicionar Topo?</h2>
             <p>(Preço a combinar)</p>
             <br />
@@ -293,7 +297,7 @@ export function ComponentForm() {
             </div>
           </section>
 
-          <section className="form-section-input-date">
+          <section className="form-section-input-date" data-aos="flip-right">
             <h2>Para quando deseja a retirada do bolo?</h2>
             <p>(Escolha data e horário)</p>
             <div className="container-label">
@@ -320,6 +324,7 @@ export function ComponentForm() {
             role="group"
             aria-labelledby="checkbox-group"
             className="form-section-one"
+            data-aos="flip-right"
           >
             <h2>Diâmetro do bolo</h2>
             <p>(Escolha somente uma opção)</p>
@@ -387,7 +392,7 @@ export function ComponentForm() {
           />
 
           {/* --- */}
-          <div className="warning-text">
+          <div className="warning-text" data-aos="fade-down">
             <p>Selecione Massas e Recheios </p>
             <br />
             <h2>
@@ -400,6 +405,7 @@ export function ComponentForm() {
             role="group"
             className="form-section-two"
             aria-labelledby="checkbox-group"
+            data-aos="flip-right"
           >
             <h2>Massas</h2>
             <div className="containerLabel">
@@ -512,8 +518,9 @@ export function ComponentForm() {
 
           <section
             role="group"
-            className="form-section-three"
+            className="form-section-three "
             aria-labelledby="checkbox-group"
+            data-aos="flip-right"
           >
             <h2>Recheios</h2>
             <div className="containerLabel">
@@ -648,6 +655,7 @@ export function ComponentForm() {
             role="group"
             className="form-section-four"
             aria-labelledby="checkbox-group"
+            data-aos="flip-right"
           >
             <h2>Recheios com valor adicional</h2>
             <div>
@@ -768,7 +776,7 @@ export function ComponentForm() {
             </div>
           </section>
 
-          <section className="form-section-input-select">
+          <section className="form-section-input-select" data-aos="fade-down">
             <h2>Método de pagamento</h2>
             <br />
             <div className="container-label">
@@ -793,7 +801,7 @@ export function ComponentForm() {
             formHandleInstallment={formHandleInstallment}
           />
 
-          <section className="form-section-input-text">
+          <section className="form-section-input-text" data-aos="flip-right">
             <h2>Deseja constar alguma observação?</h2>
             <p>(Constará no envio final do pedido)</p>
             <br />
