@@ -201,6 +201,11 @@ input[type='checkbox']:checked::after {
 input[type='button']:hover {
   filter: brightness(0.9);
 }
+
+option  {
+  font-weight: bold;  
+}
+
 /* ---- */
 
 /* RESPONSIVIDADE */
