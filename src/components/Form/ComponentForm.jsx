@@ -127,10 +127,13 @@ export function ComponentForm() {
       alert('Selecione pelo menos um recheio')
       inputFilling.current.focus()
       return false
-    } else if (paymentMethod == null) {
+    } else if (paymentMethod == '') {
       alert('Selecione pelo menos um método de pagamento')
       return false
-    } else if (paymentMethod == 'Credito' && installments == '') {
+    } else if (
+      (paymentMethod == 'Credito' && installments == '') ||
+      (paymentMethod == 'Credito' && installments == 'Escolha uma opção')
+    ) {
       alert(
         'Caso selecione a opção de pagamento Crédito, selecione ao menos uma parcela ou outro método de pagamento.'
       )
