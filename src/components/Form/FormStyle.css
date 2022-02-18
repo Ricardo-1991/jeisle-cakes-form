@@ -208,6 +208,21 @@ input[type='button']:hover {
   .form-section-one, .form-section-two, .form-section-three, .form-section-four {
     width: 30rem;
   }
+  .warning-text {
+    width:30rem;
+  }
+
+  .form-section-input-creditCard {
+    width: 30rem;
+  }
+
+  .form-section-input-text {
+    width: 30rem;
+  }
+
+  .form-section-input-select {
+    width: 30rem;
+  }
 
   h2 {
     font-size: 1.4rem;
@@ -236,8 +251,6 @@ input[type='button']:hover {
     width: 0.6rem;
     height: 0.6rem;
   }
-
- 
 }
 
 @media (max-width: 370px) {
@@ -247,26 +260,8 @@ input[type='button']:hover {
   
   input[type="time"] {
     margin-left: 2rem;
-    width: 10rem;
-   
+    width: 10rem; 
   }
-
-  .form-section-input-creditCard {
-    display: grid;
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 1rem 0rem 1rem 0rem;
-   
-  }
-  
-  .form-section-input-creditCard select {
-    width: 43%;
-    text-align: center;
-  }
-
-
-
-  
 } 
 
 

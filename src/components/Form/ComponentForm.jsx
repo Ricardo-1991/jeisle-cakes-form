@@ -775,7 +775,7 @@ export function ComponentForm() {
                   id="payment"
                   onChange={evt => setPaymentMethod(evt.target.value)}
                 >
-                  <option>Escolha a opção</option>
+                  <option>Escolha uma opção</option>
                   <option value="Avista">À vista</option>
                   <option value="Pix">Pix</option>
                   <option value="Debito">Débito</option>
@@ -784,10 +784,12 @@ export function ComponentForm() {
               </label>
             </div>
           </section>
+
           <ComponentCreditCardPrice
             states={{ paymentMethod, total, installmentsPrice }}
             formHandleInstallment={formHandleInstallment}
           />
+
           <section className="form-section-input-text">
             <h2>Deseja constar alguma observação?</h2>
             <p>(Constará no envio final do pedido)</p>
