@@ -109,7 +109,7 @@ input[type="time"], input[type="date"]{
 }
 
 .form-section-input-creditCard select {
-  width: 50%;
+  width: 100%;
   text-align: center;
 }
 
