@@ -1,8 +1,15 @@
+import Modal from 'react-modal'
 import '../ResumeModal/StylesResumeModal.css'
 import closeImg from '../../images/close.svg'
-import Modal from 'react-modal'
 
 export function ResumeModal({ isOpen, onRequestClose, states }) {
+  function formatPrice(price) {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(price)
+  }
+
   const valueAddFillings = states.filling.reduce((acumulator, filling) => {
     const currentValueFillings = states.aditionalFilling[filling]
       ? states.aditionalFilling[filling][states.diameterState]
@@ -39,6 +46,13 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
   }
   /* --- */
 
+  const objectPaymentMethod = {
+    Pix: 'Pix: 03324768551 - Jeisle Soares Cardoso Pereira',
+    Avista: 'À vista(espécie)',
+    Debito: 'Débito',
+    Credito: 'Cartão de crédito'
+  }
+
   function handleSubmit(evt) {
     evt.preventDefault()
 
@@ -71,22 +85,18 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     }*
 
     %0a%0a*_Subtotal_*: 
-    %0a_Valor do diâmetro do bolo_: *${new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(states.cakeSize[states.diameterState])}*
+    %0a_Valor do diâmetro do bolo_: *${formatPrice(
+      states.cakeSize[states.diameterState]
+    )}*
     
     ${
       states.priceGlitter
-        ? `%0a_Adicional de Glitter_: *${new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(states.priceGlitter)}*`
+        ? `%0a_Adicional de Glitter_: *${formatPrice(states.priceGlitter)}*`
         : ''
     }
 
     ${
-      states.top != 'Escolha a opção'
+      states.top != 'Escolha a opção' || states.top == 'undefined'
         ? `%0a_Adicional de Topo_: *${states.top}*`
         : ''
     }
@@ -95,10 +105,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       states.addFilling[0] == undefined && states.addFilling[1]
         ? `%0a_Recheio adicional_: *${states.addFilling.slice(
             1
-          )} - ${new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(valueAddFillings)}*`
+          )} - ${formatPrice(valueAddFillings)}*`
         : ''
     }
 
@@ -106,10 +113,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       states.addFilling[0] && states.addFilling[1]
         ? `%0a_Recheios adicionais_: *${states.addFilling.join(
             ' e '
-          )} - ${new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(valueAddFillings)}*`
+          )} - ${formatPrice(valueAddFillings)}*`
         : ''
     }
 
@@ -117,10 +121,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       states.addFilling.length == 1
         ? `%0a_Recheio adicional_: *${states.addFilling.slice(
             0
-          )} - ${new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(valueAddFillings)}*`
+          )} - ${formatPrice(valueAddFillings)}*`
         : ''
     }
       
@@ -128,12 +129,19 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     %0a______________________________
     %0a_Data prevista para retirada do bolo_: *${userForeCastDate}*
     %0a_Hora prevista para retirada do bolo_: %0a*${states.time}hrs*
-    %0a_Método de pagamento_: %0a${
-      states.payment == 'Pix'
-        ? '*_Pix_: 03324768551 - Jeisle Soares Cardoso Pereira*'
-        : `*À vista (espécie)*`
+    %0a_Método de pagamento_: ${
+      states.paymentMethod == 'Credito'
+        ? `*${objectPaymentMethod[states.paymentMethod]}* %0a_Parcelas_: *${
+            states.installments
+          } de ${formatPrice(
+            states.installmentsPrice.installments[states.installments]
+          )}* %0a_Total_: *${formatPrice(
+            states.installmentsPrice.totalPriceCreditCard[states.installments]
+          )}*`
+        : `*${
+            objectPaymentMethod[states.paymentMethod]
+          }* %0a%0a_Total_: *${formatPrice(states.total)}*`
     }
-    %0a%0a_Valor total do bolo_: *${states.total}*
     ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ''}
     `
   }
@@ -193,20 +201,14 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         </h3>
         <h3>
           <u>Valor do diâmetro do bolo:</u>{' '}
-          {new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(states.cakeSize[states.diameterState])}
+          {formatPrice(states.cakeSize[states.diameterState])}
         </h3>
 
         {states.addFilling[0] == undefined && states.addFilling[1] && (
           <>
             <h3>
               <u>Recheio adicional:</u> {states.addFilling.slice(1)} -{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(valueAddFillings)}
+              {formatPrice(valueAddFillings)}
             </h3>
           </>
         )}
@@ -215,10 +217,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           <>
             <h3>
               <u>Recheios adicionais:</u> {states.addFilling.join(' e ')} -{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(valueAddFillings)}
+              {formatPrice(valueAddFillings)}
             </h3>
           </>
         )}
@@ -227,10 +226,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           <>
             <h3>
               <u>Recheio adicional:</u> {states.addFilling.slice(0)} -{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(valueAddFillings)}
+              {formatPrice(valueAddFillings)}
             </h3>
           </>
         )}
@@ -238,11 +234,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.priceGlitter && (
           <>
             <h3>
-              <u>Adicional de glitter:</u>{' '}
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(states.priceGlitter)}
+              <u>Adicional de glitter:</u> {formatPrice(states.priceGlitter)}
             </h3>
           </>
         )}
@@ -250,15 +242,34 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         <h3>
           Data prevista para retirada: {userForeCastDate} às {states.time}hrs
         </h3>
+
         <h3>
-          Pagamento:{' '}
-          {states.payment == 'Pix'
-            ? 'Pix: 03324768551 - Jeisle Soares Cardoso Pereira'
-            : `À vista (espécie)`}
+          Método de pagamento: {objectPaymentMethod[states.paymentMethod]}
         </h3>
-        <h3>
-          <u>Valor total</u>: {states.total}
-        </h3>
+
+        {states.paymentMethod != 'Credito' && (
+          <h3>Valor Total: {formatPrice(states.total)}</h3>
+        )}
+
+        {states.paymentMethod == 'Credito' && (
+          <>
+            <h3>
+              Parcelas: {states.installments} de{' '}
+              {formatPrice(
+                states.installmentsPrice.installments[states.installments]
+              )}
+            </h3>
+
+            <h3>
+              Valor Total:{' '}
+              {formatPrice(
+                states.installmentsPrice.totalPriceCreditCard[
+                  states.installments
+                ]
+              )}
+            </h3>
+          </>
+        )}
       </div>
       <button type="submit" onClick={handleSubmit}>
         Enviar Pedido

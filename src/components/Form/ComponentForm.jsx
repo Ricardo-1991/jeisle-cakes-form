@@ -6,6 +6,7 @@ import { BsFileArrowDown } from 'react-icons/bs'
 import { ResumeModal } from '../ResumeModal/ResumeModal'
 import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
 import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
+import { ComponentCreditCardPrice } from '../ComponentCreditCardPrice/ComponentCreditCardPrice'
 
 const cakeSize = {
   15: 110,
@@ -86,13 +87,14 @@ export function ComponentForm() {
   const [theme, setTheme] = useState('')
   const [textArea, setTextArea] = useState('')
   const [top, setTop] = useState()
-  const [payment, setPayment] = useState()
+  const [paymentMethod, setPaymentMethod] = useState('')
   const [time, setTime] = useState(null)
 
   const [diameterState, setDiameter] = useState(null)
   const [batterState, setBatterState] = useState([null, null])
   const [filling, setFilling] = useState([])
   const [addFilling, setAddFilling] = useState([])
+  const [installments, setInstallments] = useState('')
 
   const [handleResumeModal, setHandleResumeModal] = useState(false)
   const [handlePriceTableModal, setHandlePriceTableModal] = useState(false)
@@ -125,8 +127,14 @@ export function ComponentForm() {
       alert('Selecione pelo menos um recheio')
       inputFilling.current.focus()
       return false
-    } else if (payment == null) {
+    } else if (paymentMethod == null) {
       alert('Selecione pelo menos um método de pagamento')
+      return false
+    } else if (installments == 'Escolha uma opção' || installments == '') {
+      alert(
+        'Caso selecione a opção de pagamento Crédito, selecione ao menos uma parcela ou outro método de pagamento.'
+      )
+      setInstallments('')
       return false
     }
     setHandleResumeModal(true)
@@ -200,10 +208,31 @@ export function ComponentForm() {
     return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter)
   }
 
-  const total = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(totalPriceOfCake())
+  let total = totalPriceOfCake()
+
+  const installmentsPrice = {
+    totalPriceCreditCard: {
+      '1x': Number(total + (total * 2.9) / 100).toFixed(2),
+      '2x': Number(total + (total * 4.59) / 100).toFixed(2),
+      '3x': Number(total + (total * 5.23) / 100).toFixed(2),
+      '4x': Number(total + (total * 5.87) / 100).toFixed(2),
+      '5x': Number(total + (total * 6.51) / 100).toFixed(2),
+      '6x': Number(total + (total * 7.15) / 100).toFixed(2)
+    },
+
+    installments: {
+      '1x': Number(total + (total * 2.9) / 100),
+      '2x': Number((total + (total * 4.59) / 100) / 2).toFixed(2),
+      '3x': Number((total + (total * 5.23) / 100) / 3).toFixed(2),
+      '4x': Number((total + (total * 5.87) / 100) / 4).toFixed(2),
+      '5x': Number((total + (total * 6.51) / 100) / 5).toFixed(2),
+      '6x': Number((total + (total * 7.15) / 100) / 6).toFixed(2)
+    }
+  }
+
+  function formHandleInstallment(handleInstallments) {
+    setInstallments(handleInstallments)
+  }
 
   return (
     <>
@@ -350,7 +379,7 @@ export function ComponentForm() {
           </section>
 
           <RenderGlitter
-            state={{ diameterState }}
+            states={{ diameterState }}
             clickCheckBox={handlePriceGlitter}
           />
 
@@ -744,16 +773,21 @@ export function ComponentForm() {
                 <select
                   name="payment"
                   id="payment"
-                  onChange={evt => setPayment(evt.target.value)}
+                  onChange={evt => setPaymentMethod(evt.target.value)}
                 >
                   <option>Escolha a opção</option>
-                  <option value="À vista">À vista</option>
+                  <option value="Avista">À vista</option>
                   <option value="Pix">Pix</option>
+                  <option value="Debito">Débito</option>
+                  <option value="Credito">Cartão de crédito</option>
                 </select>
               </label>
             </div>
           </section>
-
+          <ComponentCreditCardPrice
+            states={{ paymentMethod, total, installmentsPrice }}
+            formHandleInstallment={formHandleInstallment}
+          />
           <section className="form-section-input-text">
             <h2>Deseja constar alguma observação?</h2>
             <p>(Constará no envio final do pedido)</p>
@@ -794,8 +828,10 @@ export function ComponentForm() {
           aditionalFilling,
           cakeSize,
           priceGlitter,
-          payment,
-          total
+          paymentMethod,
+          total,
+          installmentsPrice,
+          installments
         }}
       />
       <PriceTableModal

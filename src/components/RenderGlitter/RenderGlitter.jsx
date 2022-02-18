@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../RenderGlitter/StylesRenderGlitter.css'
 
-export function RenderGlitter({ state, clickCheckBox }) {
+export function RenderGlitter({ states, clickCheckBox }) {
   const [handleGlitter, setHandleGlitter] = useState(null)
 
   function handleChangeGlitter(evt) {
@@ -11,7 +11,7 @@ export function RenderGlitter({ state, clickCheckBox }) {
 
   return (
     <>
-      {state.diameterState == 15 && (
+      {states.diameterState == 15 && (
         <>
           <section className="form-section-glitter">
             <h2>Adicionar Glitter?</h2>
@@ -30,7 +30,7 @@ export function RenderGlitter({ state, clickCheckBox }) {
         </>
       )}
 
-      {state.diameterState == 20 && (
+      {states.diameterState == 20 && (
         <>
           <section className="form-section-glitter">
             <h2>Adicionar Glitter?</h2>
@@ -49,7 +49,7 @@ export function RenderGlitter({ state, clickCheckBox }) {
         </>
       )}
 
-      {state.diameterState == 25 && (
+      {states.diameterState == 25 && (
         <>
           <section className="form-section-glitter">
             <h2>Adicionar Glitter?</h2>
@@ -68,7 +68,7 @@ export function RenderGlitter({ state, clickCheckBox }) {
         </>
       )}
 
-      {state.diameterState == 30 && (
+      {states.diameterState == 30 && (
         <>
           <section className="form-section-glitter">
             <h2>Adicionar Glitter?</h2>

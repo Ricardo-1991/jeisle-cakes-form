@@ -100,6 +100,16 @@ input[type="time"], input[type="date"]{
   padding: 2rem;
 }
 
+.form-section-input-creditCard {
+  display: grid;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 2rem;
+}
+.form-section-input-creditCard option:nth-child(1) {
+  text-align: center;
+}
+
 .form-section-input-select select {
     padding: 0.5rem;
 }
