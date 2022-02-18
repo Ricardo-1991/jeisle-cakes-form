@@ -130,7 +130,7 @@ export function ComponentForm() {
     } else if (paymentMethod == null) {
       alert('Selecione pelo menos um método de pagamento')
       return false
-    } else if (installments == 'Escolha uma opção' || installments == '') {
+    } else if (paymentMethod == 'Credito' && installments == '') {
       alert(
         'Caso selecione a opção de pagamento Crédito, selecione ao menos uma parcela ou outro método de pagamento.'
       )
