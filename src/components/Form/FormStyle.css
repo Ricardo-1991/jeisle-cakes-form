@@ -108,7 +108,7 @@ input[type="time"], input[type="date"]{
 }
 .form-section-input-creditCard select:nth-child(1) {
   text-align: center;
-  width: 70%;
+  width: 60%;
 }
 
 .form-section-input-select select {
