@@ -109,8 +109,8 @@ input[type="time"], input[type="date"]{
 }
 
 .form-section-input-creditCard select {
+  width: 50%;
   text-align: center;
-  width: 60%;
 }
 
 .form-section-input-select select {
@@ -250,6 +250,23 @@ input[type='button']:hover {
     width: 10rem;
    
   }
+
+  .form-section-input-creditCard {
+    display: grid;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 1rem 0rem 1rem 0rem;
+   
+  }
+  
+  .form-section-input-creditCard select {
+    width: 50%;
+    text-align: center;
+  }
+
+
+
+  
 } 
 
 
