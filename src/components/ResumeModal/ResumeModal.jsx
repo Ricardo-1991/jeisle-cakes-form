@@ -1,34 +1,34 @@
-import Modal from 'react-modal'
-import '../ResumeModal/StylesResumeModal.css'
-import closeImg from '../../images/close.svg'
+import Modal from "react-modal";
+import "../ResumeModal/StylesResumeModal.css";
+import closeImg from "../../images/close.svg";
 
 export function ResumeModal({ isOpen, onRequestClose, states }) {
   function formatPrice(price) {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price)
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }).format(price);
   }
 
   const valueAddFillings = states.filling.reduce((acumulator, filling) => {
     const currentValueFillings = states.aditionalFilling[filling]
       ? states.aditionalFilling[filling][states.diameterState]
-      : 0
-    return Number(acumulator) + Number(currentValueFillings)
-  }, 0)
+      : 0;
+    return Number(acumulator) + Number(currentValueFillings);
+  }, 0);
 
   //Data e hora hoje
-  const todayDate = new Intl.DateTimeFormat('pt-BR').format(new Date())
-  const todayHourDate = new Date()
+  const todayDate = new Intl.DateTimeFormat("pt-BR").format(new Date());
+  const todayHourDate = new Date();
   /* --- */
 
   /* Data prevista de retirada*/
-  const foreCastDate = new Date(states.dateForeCast)
-  foreCastDate.setHours(foreCastDate.getHours() + 3)
+  const foreCastDate = new Date(states.dateForeCast);
+  foreCastDate.setHours(foreCastDate.getHours() + 3);
 
-  const userForeCastDate = new Intl.DateTimeFormat('pt-BR').format(
+  const userForeCastDate = new Intl.DateTimeFormat("pt-BR").format(
     new Date(foreCastDate)
-  )
+  );
   /* --- */
 
   /* Formatação de horário de hoje */
@@ -36,25 +36,25 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     hour: todayHourDate.getHours(),
     minutes: todayHourDate.getMinutes(),
     seconds: todayHourDate.getSeconds()
-  }
+  };
 
   function addZero(time) {
     if (time < 10) {
-      time = '0' + time
+      time = "0" + time;
     }
-    return time
+    return time;
   }
   /* --- */
 
   const objectPaymentMethod = {
-    Pix: 'Pix: 03324768551 - Jeisle Soares Cardoso Pereira',
-    Avista: 'À vista(espécie)',
-    Debito: 'Débito',
-    Credito: 'Cartão de crédito'
-  }
+    Pix: "Pix: 03324768551 - Jeisle Soares Cardoso Pereira",
+    Avista: "À vista(espécie)",
+    Debito: "Débito",
+    Credito: "Cartão de crédito"
+  };
 
   function handleSubmit(evt) {
-    evt.preventDefault()
+    evt.preventDefault();
 
     location.href = `https://api.whatsapp.com/send?phone=5573991373886&text=✅ *NOVO PEDIDO*:
     %0a______________________________
@@ -71,17 +71,17 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         ? `0${todayHourDate.getMinutes()}`
         : `${todayHourDate.getMinutes()}`
     }*
-     ${states.theme ? `%0a%0a_Tema do bolo_: *${states.theme.trim()}*` : ''}
+     ${states.theme ? `%0a%0a_Tema do bolo_: *${states.theme.trim()}*` : ""}
     %0a%0a_Diâmetro do bolo_: *${`${states.diameterState} cm`}* 
     %0a%0a_Massa do bolo_: ${
       states.batterState[0] == null
         ? `*${states.batterState.slice(1)}*`
-        : `*${states.batterState.join(' e ')}*`
+        : `*${states.batterState.join(" e ")}*`
     }
     %0a%0a_Recheios_: *${
       states.filling[0] == null
         ? `${states.filling.slice(1)}`
-        : `${states.filling.join(' e ')}`
+        : `${states.filling.join(" e ")}`
     }*
 
     %0a%0a*_Subtotal_*: 
@@ -92,13 +92,13 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     ${
       states.priceGlitter
         ? `%0a_Adicional de Glitter_: *${formatPrice(states.priceGlitter)}*`
-        : ''
+        : ""
     }
 
     ${
-      states.top != 'Escolha a opção' || states.top == 'undefined'
+      states.top != "Escolha a opção" || states.top == "undefined"
         ? `%0a_Adicional de Topo_: *${states.top}*`
-        : ''
+        : ""
     }
 
     ${
@@ -106,15 +106,15 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         ? `%0a_Recheio adicional_: *${states.addFilling.slice(
             1
           )} - ${formatPrice(valueAddFillings)}*`
-        : ''
+        : ""
     }
 
     ${
       states.addFilling[0] && states.addFilling[1]
         ? `%0a_Recheios adicionais_: *${states.addFilling.join(
-            ' e '
+            " e "
           )} - ${formatPrice(valueAddFillings)}*`
-        : ''
+        : ""
     }
 
     ${
@@ -122,7 +122,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         ? `%0a_Recheio adicional_: *${states.addFilling.slice(
             0
           )} - ${formatPrice(valueAddFillings)}*`
-        : ''
+        : ""
     }
       
      
@@ -130,7 +130,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     %0a_Data prevista para retirada do bolo_: *${userForeCastDate}*
     %0a_Hora prevista para retirada do bolo_: %0a*${states.time}hrs*
     %0a_Método de pagamento_: ${
-      states.paymentMethod == 'Credito'
+      states.paymentMethod == "Credito"
         ? `*${objectPaymentMethod[states.paymentMethod]}* %0a_Parcelas_: *${
             states.installments
           } de ${formatPrice(
@@ -142,8 +142,8 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
             objectPaymentMethod[states.paymentMethod]
           }* %0a%0a_Total_: *${formatPrice(states.total)}*`
     }
-    ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ''}
-    `
+    ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ""}
+    `;
   }
 
   return (
@@ -175,7 +175,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
             orderHour.seconds
           )}`}
         </h3>
-        {states.top != 'Escolha a opção' && (
+        {states.top != "Escolha a opção" && (
           <h3>Adicional de Topo: {states.top}.</h3>
         )}
         <h3>
@@ -183,31 +183,31 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           {states.diameterState == null ? `` : ` ${states.diameterState}cm`}.
         </h3>
         <h3>
-          Massas:{' '}
+          Massas:{" "}
           {states.batterState[0] == null
             ? states.batterState.slice(1)
-            : states.batterState.join(' e ')}
+            : states.batterState.join(" e ")}
           .
         </h3>
 
         <h3>
           {states.filling[0] == null
             ? ` Recheio: ${states.filling.slice(1)}`
-            : ` Recheios: ${states.filling.join(' e ')}`}
+            : ` Recheios: ${states.filling.join(" e ")}`}
         </h3>
         <hr />
         <h3>
           <i>Subtotal:</i>
         </h3>
         <h3>
-          <u>Valor do diâmetro do bolo:</u>{' '}
+          <u>Valor do diâmetro do bolo:</u>{" "}
           {formatPrice(states.cakeSize[states.diameterState])}
         </h3>
 
         {states.addFilling[0] == undefined && states.addFilling[1] && (
           <>
             <h3>
-              <u>Recheio adicional:</u> {states.addFilling.slice(1)} -{' '}
+              <u>Recheio adicional:</u> {states.addFilling.slice(1)} -{" "}
               {formatPrice(valueAddFillings)}
             </h3>
           </>
@@ -216,7 +216,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.addFilling[0] && states.addFilling[1] && (
           <>
             <h3>
-              <u>Recheios adicionais:</u> {states.addFilling.join(' e ')} -{' '}
+              <u>Recheios adicionais:</u> {states.addFilling.join(" e ")} -{" "}
               {formatPrice(valueAddFillings)}
             </h3>
           </>
@@ -225,7 +225,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.addFilling.length == 1 && (
           <>
             <h3>
-              <u>Recheio adicional:</u> {states.addFilling.slice(0)} -{' '}
+              <u>Recheio adicional:</u> {states.addFilling.slice(0)} -{" "}
               {formatPrice(valueAddFillings)}
             </h3>
           </>
@@ -247,21 +247,21 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           Método de pagamento: {objectPaymentMethod[states.paymentMethod]}
         </h3>
 
-        {states.paymentMethod != 'Credito' && (
+        {states.paymentMethod != "Credito" && (
           <h3>Valor Total: {formatPrice(states.total)}</h3>
         )}
 
-        {states.paymentMethod == 'Credito' && (
+        {states.paymentMethod == "Credito" && (
           <>
             <h3>
-              Parcelas: {states.installments} de{' '}
+              Parcelas: {states.installments} de{" "}
               {formatPrice(
                 states.installmentsPrice.installments[states.installments]
               )}
             </h3>
 
             <h3>
-              Valor Total:{' '}
+              Valor Total:{" "}
               {formatPrice(
                 states.installmentsPrice.totalPriceCreditCard[
                   states.installments
@@ -275,5 +275,5 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         Enviar Pedido
       </button>
     </Modal>
-  )
+  );
 }

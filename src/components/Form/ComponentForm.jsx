@@ -1,23 +1,23 @@
-import React, { useState, useRef } from 'react'
-import '../Form/FormStyle.css'
-import avatar from '../../images/avatar-jeisle.jpeg'
-import balaoMenu from '../../images/balao-menu.png'
-import { BsFileArrowDown } from 'react-icons/bs'
-import { ResumeModal } from '../ResumeModal/ResumeModal'
-import { PriceTableModal } from '../PriceTableModal/PriceTableModal'
-import { RenderGlitter } from '../RenderGlitter/RenderGlitter'
-import { ComponentCreditCardPrice } from '../ComponentCreditCardPrice/ComponentCreditCardPrice'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import React, { useState, useRef } from "react";
+import "../Form/FormStyle.css";
+import avatar from "../../images/avatar-jeisle.jpeg";
+import balaoMenu from "../../images/balao-menu.png";
+import { BsFileArrowDown } from "react-icons/bs";
+import { ResumeModal } from "../ResumeModal/ResumeModal";
+import { PriceTableModal } from "../PriceTableModal/PriceTableModal";
+import { RenderGlitter } from "../RenderGlitter/RenderGlitter";
+import { ComponentCreditCardPrice } from "../ComponentCreditCardPrice/ComponentCreditCardPrice";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-AOS.init()
+AOS.init();
 
 const cakeSize = {
   15: 110,
   20: 160,
   25: 220,
   30: 280
-}
+};
 
 const aditionalFilling = {
   Abacaxi: {
@@ -34,7 +34,7 @@ const aditionalFilling = {
     30: 16
   },
 
-  'Limão Siciliano': {
+  "Limão Siciliano": {
     15: 5,
     20: 8,
     25: 10,
@@ -75,171 +75,176 @@ const aditionalFilling = {
     25: 24,
     30: 32
   }
-}
+};
 
 export function ComponentForm() {
-  const inputName = useRef(false)
-  const inputDate = useRef(false)
-  const inputTime = useRef(false)
-  const inputDiameter = useRef(false)
-  const inputBatter = useRef(false)
-  const inputFilling = useRef(false)
+  const inputName = useRef(false);
+  const inputDate = useRef(false);
+  const inputTime = useRef(false);
+  const inputDiameter = useRef(false);
+  const inputBatter = useRef(false);
+  const inputFilling = useRef(false);
 
-  const [dateForeCast, setDateForecast] = useState(null)
+  const [dateForeCast, setDateForecast] = useState(null);
 
-  const [name, setName] = useState('')
-  const [theme, setTheme] = useState('')
-  const [textArea, setTextArea] = useState('')
-  const [top, setTop] = useState()
-  const [paymentMethod, setPaymentMethod] = useState('')
-  const [time, setTime] = useState(null)
+  const [name, setName] = useState("");
+  const [theme, setTheme] = useState("");
+  const [textArea, setTextArea] = useState("");
+  const [top, setTop] = useState();
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [time, setTime] = useState(null);
 
-  const [diameterState, setDiameter] = useState(null)
-  const [batterState, setBatterState] = useState([null, null])
-  const [filling, setFilling] = useState([])
-  const [addFilling, setAddFilling] = useState([])
-  const [installments, setInstallments] = useState('')
+  const [diameterState, setDiameter] = useState(null);
+  const [batterState, setBatterState] = useState([null, null]);
+  const [filling, setFilling] = useState([]);
+  const [addFilling, setAddFilling] = useState([]);
+  const [installments, setInstallments] = useState("");
 
-  const [handleResumeModal, setHandleResumeModal] = useState(false)
-  const [handlePriceTableModal, setHandlePriceTableModal] = useState(false)
+  const [handleResumeModal, setHandleResumeModal] = useState(false);
+  const [handlePriceTableModal, setHandlePriceTableModal] = useState(false);
 
-  const [priceGlitter, setPriceGlitter] = useState(null)
+  const [priceGlitter, setPriceGlitter] = useState(null);
 
   // Modal Resumo Pedido
   function handleOpenResumeModal() {
-    if (name == '') {
-      alert('Digite o seu nome antes de prosseguir.')
-      inputDiameter.current.focus()
-      return false
+    if (name == "") {
+      alert("Digite o seu nome antes de prosseguir.");
+      inputDiameter.current.focus();
+      return false;
     } else if (dateForeCast == null) {
-      alert('Selecione uma data que deseja para a retirada do bolo.')
-      inputDate.current.focus()
-      return false
+      alert("Selecione uma data que deseja para a retirada do bolo.");
+      inputDate.current.focus();
+      return false;
     } else if (time == null) {
-      alert('Selecione um horário que deseja para a retirada do bolo.')
-      inputTime.current.focus()
-      return false
+      alert("Selecione um horário que deseja para a retirada do bolo.");
+      inputTime.current.focus();
+      return false;
     } else if (diameterState == null) {
-      alert('Selecione pelo menos um diâmetro de bolo.')
-      inputDiameter.current.focus()
-      return false
+      alert("Selecione pelo menos um diâmetro de bolo.");
+      inputDiameter.current.focus();
+      return false;
     } else if (batterState[0] == null && batterState[1] == null) {
-      alert('Selecione pelo menos uma massa de bolo')
-      inputBatter.current.focus()
-      return false
+      alert("Selecione pelo menos uma massa de bolo");
+      inputBatter.current.focus();
+      return false;
     } else if (filling[0] == null && filling[1] == null) {
-      alert('Selecione pelo menos um recheio')
-      inputFilling.current.focus()
-      return false
-    } else if (paymentMethod == '') {
-      alert('Selecione pelo menos um método de pagamento')
-      return false
+      alert("Selecione pelo menos um recheio");
+      inputFilling.current.focus();
+      return false;
+    } else if (paymentMethod == "") {
+      alert("Selecione pelo menos um método de pagamento");
+      return false;
     } else if (
-      (paymentMethod == 'Credito' && installments == '') ||
-      (paymentMethod == 'Credito' && installments == 'Escolha uma opção')
+      (paymentMethod == "Credito" && installments == "") ||
+      (paymentMethod == "Credito" && installments == "Escolha uma opção")
     ) {
       alert(
-        'Caso selecione a opção de pagamento Crédito, selecione ao menos uma parcela ou outro método de pagamento.'
-      )
-      setInstallments('')
-      return false
+        "Caso selecione a opção de pagamento Crédito, selecione ao menos uma parcela ou outro método de pagamento."
+      );
+      setInstallments("");
+      return false;
     }
-    setHandleResumeModal(true)
+    setHandleResumeModal(true);
   }
 
   function handleCloseResumeModal() {
-    setFilling([])
-    setAddFilling([])
-    setHandleResumeModal(false)
+    setFilling([]);
+    setAddFilling([]);
+    setHandleResumeModal(false);
   }
   //------ //
 
   function handleOpenPriceTableModal() {
-    setHandlePriceTableModal(true)
+    setHandlePriceTableModal(true);
   }
 
   function handleClosePriceTableModal() {
-    setHandlePriceTableModal(false)
+    setHandlePriceTableModal(false);
   }
 
   //Estado diâmetros do bolo
   function changeDiameter(evt) {
-    setDiameter(evt.target.value)
+    setDiameter(evt.target.value);
   }
 
   //Estado Massas de Bolo
   function changeBatter(evt) {
     if (batterState.find(val => val == evt.target.value)) {
-      setBatterState(batterState.filter(val => val != evt.target.value))
+      setBatterState(batterState.filter(val => val != evt.target.value));
     } else {
-      setBatterState([batterState[1], evt.target.value])
+      setBatterState([batterState[1], evt.target.value]);
     }
   }
 
   // Estado Recheios + Estado Recheios Adicionais (auxiliar)
   function changeFilling(evt) {
-    if (evt.target.name == 'recheioAdd') {
+    if (evt.target.name == "recheioAdd") {
       if (addFilling.find(val => val == evt.target.value)) {
-        setAddFilling(addFilling.filter(val => val != evt.target.value))
+        setAddFilling(addFilling.filter(val => val != evt.target.value));
       } else {
-        setAddFilling([addFilling[1], evt.target.value])
+        setAddFilling([addFilling[1], evt.target.value]);
       }
     }
 
-    if (filling[0] && filling[1] && evt.target.name == 'recheio') {
-      addFilling.shift()
+    if (filling[0] && filling[1] && evt.target.name == "recheio") {
+      addFilling.shift();
     }
 
     //Verifica se o valor já existe nos dois selecionados
     if (filling.find(val => val == evt.target.value)) {
       // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
-      setFilling(filling.filter(val => val != evt.target.value))
+      setFilling(filling.filter(val => val != evt.target.value));
     } else {
       // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
-      setFilling([filling[1], evt.target.value])
+      setFilling([filling[1], evt.target.value]);
     }
   }
 
   function handlePriceGlitter(price) {
-    setPriceGlitter(price)
+    setPriceGlitter(price);
   }
 
   function totalPriceOfCake() {
-    const cakeValue = cakeSize[diameterState]
+    const cakeValue = cakeSize[diameterState];
     const valueFillings = filling.reduce((acumulator, filling) => {
       const currentValueFillings = aditionalFilling[filling]
         ? aditionalFilling[filling][diameterState]
-        : 0
-      return Number(acumulator) + Number(currentValueFillings)
-    }, 0)
-    return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter)
+        : 0;
+      return Number(acumulator) + Number(currentValueFillings);
+    }, 0);
+    return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter);
   }
 
-  let total = totalPriceOfCake()
+  let total = totalPriceOfCake();
+  if (Number.isNaN(total)) {
+    total = 0;
+  }
 
   const installmentsPrice = {
     totalPriceCreditCard: {
-      '1x': Number(total + (total * 2.9) / 100).toFixed(2),
-      '2x': Number(total + (total * 4.59) / 100).toFixed(2),
-      '3x': Number(total + (total * 5.23) / 100).toFixed(2),
-      '4x': Number(total + (total * 5.87) / 100).toFixed(2),
-      '5x': Number(total + (total * 6.51) / 100).toFixed(2),
-      '6x': Number(total + (total * 7.15) / 100).toFixed(2)
+      "1x": Number(total + (total * 2.9) / 100).toFixed(2),
+      "2x": Number(total + (total * 4.59) / 100).toFixed(2),
+      "3x": Number(total + (total * 5.23) / 100).toFixed(2),
+      "4x": Number(total + (total * 5.87) / 100).toFixed(2),
+      "5x": Number(total + (total * 6.51) / 100).toFixed(2),
+      "6x": Number(total + (total * 7.15) / 100).toFixed(2)
     },
 
     installments: {
-      '1x': Number(total + (total * 2.9) / 100),
-      '2x': Number((total + (total * 4.59) / 100) / 2).toFixed(2),
-      '3x': Number((total + (total * 5.23) / 100) / 3).toFixed(2),
-      '4x': Number((total + (total * 5.87) / 100) / 4).toFixed(2),
-      '5x': Number((total + (total * 6.51) / 100) / 5).toFixed(2),
-      '6x': Number((total + (total * 7.15) / 100) / 6).toFixed(2)
+      "1x": Number(total + (total * 2.9) / 100),
+      "2x": Number((total + (total * 4.59) / 100) / 2).toFixed(2),
+      "3x": Number((total + (total * 5.23) / 100) / 3).toFixed(2),
+      "4x": Number((total + (total * 5.87) / 100) / 4).toFixed(2),
+      "5x": Number((total + (total * 6.51) / 100) / 5).toFixed(2),
+      "6x": Number((total + (total * 7.15) / 100) / 6).toFixed(2)
     }
-  }
+  };
 
   function formHandleInstallment(handleInstallments) {
-    setInstallments(handleInstallments)
+    setInstallments(handleInstallments);
   }
+
+  console.log(total);
 
   return (
     <>
@@ -436,7 +441,7 @@ export function ComponentForm() {
                   className="checkbox"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == 'Massa Branca')
+                    batterState.find(val => val == "Massa Branca")
                       ? true
                       : false
                   }
@@ -453,7 +458,7 @@ export function ComponentForm() {
                   value="Massa Chocolate"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == 'Massa Chocolate')
+                    batterState.find(val => val == "Massa Chocolate")
                       ? true
                       : false
                   }
@@ -470,7 +475,7 @@ export function ComponentForm() {
                   value="Massa Baunilha"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == 'Massa Baunilha')
+                    batterState.find(val => val == "Massa Baunilha")
                       ? true
                       : false
                   }
@@ -487,7 +492,7 @@ export function ComponentForm() {
                   value="Massa Mesclada"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == 'Massa Mesclada')
+                    batterState.find(val => val == "Massa Mesclada")
                       ? true
                       : false
                   }
@@ -505,7 +510,7 @@ export function ComponentForm() {
                   value="Massa Formigueiro"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == 'Massa Formigueiro')
+                    batterState.find(val => val == "Massa Formigueiro")
                       ? true
                       : false
                   }
@@ -523,7 +528,7 @@ export function ComponentForm() {
                   value="Massa Mista"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == 'Massa Mista') ? true : false
+                    batterState.find(val => val == "Massa Mista") ? true : false
                   }
                 />
                 <span>- Massa Mista</span>
@@ -551,7 +556,7 @@ export function ComponentForm() {
                   ref={inputFilling}
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Amendoim') ? true : false
+                    filling.find(val => val == "Amendoim") ? true : false
                   }
                 />
                 <span> - Amendoim</span>
@@ -566,7 +571,7 @@ export function ComponentForm() {
                   value="Brigadeiro Tradicional"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Brigadeiro Tradicional')
+                    filling.find(val => val == "Brigadeiro Tradicional")
                       ? true
                       : false
                   }
@@ -583,7 +588,7 @@ export function ComponentForm() {
                   value="Brigadeiro Branco"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Brigadeiro Branco')
+                    filling.find(val => val == "Brigadeiro Branco")
                       ? true
                       : false
                   }
@@ -600,7 +605,7 @@ export function ComponentForm() {
                   value="Brigadeiro de Café"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Brigadeiro de Café')
+                    filling.find(val => val == "Brigadeiro de Café")
                       ? true
                       : false
                   }
@@ -617,7 +622,7 @@ export function ComponentForm() {
                   value="Beijinho"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Beijinho') ? true : false
+                    filling.find(val => val == "Beijinho") ? true : false
                   }
                 />
                 <span> - Beijinho</span>
@@ -632,7 +637,7 @@ export function ComponentForm() {
                   value="Doce de Leite"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Doce de Leite') ? true : false
+                    filling.find(val => val == "Doce de Leite") ? true : false
                   }
                 />
                 <span> - Doce de Leite</span>
@@ -646,7 +651,7 @@ export function ComponentForm() {
                   name="recheio"
                   value="Ninho"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == 'Ninho') ? true : false}
+                  checked={filling.find(val => val == "Ninho") ? true : false}
                 />
                 <span> - Ninho</span>
               </label>
@@ -660,7 +665,7 @@ export function ComponentForm() {
                   value="4 Leites"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == '4 Leites') ? true : false
+                    filling.find(val => val == "4 Leites") ? true : false
                   }
                 />
                 <span> - 4 Leites</span>
@@ -693,7 +698,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Abacaxi"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == 'Abacaxi') ? true : false}
+                  checked={filling.find(val => val == "Abacaxi") ? true : false}
                 />
                 <span> - Abacaxi</span>
               </label>
@@ -706,7 +711,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Ameixa"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == 'Ameixa') ? true : false}
+                  checked={filling.find(val => val == "Ameixa") ? true : false}
                 />
                 <span> - Ameixa</span>
               </label>
@@ -720,7 +725,7 @@ export function ComponentForm() {
                   value="Limão Siciliano"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Limão Siciliano') ? true : false
+                    filling.find(val => val == "Limão Siciliano") ? true : false
                   }
                 />
                 <span> - Limão Siciliano</span>
@@ -735,7 +740,7 @@ export function ComponentForm() {
                   value="Maracujá"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Maracujá') ? true : false
+                    filling.find(val => val == "Maracujá") ? true : false
                   }
                 />
                 <span> - Maracujá</span>
@@ -749,7 +754,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Morango"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == 'Morango') ? true : false}
+                  checked={filling.find(val => val == "Morango") ? true : false}
                 />
                 <span> - Morango</span>
               </label>
@@ -762,7 +767,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Nozes"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == 'Nozes') ? true : false}
+                  checked={filling.find(val => val == "Nozes") ? true : false}
                 />
                 <span> - Nozes</span>
               </label>
@@ -776,7 +781,7 @@ export function ComponentForm() {
                   value="Ovomaltine"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == 'Ovomaltine') ? true : false
+                    filling.find(val => val == "Ovomaltine") ? true : false
                   }
                 />
                 <span> - Ovomaltine</span>
@@ -789,7 +794,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Oreo"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == 'Oreo') ? true : false}
+                  checked={filling.find(val => val == "Oreo") ? true : false}
                 />
                 <span> - Oreo</span>
               </label>
@@ -880,5 +885,5 @@ export function ComponentForm() {
         onRequestClose={handleClosePriceTableModal}
       />
     </>
-  )
+  );
 }
