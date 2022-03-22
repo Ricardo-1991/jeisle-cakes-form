@@ -244,8 +244,6 @@ export function ComponentForm() {
     setInstallments(handleInstallments);
   }
 
-  console.log(total);
-
   return (
     <>
       <div className="container-img">

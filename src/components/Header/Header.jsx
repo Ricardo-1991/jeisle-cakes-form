@@ -1,15 +1,17 @@
-import '../Header/StylesHeader.css'
-import logo from '../../images/bolo_nome_empresa_lateral.png'
-import { BsInstagram, BsWhatsapp } from 'react-icons/bs'
+import "../Header/StylesHeader.css";
+import logo from "../../images/bolo_nome_empresa_lateral.png";
+import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 
 export const Header = () => {
   return (
     <header className="header-container">
       <div className="content-box-header">
         <div>
-          <img src={logo} alt="imagem-logo" className="logo-empresa" />
+          <a href="">
+            <img src={logo} alt="imagem-logo" className="logo-empresa" />
+          </a>
         </div>
-        <div>
+        <div className="container-icons">
           <ul className="header-list">
             <li>
               <div className="div-icons">
@@ -29,5 +31,5 @@ export const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
