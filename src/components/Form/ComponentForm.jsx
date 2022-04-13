@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "../Form/FormStyle.css";
+import { AiOutlineAlert } from "react-icons/Ai";
 import avatar from "../../images/avatar-jeisle.jpeg";
 import balaoMenu from "../../images/balao-menu.png";
 import { BsFileArrowDown } from "react-icons/bs";
@@ -250,8 +251,20 @@ export function ComponentForm() {
         <img src={avatar} className="imagem-avatar" alt="imagem-avatar" />
         <img src={balaoMenu} className="imagem-balao" alt="" />
       </div>
+
       <form>
         <div className="form-container">
+          <section
+            className="alert-section"
+            data-aos="fade-down"
+            data-aos-duration="600"
+          >
+            <AiOutlineAlert size={40} color="#db1d29" />
+            <h3>Observação:</h3>
+            <h3>
+              <u>Não fazemos entregas.</u>
+            </h3>
+          </section>
           <section className="form-section-input-text">
             <h2>Digite o seu nome</h2>
             <div className="container-label">
