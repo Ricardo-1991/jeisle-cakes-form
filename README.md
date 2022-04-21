@@ -14,7 +14,7 @@ Motivado por demanda de uma empresa de confeitaria de bolos, foi desenvolvido co
 - `Funcionalidade 1`: Escolher opções para confecção do bolo.
 - `Funcionalidade 2`: Escolher método de pagamento.
 - `Funcionalidade 3`: Clicar no botão Resumo do pedido para visualizar o total do preço e informações do pedido.
-- `Funcionalidade 3`: Clicar no botão Enviar pedido para que seja enviada todas as informações do pedido.
+- `Funcionalidade 4`: Clicar no botão Enviar pedido para que seja enviada todas as informações do pedido.
 
 <h2>⚙️Tecnologias utilizadas</h2>
 
