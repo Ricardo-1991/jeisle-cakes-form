@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import "../Form/FormStyle.css";
-import { AiOutlineAlert } from "react-icons/ai";
 import avatar from "../../images/avatar-jeisle.jpeg";
 import balaoMenu from "../../images/balao-menu.png";
+import { AiOutlineAlert } from "react-icons/ai";
 import { BsFileArrowDown } from "react-icons/bs";
 import { ResumeModal } from "../ResumeModal/ResumeModal";
 import { PriceTableModal } from "../PriceTableModal/PriceTableModal";
@@ -17,7 +17,7 @@ const cakeSize = {
   15: 110,
   20: 160,
   25: 220,
-  30: 280
+  30: 280,
 };
 
 const aditionalFilling = {
@@ -25,57 +25,57 @@ const aditionalFilling = {
     15: 8,
     20: 10,
     25: 14,
-    30: 16
+    30: 16,
   },
 
   Ameixa: {
     15: 8,
     20: 10,
     25: 14,
-    30: 16
+    30: 16,
   },
 
   "Limão Siciliano": {
     15: 5,
     20: 8,
     25: 10,
-    30: 12
+    30: 12,
   },
 
   Maracujá: {
     15: 5,
     20: 8,
     25: 10,
-    30: 12
+    30: 12,
   },
 
   Morango: {
     15: 8,
     20: 16,
     25: 24,
-    30: 32
+    30: 32,
   },
 
   Nozes: {
     15: 7,
     20: 14,
     25: 21,
-    30: 28
+    30: 28,
   },
 
   Ovomaltine: {
     15: 7,
     20: 14,
     25: 21,
-    30: 28
+    30: 28,
   },
 
   Oreo: {
     15: 8,
     20: 16,
     25: 24,
-    30: 32
-  }
+    30: 32,
+  },
 };
 
 export function ComponentForm() {
@@ -170,8 +170,8 @@ export function ComponentForm() {
 
   //Estado Massas de Bolo
   function changeBatter(evt) {
-    if (batterState.find(val => val == evt.target.value)) {
-      setBatterState(batterState.filter(val => val != evt.target.value));
+    if (batterState.find((val) => val == evt.target.value)) {
+      setBatterState(batterState.filter((val) => val != evt.target.value));
     } else {
       setBatterState([batterState[1], evt.target.value]);
     }
@@ -180,8 +180,8 @@ export function ComponentForm() {
   // Estado Recheios + Estado Recheios Adicionais (auxiliar)
   function changeFilling(evt) {
     if (evt.target.name == "recheioAdd") {
-      if (addFilling.find(val => val == evt.target.value)) {
-        setAddFilling(addFilling.filter(val => val != evt.target.value));
+      if (addFilling.find((val) => val == evt.target.value)) {
+        setAddFilling(addFilling.filter((val) => val != evt.target.value));
       } else {
         setAddFilling([addFilling[1], evt.target.value]);
       }
@@ -192,9 +192,9 @@ export function ComponentForm() {
     }
 
     //Verifica se o valor já existe nos dois selecionados
-    if (filling.find(val => val == evt.target.value)) {
+    if (filling.find((val) => val == evt.target.value)) {
       // Caso existe, filtra tudo que não seja o valor selecionado ( utilizado para desmarcar )
-      setFilling(filling.filter(val => val != evt.target.value));
+      setFilling(filling.filter((val) => val != evt.target.value));
     } else {
       // Caso seja um valor novo, move  o ultimo valor para o inicio e adiciona o valor novo no fim da estrutura
       setFilling([filling[1], evt.target.value]);
@@ -228,7 +228,7 @@ export function ComponentForm() {
       "3x": Number(total + (total * 5.23) / 100).toFixed(2),
       "4x": Number(total + (total * 5.87) / 100).toFixed(2),
       "5x": Number(total + (total * 6.51) / 100).toFixed(2),
-      "6x": Number(total + (total * 7.15) / 100).toFixed(2)
+      "6x": Number(total + (total * 7.15) / 100).toFixed(2),
     },
 
     installments: {
@@ -237,8 +237,8 @@ export function ComponentForm() {
       "3x": Number((total + (total * 5.23) / 100) / 3).toFixed(2),
       "4x": Number((total + (total * 5.87) / 100) / 4).toFixed(2),
       "5x": Number((total + (total * 6.51) / 100) / 5).toFixed(2),
-      "6x": Number((total + (total * 7.15) / 100) / 6).toFixed(2)
-    }
+      "6x": Number((total + (total * 7.15) / 100) / 6).toFixed(2),
+    },
   };
 
   function formHandleInstallment(handleInstallments) {
@@ -272,7 +272,7 @@ export function ComponentForm() {
                 <input
                   type="text"
                   name="nome"
-                  onChange={evt => setName(evt.target.value)}
+                  onChange={(evt) => setName(evt.target.value)}
                   placeholder="Digite seu nome..."
                   ref={inputName}
                 />
@@ -282,7 +282,7 @@ export function ComponentForm() {
 
           <section
             className="form-section-input-text"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Deseja tematizar o bolo?</h2>
@@ -291,7 +291,7 @@ export function ComponentForm() {
                 <input
                   type="text"
                   name="theme"
-                  onChange={evt => setTheme(evt.target.value)}
+                  onChange={(evt) => setTheme(evt.target.value)}
                   placeholder="Digite aqui o tema do bolo..."
                 />
               </label>
@@ -300,7 +300,7 @@ export function ComponentForm() {
 
           <section
             className="form-section-input-select"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Adicionar Topo?</h2>
@@ -311,7 +311,7 @@ export function ComponentForm() {
                 <select
                   name="topo"
                   id="topo"
-                  onChange={evt => setTop(evt.target.value)}
+                  onChange={(evt) => setTop(evt.target.value)}
                 >
                   <option>Escolha a opção</option>
                   <option value={top}>Sim</option>
@@ -323,7 +323,7 @@ export function ComponentForm() {
 
           <section
             className="form-section-input-date"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Para quando deseja a retirada do bolo?</h2>
@@ -334,7 +334,7 @@ export function ComponentForm() {
                   type="date"
                   name="date"
                   ref={inputDate}
-                  onChange={evt => setDateForecast(evt.target.value)}
+                  onChange={(evt) => setDateForecast(evt.target.value)}
                 />
               </label>
               <label>
@@ -342,7 +342,7 @@ export function ComponentForm() {
                   type="time"
                   name="time"
                   ref={inputTime}
-                  onChange={evt => setTime(evt.target.value)}
+                  onChange={(evt) => setTime(evt.target.value)}
                 />
               </label>
             </div>
@@ -352,7 +352,7 @@ export function ComponentForm() {
             role="group"
             aria-labelledby="checkbox-group"
             className="form-section-one"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Diâmetro do bolo</h2>
@@ -367,7 +367,7 @@ export function ComponentForm() {
                   value="15"
                   ref={inputDiameter}
                 />
-                <span> - 15cm --------------------------- R$110,00</span>
+                <span> - 15cm --------------------------- R$120,00</span>
                 <p>( 10 a 15 fatias )</p>
               </label>
             </div>
@@ -381,7 +381,7 @@ export function ComponentForm() {
                   checked={diameterState == 20}
                   value="20"
                 />
-                <span> - 20cm --------------------------- R$160,00 </span>
+                <span> - 20cm --------------------------- R$180,00 </span>
                 <p>( 20 a 25 fatias )</p>
               </label>
             </div>
@@ -395,7 +395,7 @@ export function ComponentForm() {
                   checked={diameterState == 25}
                   value="25"
                 />
-                <span> - 25cm --------------------------- R$220,00</span>
+                <span> - 25cm --------------------------- R$240,00</span>
                 <p>( 35 a 40 fatias )</p>
               </label>
             </div>
@@ -409,7 +409,7 @@ export function ComponentForm() {
                   checked={diameterState == 30}
                   value="30"
                 />
-                <span> - 30cm --------------------------- R$280,00</span>
+                <span> - 30cm --------------------------- R$300,00</span>
                 <p>( 55 a 60 fatias )</p>
               </label>
             </div>
@@ -438,7 +438,7 @@ export function ComponentForm() {
             role="group"
             className="form-section-two"
             aria-labelledby="checkbox-group"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Massas</h2>
@@ -452,7 +452,7 @@ export function ComponentForm() {
                   className="checkbox"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == "Massa Branca")
+                    batterState.find((val) => val == "Massa Branca")
                       ? true
                       : false
                   }
@@ -469,7 +469,7 @@ export function ComponentForm() {
                   value="Massa Chocolate"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == "Massa Chocolate")
+                    batterState.find((val) => val == "Massa Chocolate")
                       ? true
                       : false
                   }
@@ -486,7 +486,7 @@ export function ComponentForm() {
                   value="Massa Baunilha"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == "Massa Baunilha")
+                    batterState.find((val) => val == "Massa Baunilha")
                       ? true
                       : false
                   }
@@ -503,7 +503,7 @@ export function ComponentForm() {
                   value="Massa Mesclada"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == "Massa Mesclada")
+                    batterState.find((val) => val == "Massa Mesclada")
                       ? true
                       : false
                   }
@@ -521,7 +521,7 @@ export function ComponentForm() {
                   value="Massa Formigueiro"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == "Massa Formigueiro")
+                    batterState.find((val) => val == "Massa Formigueiro")
                       ? true
                       : false
                   }
@@ -539,7 +539,9 @@ export function ComponentForm() {
                   value="Massa Mista"
                   onChange={changeBatter}
                   checked={
-                    batterState.find(val => val == "Massa Mista") ? true : false
+                    batterState.find((val) => val == "Massa Mista")
+                      ? true
+                      : false
                   }
                 />
                 <span>- Massa Mista</span>
@@ -554,7 +556,7 @@ export function ComponentForm() {
             role="group"
             className="form-section-three "
             aria-labelledby="checkbox-group"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Recheios</h2>
@@ -567,7 +569,7 @@ export function ComponentForm() {
                   ref={inputFilling}
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Amendoim") ? true : false
+                    filling.find((val) => val == "Amendoim") ? true : false
                   }
                 />
                 <span> - Amendoim</span>
@@ -582,7 +584,7 @@ export function ComponentForm() {
                   value="Brigadeiro Tradicional"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Brigadeiro Tradicional")
+                    filling.find((val) => val == "Brigadeiro Tradicional")
                       ? true
                       : false
                   }
@@ -599,7 +601,7 @@ export function ComponentForm() {
                   value="Brigadeiro Branco"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Brigadeiro Branco")
+                    filling.find((val) => val == "Brigadeiro Branco")
                       ? true
                       : false
                   }
@@ -616,7 +618,7 @@ export function ComponentForm() {
                   value="Brigadeiro de Café"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Brigadeiro de Café")
+                    filling.find((val) => val == "Brigadeiro de Café")
                       ? true
                       : false
                   }
@@ -633,7 +635,7 @@ export function ComponentForm() {
                   value="Beijinho"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Beijinho") ? true : false
+                    filling.find((val) => val == "Beijinho") ? true : false
                   }
                 />
                 <span> - Beijinho</span>
@@ -648,7 +650,7 @@ export function ComponentForm() {
                   value="Doce de Leite"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Doce de Leite") ? true : false
+                    filling.find((val) => val == "Doce de Leite") ? true : false
                   }
                 />
                 <span> - Doce de Leite</span>
@@ -662,7 +664,7 @@ export function ComponentForm() {
                   name="recheio"
                   value="Ninho"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == "Ninho") ? true : false}
+                  checked={filling.find((val) => val == "Ninho") ? true : false}
                 />
                 <span> - Ninho</span>
               </label>
@@ -676,7 +678,7 @@ export function ComponentForm() {
                   value="4 Leites"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "4 Leites") ? true : false
+                    filling.find((val) => val == "4 Leites") ? true : false
                   }
                 />
                 <span> - 4 Leites</span>
@@ -690,17 +692,18 @@ export function ComponentForm() {
             role="group"
             className="form-section-four"
             aria-labelledby="checkbox-group"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Recheios com valor adicional</h2>
             <div>
-              <input
+              <button
                 type="button"
-                value="Clique aqui para a tabela de preços"
                 className="button-price-modal"
                 onClick={handleOpenPriceTableModal}
-              />
+              >
+                Clique aqui para a tabela de preços
+              </button>
             </div>
             <div className="containerLabel">
               <label>
@@ -709,7 +712,9 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Abacaxi"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == "Abacaxi") ? true : false}
+                  checked={
+                    filling.find((val) => val == "Abacaxi") ? true : false
+                  }
                 />
                 <span> - Abacaxi</span>
               </label>
@@ -722,7 +727,9 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Ameixa"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == "Ameixa") ? true : false}
+                  checked={
+                    filling.find((val) => val == "Ameixa") ? true : false
+                  }
                 />
                 <span> - Ameixa</span>
               </label>
@@ -736,7 +743,9 @@ export function ComponentForm() {
                   value="Limão Siciliano"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Limão Siciliano") ? true : false
+                    filling.find((val) => val == "Limão Siciliano")
+                      ? true
+                      : false
                   }
                 />
                 <span> - Limão Siciliano</span>
@@ -751,7 +760,7 @@ export function ComponentForm() {
                   value="Maracujá"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Maracujá") ? true : false
+                    filling.find((val) => val == "Maracujá") ? true : false
                   }
                 />
                 <span> - Maracujá</span>
@@ -765,7 +774,9 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Morango"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == "Morango") ? true : false}
+                  checked={
+                    filling.find((val) => val == "Morango") ? true : false
+                  }
                 />
                 <span> - Morango</span>
               </label>
@@ -778,7 +789,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Nozes"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == "Nozes") ? true : false}
+                  checked={filling.find((val) => val == "Nozes") ? true : false}
                 />
                 <span> - Nozes</span>
               </label>
@@ -792,7 +803,7 @@ export function ComponentForm() {
                   value="Ovomaltine"
                   onChange={changeFilling}
                   checked={
-                    filling.find(val => val == "Ovomaltine") ? true : false
+                    filling.find((val) => val == "Ovomaltine") ? true : false
                   }
                 />
                 <span> - Ovomaltine</span>
@@ -805,7 +816,7 @@ export function ComponentForm() {
                   name="recheioAdd"
                   value="Oreo"
                   onChange={changeFilling}
-                  checked={filling.find(val => val == "Oreo") ? true : false}
+                  checked={filling.find((val) => val == "Oreo") ? true : false}
                 />
                 <span> - Oreo</span>
               </label>
@@ -824,7 +835,7 @@ export function ComponentForm() {
                 <select
                   name="payment"
                   id="payment"
-                  onChange={evt => setPaymentMethod(evt.target.value)}
+                  onChange={(evt) => setPaymentMethod(evt.target.value)}
                 >
                   <option>Escolha uma opção</option>
                   <option value="Avista">À vista</option>
@@ -843,7 +854,7 @@ export function ComponentForm() {
 
           <section
             className="form-section-input-text"
-            data-aos="flip-right"
+            data-aos="fade-down"
             data-aos-duration="600"
           >
             <h2>Deseja constar alguma observação?</h2>
@@ -853,7 +864,7 @@ export function ComponentForm() {
               <label>
                 <textarea
                   value={textArea}
-                  onChange={evt => setTextArea(evt.target.value)}
+                  onChange={(evt) => setTextArea(evt.target.value)}
                 ></textarea>
               </label>
             </div>
@@ -888,7 +899,7 @@ export function ComponentForm() {
           paymentMethod,
           total,
           installmentsPrice,
-          installments
+          installments,
         }}
       />
       <PriceTableModal

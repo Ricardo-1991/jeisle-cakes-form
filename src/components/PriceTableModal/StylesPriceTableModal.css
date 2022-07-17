@@ -1,5 +1,4 @@
-
-.react-modal-overlay-price{
+.react-modal-overlay-price {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -8,10 +7,10 @@
   left: 0;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
 
-.react-modal-content-price{
+.react-modal-content-price {
   width: 93%;
   max-width: 576px;
   background: white;
@@ -37,7 +36,6 @@
   color: var(--headers);
   padding: 1rem;
   font-size: 0.9rem;
-
 }
 
 .panel-table__group td {

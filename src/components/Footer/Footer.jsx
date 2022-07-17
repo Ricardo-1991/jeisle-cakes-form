@@ -1,11 +1,12 @@
-import '../Footer/StylesFooter.css'
-import { BsLinkedin, BsInstagram } from 'react-icons/bs'
+import { useContext } from "react";
+import "../Footer/StylesFooter.css";
+import { BsLinkedin, BsInstagram } from "react-icons/bs";
 
 export function Footer() {
   return (
     <footer className="form-footer">
       <h3>
-        Contatos profissionais do desenvolvedor:{' '}
+        Contatos profissionais do desenvolvedor:{" "}
         <a href="https://www.linkedin.com/in/paulo-ricardo-santos-nascimento-400877211/">
           <BsLinkedin size={20} />
         </a>
@@ -14,5 +15,5 @@ export function Footer() {
         </a>
       </h3>
     </footer>
-  )
+  );
 }
