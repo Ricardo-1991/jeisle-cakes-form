@@ -2,8 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import "../Form/FormStyle.css";
 import avatar from "../../images/avatar-jeisle.jpeg";
 import balaoMenu from "../../images/balao-menu.png";
-import { AiOutlineAlert } from "react-icons/ai";
-import { BsFileArrowDown } from "react-icons/bs";
+import { BsExclamationTriangleFill, BsFileArrowDown } from "react-icons/bs";
 import { ResumeModal } from "../ResumeModal/ResumeModal";
 import { PriceTableModal } from "../PriceTableModal/PriceTableModal";
 import { RenderGlitter } from "../RenderGlitter/RenderGlitter";
@@ -259,7 +258,7 @@ export function ComponentForm() {
             data-aos="fade-down"
             data-aos-duration="600"
           >
-            <AiOutlineAlert size={40} color="#db1d29" />
+            <BsExclamationTriangleFill size={40} color="#db1d29" />
             <h3>Observação:</h3>
             <h3>
               <u>Não fazemos entregas.</u>
