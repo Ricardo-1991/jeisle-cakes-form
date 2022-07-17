@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import "../Form/FormStyle.css";
 import avatar from "../../images/avatar-jeisle.jpeg";
 import balaoMenu from "../../images/balao-menu.png";
@@ -13,10 +13,10 @@ import "aos/dist/aos.css";
 AOS.init();
 
 const cakeSize = {
-  15: 110,
-  20: 160,
-  25: 220,
-  30: 280,
+  15: 120,
+  20: 180,
+  25: 240,
+  30: 300,
 };
 
 const aditionalFilling = {
