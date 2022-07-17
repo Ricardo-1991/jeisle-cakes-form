@@ -1,4 +1,4 @@
-.react-modal-overlay{
+.react-modal-overlay {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -10,17 +10,17 @@
   justify-content: center;
 }
 
-.react-modal-content{
+.react-modal-content {
   width: 100%;
   max-width: 576px;
   background: white;
   padding: 3rem;
   position: relative;
   border-radius: 0.25rem;
-  margin-top: 4rem; 
+  margin-top: 4rem;
 }
 
-.react-modal-close{
+.react-modal-close {
   position: absolute;
   right: 1.5rem;
   top: 1.5rem;
@@ -29,7 +29,7 @@
 }
 
 .react-modal-close:hover {
-  transition: filter 0.2s; 
+  transition: filter 0.2s;
   filter: brightness(0.8);
 }
 
@@ -41,11 +41,12 @@
   font-size: 1.2rem;
 }
 
-.data-container h3, h1 {
+.data-container h3,
+h1 {
   line-height: 2.2rem;
 }
 
-button[type='submit'] {
+button[type="submit"] {
   width: 100%;
   padding: 0 1.5rem;
   height: 4rem;
@@ -58,25 +59,22 @@ button[type='submit'] {
   transition: filter 0.2s;
 }
 
-button[type='submit']:hover {
+button[type="submit"]:hover {
   filter: brightness(0.9);
 }
 
-@media (max-width: 1875px) {
-  .react-modal-content{
+@media (max-width: 728px) {
+  .react-modal-content {
+    width: 31rem;
     padding: 3rem;
     position: relative;
     border-radius: 0.25rem;
     margin-top: 4rem;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
-  .data-container h1, h3 {
-    line-height: 0.3rem;
+  .data-container h1,
+  h3 {
+    line-height: 0.5rem;
   }
-  
-} 
-
-
-
-
+}
