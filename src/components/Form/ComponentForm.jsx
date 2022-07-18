@@ -259,7 +259,7 @@ export function ComponentForm() {
             data-aos-duration="600"
           >
             <BsExclamationTriangleFill size={40} color="#db1d29" />
-            <h3>Observação:</h3>
+            <h3>ATENÇÃO:</h3>
             <h3>
               <u>Não fazemos entregas.</u>
             </h3>
