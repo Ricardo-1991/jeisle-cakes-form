@@ -13,10 +13,10 @@ import "aos/dist/aos.css";
 AOS.init();
 
 const cakeSize = {
-  15: 120,
-  20: 180,
-  25: 240,
-  30: 300,
+  15: 140,
+  20: 200,
+  25: 260,
+  30: 320,
 };
 
 const aditionalFilling = {
@@ -366,7 +366,7 @@ export function ComponentForm() {
                   value="15"
                   ref={inputDiameter}
                 />
-                <span> - 15cm --------------------------- R$120,00</span>
+                <span> - 15cm --------------------------- R$140,00</span>
                 <p>( 10 a 15 fatias )</p>
               </label>
             </div>
@@ -380,7 +380,7 @@ export function ComponentForm() {
                   checked={diameterState == 20}
                   value="20"
                 />
-                <span> - 20cm --------------------------- R$180,00 </span>
+                <span> - 20cm --------------------------- R$200,00 </span>
                 <p>( 20 a 25 fatias )</p>
               </label>
             </div>
@@ -394,7 +394,7 @@ export function ComponentForm() {
                   checked={diameterState == 25}
                   value="25"
                 />
-                <span> - 25cm --------------------------- R$240,00</span>
+                <span> - 25cm --------------------------- R$260,00</span>
                 <p>( 35 a 40 fatias )</p>
               </label>
             </div>
@@ -408,7 +408,7 @@ export function ComponentForm() {
                   checked={diameterState == 30}
                   value="30"
                 />
-                <span> - 30cm --------------------------- R$300,00</span>
+                <span> - 30cm --------------------------- R$320,00</span>
                 <p>( 55 a 60 fatias )</p>
               </label>
             </div>
@@ -877,6 +877,8 @@ export function ComponentForm() {
             onClick={handleOpenResumeModal}
           />
         </div>
+
+        <input type="text" />
       </form>
       <ResumeModal
         isOpen={handleResumeModal}

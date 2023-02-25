@@ -24,7 +24,6 @@
 
 .header-list {
   display: flex;
-
 }
 
 .header-list li {
@@ -37,19 +36,20 @@
   text-align: center;
   font-weight: 900;
   color: var(--nameEnterprise);
- }
+}
 
- .header-text svg {
-   width: 1.4rem;
-   position: relative;
-   top: 0.4rem;
- }
+.header-text svg {
+  width: 1.4rem;
+  position: relative;
+  top: 0.4rem;
+}
 
 /* Link / React-Icons */
-.div-icons  {
+.div-icons {
   border: 2px solid var(--nameEnterprise);
   border-radius: 5px;
   padding: 2px;
+  line-height: 1;
 }
 
 .div-icons:hover {
@@ -71,7 +71,7 @@
     position: relative;
     top: 0.6rem;
   }
-} 
+}
 
 @media (max-width: 720px) {
   .logo-empresa {
@@ -88,8 +88,7 @@
     position: relative;
     top: 0.6rem;
   }
-} 
-
+}
 
 @media (max-width: 370px) {
   .logo-empresa {
@@ -106,4 +105,4 @@
     position: relative;
     top: 0.6rem;
   }
-} 
+}
