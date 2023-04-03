@@ -1,6 +1,6 @@
-import Modal from 'react-modal'
-import '../PriceTableModal/StylesPriceTableModal.css'
-import closeImg from '../../images/close.svg'
+import Modal from "react-modal";
+import "../PriceTableModal/StylesPriceTableModal.css";
+import closeImg from "../../images/close.svg";
 
 export function PriceTableModal({ isOpen, onRequestClose }) {
   return (
@@ -94,6 +94,22 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
               <td>R$24,00</td>
               <td>R$32,00</td>
             </tr>
+
+            <tr>
+              <td>Brigadeiro de Castanha</td>
+              <td>R$7,00</td>
+              <td>R$14,00</td>
+              <td>R$21,00</td>
+              <td>R$28,00</td>
+            </tr>
+
+            <tr>
+              <td>Brigadeiro de Nutella</td>
+              <td>R$10,00</td>
+              <td>R$20,00</td>
+              <td>R$30,00</td>
+              <td>R$40,00</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -102,5 +118,5 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
         <p>Todos os adicionais serão somados ao valor do bolo.</p>
       </footer>
     </Modal>
-  )
+  );
 }

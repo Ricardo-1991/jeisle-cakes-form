@@ -75,6 +75,19 @@ const aditionalFilling = {
     25: 24,
     30: 32,
   },
+  "Brigadeiro de Castanha": {
+    15: 7,
+    20: 14,
+    25: 21,
+    30: 28,
+  },
+
+  "Brigadeiro de Nutella": {
+    15: 10,
+    20: 20,
+    25: 30,
+    30: 40,
+  },
 };
 
 export function ComponentForm() {
@@ -204,18 +217,33 @@ export function ComponentForm() {
     setPriceGlitter(price);
   }
 
+  const allFillings = filling.filter((filling) => filling !== undefined);
+  const onlyAddFilling = filling.filter(
+    (filling, index) => filling === addFilling[index] && filling !== undefined
+  );
+  const findOnlyAddFilling = allFillings.find(
+    (filling, index) => filling === onlyAddFilling[index]
+  );
+
   function totalPriceOfCake() {
     const cakeValue = cakeSize[diameterState];
-    const valueFillings = filling.reduce((acumulator, filling) => {
-      const currentValueFillings = aditionalFilling[filling]
-        ? aditionalFilling[filling][diameterState]
+    const valueFillings = filling.reduce((acumulator, currFilling) => {
+      const currentValueFillings = aditionalFilling[currFilling]
+        ? aditionalFilling[currFilling][diameterState]
         : 0;
-      return Number(acumulator) + Number(currentValueFillings);
+      if (allFillings.length === 1 && findOnlyAddFilling) {
+        return Number(acumulator) + Number(currentValueFillings);
+      }
+
+      if (allFillings.length === 2) {
+        return Number(acumulator) + Number(currentValueFillings) / 2;
+      }
     }, 0);
     return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter);
   }
 
   let total = totalPriceOfCake();
+  console.log(total);
   if (Number.isNaN(total)) {
     total = 0;
   }
@@ -574,24 +602,20 @@ export function ComponentForm() {
                 <span> - Amendoim</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
                   type="checkbox"
                   name="recheio"
-                  value="Brigadeiro Tradicional"
+                  value="Brigadeiro"
                   onChange={changeFilling}
                   checked={
-                    filling.find((val) => val == "Brigadeiro Tradicional")
-                      ? true
-                      : false
+                    filling.find((val) => val == "Brigadeiro") ? true : false
                   }
                 />
                 <span> - Brigadeiro Tradicional</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -608,7 +632,6 @@ export function ComponentForm() {
                 <span> - Brigadeiro Branco</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -625,7 +648,6 @@ export function ComponentForm() {
                 <span> - Brigadeiro de Café</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -640,7 +662,6 @@ export function ComponentForm() {
                 <span> - Beijinho</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -655,7 +676,6 @@ export function ComponentForm() {
                 <span> - Doce de Leite</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -668,7 +688,6 @@ export function ComponentForm() {
                 <span> - Ninho</span>
               </label>
             </div>
-
             <div className="containerLabel">
               <label>
                 <input
@@ -681,6 +700,114 @@ export function ComponentForm() {
                   }
                 />
                 <span> - 4 Leites</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Caramelo"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Caramelo") ? true : false
+                  }
+                />
+                <span> - Caramelo</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Queijo"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Queijo") ? true : false
+                  }
+                />
+                <span> - Queijo</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Romeu e Julieta"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Romeu e Julieta")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Romeu e Julieta</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Goiabada"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Goiabada") ? true : false
+                  }
+                />
+                <span> - Goiabada</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro de Churros"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro de Churros")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro de Churros</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro Meio Amargo"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro Meio Amargo")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro Gourmet</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro c/ Chocolate Branco"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find(
+                      (val) => val == "Brigadeiro c/ Chocolate Branco"
+                    )
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro c/ Chocolate Branco</span>
               </label>
             </div>
           </section>
@@ -820,6 +947,40 @@ export function ComponentForm() {
                 <span> - Oreo</span>
               </label>
             </div>
+
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheioAdd"
+                  value="Brigadeiro de Castanha"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro de Castanha")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro de Castanha</span>
+              </label>
+            </div>
+
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheioAdd"
+                  value="Brigadeiro de Nutella"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro de Nutella")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro de Nutella</span>
+              </label>
+            </div>
           </section>
 
           <section
@@ -877,8 +1038,6 @@ export function ComponentForm() {
             onClick={handleOpenResumeModal}
           />
         </div>
-
-        <input type="text" />
       </form>
       <ResumeModal
         isOpen={handleResumeModal}
@@ -902,6 +1061,8 @@ export function ComponentForm() {
           installmentsPrice,
           installments,
         }}
+        allFillings={allFillings}
+        findOnlyAddFilling={findOnlyAddFilling}
       />
       <PriceTableModal
         isOpen={handlePriceTableModal}

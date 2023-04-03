@@ -2,11 +2,17 @@ import Modal from "react-modal";
 import "../ResumeModal/StylesResumeModal.css";
 import closeImg from "../../images/close.svg";
 
-export function ResumeModal({ isOpen, onRequestClose, states }) {
+export function ResumeModal({
+  isOpen,
+  onRequestClose,
+  states,
+  allFillings,
+  findOnlyAddFilling,
+}) {
   function formatPrice(price) {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
-      currency: "BRL"
+      currency: "BRL",
     }).format(price);
   }
 
@@ -35,7 +41,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
   const orderHour = {
     hour: todayHourDate.getHours(),
     minutes: todayHourDate.getMinutes(),
-    seconds: todayHourDate.getSeconds()
+    seconds: todayHourDate.getSeconds(),
   };
 
   function addZero(time) {
@@ -50,7 +56,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
     Pix: "Pix: 03324768551 - Jeisle Soares Cardoso Pereira",
     Avista: "À vista(espécie)",
     Debito: "Débito",
-    Credito: "Cartão de crédito"
+    Credito: "Cartão de crédito",
   };
 
   function handleSubmit(evt) {
@@ -103,9 +109,11 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
 
     ${
       states.addFilling[0] == undefined && states.addFilling[1]
-        ? `%0a_Recheio adicional_: *${states.addFilling.slice(
-            1
-          )} - ${formatPrice(valueAddFillings)}*`
+        ? `%0a_Recheio adicional_: *${states.addFilling.slice(1)} - ${
+            allFillings.length === 1 && findOnlyAddFilling
+              ? formatPrice(valueAddFillings)
+              : formatPrice(valueAddFillings / 2)
+          }*`
         : ""
     }
 
@@ -113,15 +121,17 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
       states.addFilling[0] && states.addFilling[1]
         ? `%0a_Recheios adicionais_: *${states.addFilling.join(
             " e "
-          )} - ${formatPrice(valueAddFillings)}*`
+          )} - ${formatPrice(valueAddFillings / 2)}*`
         : ""
     }
 
     ${
       states.addFilling.length == 1
-        ? `%0a_Recheio adicional_: *${states.addFilling.slice(
-            0
-          )} - ${formatPrice(valueAddFillings)}*`
+        ? `%0a_Recheio adicional_: *${states.addFilling.slice(0)} - ${
+            allFillings.length === 1 && findOnlyAddFilling
+              ? formatPrice(valueAddFillings)
+              : formatPrice(valueAddFillings / 2)
+          }*`
         : ""
     }
       
@@ -203,12 +213,10 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
           <u>Valor do diâmetro do bolo:</u>{" "}
           {formatPrice(states.cakeSize[states.diameterState])}
         </h3>
-
         {states.addFilling[0] == undefined && states.addFilling[1] && (
           <>
             <h3>
-              <u>Recheio adicional:</u> {states.addFilling.slice(1)} -{" "}
-              {formatPrice(valueAddFillings)}
+              <u>Recheio adicional:</u> {states.addFilling.slice(1)}
             </h3>
           </>
         )}
@@ -216,8 +224,7 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.addFilling[0] && states.addFilling[1] && (
           <>
             <h3>
-              <u>Recheios adicionais:</u> {states.addFilling.join(" e ")} -{" "}
-              {formatPrice(valueAddFillings)}
+              <u>Recheios adicionais:</u> {states.addFilling.join(" e ")}
             </h3>
           </>
         )}
@@ -225,10 +232,20 @@ export function ResumeModal({ isOpen, onRequestClose, states }) {
         {states.addFilling.length == 1 && (
           <>
             <h3>
-              <u>Recheio adicional:</u> {states.addFilling.slice(0)} -{" "}
-              {formatPrice(valueAddFillings)}
+              <u>Recheio adicional:</u> {states.addFilling.slice(0)}
             </h3>
           </>
+        )}
+        {allFillings.length === 1 && findOnlyAddFilling ? (
+          <h3>
+            {" "}
+            <u>Valor do adicional:</u> {formatPrice(valueAddFillings)}
+          </h3>
+        ) : (
+          <h3>
+            {" "}
+            <u>Valor do adicional:</u> {formatPrice(valueAddFillings / 2)}
+          </h3>
         )}
 
         {states.priceGlitter && (
