@@ -172,7 +172,7 @@ export function ResumeModal({
       </button>
       <div className="data-container">
         <h1>RESUMO DO PEDIDO:</h1>
-        <br />
+        <hr />
         <h3>Nome do cliente: {states.name} </h3>
         {states.theme && <h3>Tema do bolo: {states.theme}</h3>}
         <h3>
@@ -199,7 +199,6 @@ export function ResumeModal({
             : states.batterState.join(" e ")}
           .
         </h3>
-
         <h3>
           {states.filling[0] == null
             ? ` Recheio: ${states.filling.slice(1)}`
@@ -210,64 +209,44 @@ export function ResumeModal({
           <i>Subtotal:</i>
         </h3>
         <h3>
-          <u>Valor do diâmetro do bolo:</u>{" "}
+          Valor do diâmetro do bolo:{" "}
           {formatPrice(states.cakeSize[states.diameterState])}
         </h3>
         {states.addFilling[0] == undefined && states.addFilling[1] && (
           <>
-            <h3>
-              <u>Recheio adicional:</u> {states.addFilling.slice(1)}
-            </h3>
+            <h3>Recheio adicional: {states.addFilling.slice(1)}</h3>
           </>
         )}
-
         {states.addFilling[0] && states.addFilling[1] && (
           <>
-            <h3>
-              <u>Recheios adicionais:</u> {states.addFilling.join(" e ")}
-            </h3>
+            <h3>Recheios adicionais: {states.addFilling.join(" e ")}</h3>
           </>
         )}
-
         {states.addFilling.length == 1 && (
           <>
-            <h3>
-              <u>Recheio adicional:</u> {states.addFilling.slice(0)}
-            </h3>
+            <h3>Recheio adicional: {states.addFilling.slice(0)}</h3>
           </>
         )}
         {allFillings.length === 1 && findOnlyAddFilling ? (
-          <h3>
-            {" "}
-            <u>Valor do adicional:</u> {formatPrice(valueAddFillings)}
-          </h3>
+          <h3> =Valor do adicional: {formatPrice(valueAddFillings)}</h3>
         ) : (
-          <h3>
-            {" "}
-            <u>Valor do adicional:</u> {formatPrice(valueAddFillings / 2)}
-          </h3>
+          <h3> Valor do adicional: {formatPrice(valueAddFillings / 2)}</h3>
         )}
-
         {states.priceGlitter && (
           <>
-            <h3>
-              <u>Adicional de glitter:</u> {formatPrice(states.priceGlitter)}
-            </h3>
+            <h3>Adicional de glitter: {formatPrice(states.priceGlitter)}</h3>
           </>
         )}
         <hr />
         <h3>
           Data prevista para retirada: {userForeCastDate} às {states.time}hrs
         </h3>
-
         <h3>
           Método de pagamento: {objectPaymentMethod[states.paymentMethod]}
         </h3>
-
         {states.paymentMethod != "Credito" && (
           <h3>Valor Total: {formatPrice(states.total)}</h3>
         )}
-
         {states.paymentMethod == "Credito" && (
           <>
             <h3>

@@ -9,6 +9,7 @@ import { RenderGlitter } from "../RenderGlitter/RenderGlitter";
 import { ComponentCreditCardPrice } from "../ComponentCreditCardPrice/ComponentCreditCardPrice";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Footer } from "../Footer/Footer";
 
 AOS.init();
 
@@ -226,26 +227,27 @@ export function ComponentForm() {
   );
 
   function totalPriceOfCake() {
-    const cakeValue = cakeSize[diameterState];
+    const cakeValue = Number(cakeSize[diameterState]);
     const valueFillings = filling.reduce((acumulator, currFilling) => {
       const currentValueFillings = aditionalFilling[currFilling]
         ? aditionalFilling[currFilling][diameterState]
         : 0;
       if (allFillings.length === 1 && findOnlyAddFilling) {
-        return Number(acumulator) + Number(currentValueFillings);
+        return acumulator + currentValueFillings;
       }
 
       if (allFillings.length === 2) {
-        return Number(acumulator) + Number(currentValueFillings) / 2;
+        return acumulator + currentValueFillings / 2;
       }
     }, 0);
-    return Number(cakeValue) + Number(valueFillings) + Number(priceGlitter);
+
+    const totalPrice = cakeValue + valueFillings + priceGlitter;
+    return totalPrice;
   }
 
   let total = totalPriceOfCake();
-  console.log(total);
   if (Number.isNaN(total)) {
-    total = 0;
+    total = cakeSize[diameterState] + priceGlitter;
   }
 
   const installmentsPrice = {
@@ -267,6 +269,20 @@ export function ComponentForm() {
       "6x": Number((total + (total * 7.15) / 100) / 6).toFixed(2),
     },
   };
+
+  let oldTotal = total; // armazena o valor anterior de total
+
+  installments
+    ? (total = installmentsPrice.totalPriceCreditCard[installments])
+    : (total = oldTotal);
+
+  if (installments === "Escolha uma opção") {
+    total = oldTotal;
+  }
+
+  if (paymentMethod !== "Credito") {
+    total = oldTotal;
+  }
 
   function formHandleInstallment(handleInstallments) {
     setInstallments(handleInstallments);
@@ -1068,6 +1084,7 @@ export function ComponentForm() {
         isOpen={handlePriceTableModal}
         onRequestClose={handleClosePriceTableModal}
       />
+      <Footer total={total} />
     </>
   );
 }

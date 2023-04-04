@@ -1,19 +1,19 @@
-import { useContext } from "react";
 import "../Footer/StylesFooter.css";
-import { BsLinkedin, BsInstagram } from "react-icons/bs";
 
-export function Footer() {
+export function Footer({ total }) {
+  function formatPrice(price) {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(price);
+  }
+  let totalPrice = formatPrice(total || 0);
+
   return (
     <footer className="form-footer">
-      <h3>
-        Contatos profissionais do desenvolvedor:{" "}
-        <a href="https://www.linkedin.com/in/paulo-ricardo-santos-nascimento-400877211/">
-          <BsLinkedin size={20} />
-        </a>
-        <a href="https://www.instagram.com/ricardo_n4scimento/">
-          <BsInstagram size={20} />
-        </a>
-      </h3>
+      <div>
+        <strong>Preço total: {totalPrice}</strong>
+      </div>
     </footer>
   );
 }

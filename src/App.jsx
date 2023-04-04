@@ -11,7 +11,6 @@ function App() {
     <Container>
       <Header />
       <ComponentForm />
-      <Footer />
     </Container>
   );
 }

@@ -37,13 +37,17 @@
   color: var(--nameEnterprise);
 }
 
+.data-container h1 {
+  margin-bottom: 1.5rem;
+}
+
 .data-container h3 {
   font-size: 1.2rem;
 }
 
 .data-container h3,
 h1 {
-  line-height: 2.2rem;
+  line-height: 2.4rem;
 }
 
 button[type="submit"] {
@@ -65,16 +69,27 @@ button[type="submit"]:hover {
 
 @media (max-width: 728px) {
   .react-modal-content {
-    width: 31rem;
+    width: 30rem;
     padding: 3rem;
+    overflow: scroll;
+    max-height: 440px;
     position: relative;
-    border-radius: 0.25rem;
-    margin-top: 4rem;
+    border-radius: 8px;
+    margin: 0 auto;
     font-size: 0.8rem;
+    -webkit-overflow-scrolling: touch;
   }
 
   .data-container h1,
   h3 {
     line-height: 0.5rem;
+  }
+
+  button[type="submit"] {
+    position: sticky;
+    bottom: 0;
+    margin-top: 0.5rem;
+    height: 3.5rem;
+    font-size: 1.3rem;
   }
 }
