@@ -629,7 +629,7 @@ export function ComponentForm() {
                     filling.find((val) => val == "Brigadeiro") ? true : false
                   }
                 />
-                <span> - Brigadeiro Tradicional</span>
+                <span> - Brigadeiro</span>
               </label>
             </div>
             <div className="containerLabel">
@@ -662,6 +662,56 @@ export function ComponentForm() {
                   }
                 />
                 <span> - Brigadeiro de Café</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro c/ Chocolate Branco"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find(
+                      (val) => val == "Brigadeiro c/ Chocolate Branco"
+                    )
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro c/ Chocolate Branco</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro de Churros"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro de Churros")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro de Churros</span>
+              </label>
+            </div>
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro Meio Amargo"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro Meio Amargo")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro Gourmet</span>
               </label>
             </div>
             <div className="containerLabel">
@@ -774,56 +824,6 @@ export function ComponentForm() {
                   }
                 />
                 <span> - Goiabada</span>
-              </label>
-            </div>
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheio"
-                  value="Brigadeiro de Churros"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Brigadeiro de Churros")
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro de Churros</span>
-              </label>
-            </div>
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheio"
-                  value="Brigadeiro Meio Amargo"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Brigadeiro Meio Amargo")
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro Gourmet</span>
-              </label>
-            </div>
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheio"
-                  value="Brigadeiro c/ Chocolate Branco"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find(
-                      (val) => val == "Brigadeiro c/ Chocolate Branco"
-                    )
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro c/ Chocolate Branco</span>
               </label>
             </div>
           </section>
