@@ -3,6 +3,13 @@ import "../Form/FormStyle.css";
 import avatar from "../../images/avatar-jeisle.jpeg";
 import balaoMenu from "../../images/balao-menu.png";
 import { BsExclamationTriangleFill, BsFileArrowDown } from "react-icons/bs";
+import {
+  GiFruitBowl,
+  GiGrapes,
+  GiLemon,
+  GiPineapple,
+  GiStrawberry,
+} from "react-icons/gi";
 import { ResumeModal } from "../ResumeModal/ResumeModal";
 import { PriceTableModal } from "../PriceTableModal/PriceTableModal";
 import { RenderGlitter } from "../RenderGlitter/RenderGlitter";
@@ -847,19 +854,90 @@ export function ComponentForm() {
                 Clique aqui para a tabela de preços
               </button>
             </div>
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheioAdd"
-                  value="Abacaxi"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Abacaxi") ? true : false
-                  }
-                />
-                <span> - Abacaxi</span>
-              </label>
+            <div className="fruits-section">
+              <div className="fruits-header">
+                <h2>C/ Frutas</h2>
+                <div>
+                  <GiStrawberry size={30} color="#FF0000" />
+                </div>
+              </div>
+
+              <div className="containerLabel">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="recheioAdd"
+                    value="Abacaxi"
+                    onChange={changeFilling}
+                    checked={
+                      filling.find((val) => val == "Abacaxi") ? true : false
+                    }
+                  />
+                  <span> - Abacaxi</span>
+                </label>
+              </div>
+
+              <div className="containerLabel">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="recheioAdd"
+                    value="Ameixa"
+                    onChange={changeFilling}
+                    checked={
+                      filling.find((val) => val == "Ameixa") ? true : false
+                    }
+                  />
+                  <span> - Ameixa</span>
+                </label>
+              </div>
+
+              <div className="containerLabel">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="recheioAdd"
+                    value="Limão Siciliano"
+                    onChange={changeFilling}
+                    checked={
+                      filling.find((val) => val == "Limão Siciliano")
+                        ? true
+                        : false
+                    }
+                  />
+                  <span> - Limão Siciliano</span>
+                </label>
+              </div>
+
+              <div className="containerLabel">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="recheioAdd"
+                    value="Maracujá"
+                    onChange={changeFilling}
+                    checked={
+                      filling.find((val) => val == "Maracujá") ? true : false
+                    }
+                  />
+                  <span> - Maracujá</span>
+                </label>
+              </div>
+
+              <div className="containerLabel">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="recheioAdd"
+                    value="Morango"
+                    onChange={changeFilling}
+                    checked={
+                      filling.find((val) => val == "Morango") ? true : false
+                    }
+                  />
+                  <span> - Morango</span>
+                </label>
+              </div>
             </div>
 
             <div className="containerLabel">
@@ -867,30 +945,15 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="recheioAdd"
-                  value="Ameixa"
+                  value="Brigadeiro de Castanha"
                   onChange={changeFilling}
                   checked={
-                    filling.find((val) => val == "Ameixa") ? true : false
-                  }
-                />
-                <span> - Ameixa</span>
-              </label>
-            </div>
-
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheioAdd"
-                  value="Limão Siciliano"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Limão Siciliano")
+                    filling.find((val) => val == "Brigadeiro de Castanha")
                       ? true
                       : false
                   }
                 />
-                <span> - Limão Siciliano</span>
+                <span> - Brigadeiro de Castanha</span>
               </label>
             </div>
 
@@ -899,28 +962,15 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="recheioAdd"
-                  value="Maracujá"
+                  value="Brigadeiro de Nutella"
                   onChange={changeFilling}
                   checked={
-                    filling.find((val) => val == "Maracujá") ? true : false
+                    filling.find((val) => val == "Brigadeiro de Nutella")
+                      ? true
+                      : false
                   }
                 />
-                <span> - Maracujá</span>
-              </label>
-            </div>
-
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheioAdd"
-                  value="Morango"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Morango") ? true : false
-                  }
-                />
-                <span> - Morango</span>
+                <span> - Brigadeiro de Nutella</span>
               </label>
             </div>
 
@@ -961,40 +1011,6 @@ export function ComponentForm() {
                   checked={filling.find((val) => val == "Oreo") ? true : false}
                 />
                 <span> - Oreo</span>
-              </label>
-            </div>
-
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheioAdd"
-                  value="Brigadeiro de Castanha"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Brigadeiro de Castanha")
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro de Castanha</span>
-              </label>
-            </div>
-
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheioAdd"
-                  value="Brigadeiro de Nutella"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Brigadeiro de Nutella")
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro de Nutella</span>
               </label>
             </div>
           </section>
