@@ -24,5 +24,5 @@ Motivado por demanda de uma empresa de confeitaria de bolos, foi desenvolvido co
 * [AOS](https://michalsnik.github.io/aos/)
 
 ## 📁 Acesso ao projeto
- https://jeisle-cakes-form.vercel.app/
+ https://jeisle-cakes-pedidos.vercel.app/
 
