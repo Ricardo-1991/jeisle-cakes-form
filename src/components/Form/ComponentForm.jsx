@@ -705,6 +705,24 @@ export function ComponentForm() {
                 <span> - Brigadeiro de Churros</span>
               </label>
             </div>
+
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheio"
+                  value="Brigadeiro de Morango"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro de Morango")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro de Morango</span>
+              </label>
+            </div>
+
             <div className="containerLabel">
               <label>
                 <input
@@ -935,7 +953,7 @@ export function ComponentForm() {
                       filling.find((val) => val == "Morango") ? true : false
                     }
                   />
-                  <span> - Morango</span>
+                  <span> - Morango fresco (pedaços)</span>
                 </label>
               </div>
             </div>
