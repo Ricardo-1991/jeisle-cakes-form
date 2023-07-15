@@ -15,8 +15,6 @@ export function ComponentCreditCardPrice({ states, formHandleInstallment }) {
     }).format(price);
   }
 
-  console.log(installments);
-
   return (
     <>
       {states.paymentMethod == "Credito" && (

@@ -20,8 +20,35 @@ export function ResumeModal({
     const currentValueFillings = states.aditionalFilling[filling]
       ? states.aditionalFilling[filling][states.diameterState]
       : 0;
-    return Number(acumulator) + Number(currentValueFillings);
+
+    if (allFillings.length === 1 && findOnlyAddFilling) {
+      return acumulator + currentValueFillings;
+    }
+
+    if (allFillings.length === 2 && filling === "Morango") {
+      return acumulator + currentValueFillings;
+    } else {
+      return acumulator + currentValueFillings / 2;
+    }
+    // return Number(acumulator) + Number(currentValueFillings);
   }, 0);
+
+  // function totalPriceOfCake() {
+  //   const cakeValue = Number(cakeSize[diameterState]);
+  //   const valueFillings = filling.reduce((acumulator, currFilling) => {
+  //     const currentValueFillings = aditionalFilling[currFilling]
+  //       ? aditionalFilling[currFilling][diameterState]
+  //       : 0;
+  //     if (allFillings.length === 1 && findOnlyAddFilling) {
+  //       return acumulator + currentValueFillings;
+  //     }
+
+  //     if (allFillings.length === 2 && currFilling === "Morango") {
+  //       return acumulator + currentValueFillings;
+  //     } else {
+  //       return acumulator + currentValueFillings / 2;
+  //     }
+  //   }, 0);
 
   //Data e hora hoje
   const todayDate = new Intl.DateTimeFormat("pt-BR").format(new Date());
@@ -109,11 +136,9 @@ export function ResumeModal({
 
     ${
       states.addFilling[0] == undefined && states.addFilling[1]
-        ? `%0a_Recheio adicional_: *${states.addFilling.slice(1)} - ${
-            allFillings.length === 1 && findOnlyAddFilling
-              ? formatPrice(valueAddFillings)
-              : formatPrice(valueAddFillings / 2)
-          }*`
+        ? `%0a_Recheio adicional_: *${states.addFilling.slice(
+            1
+          )} - ${formatPrice(valueAddFillings)}*`
         : ""
     }
 
@@ -121,17 +146,15 @@ export function ResumeModal({
       states.addFilling[0] && states.addFilling[1]
         ? `%0a_Recheios adicionais_: *${states.addFilling.join(
             " e "
-          )} - ${formatPrice(valueAddFillings / 2)}*`
+          )} - ${formatPrice(valueAddFillings)}*`
         : ""
     }
 
     ${
       states.addFilling.length == 1
-        ? `%0a_Recheio adicional_: *${states.addFilling.slice(0)} - ${
-            allFillings.length === 1 && findOnlyAddFilling
-              ? formatPrice(valueAddFillings)
-              : formatPrice(valueAddFillings / 2)
-          }*`
+        ? `%0a_Recheio adicional_: *${states.addFilling.slice(
+            0
+          )} - ${formatPrice(valueAddFillings)}*`
         : ""
     }
       
@@ -222,16 +245,12 @@ export function ResumeModal({
             <h3>Recheios adicionais: {states.addFilling.join(" e ")}</h3>
           </>
         )}
-        {states.addFilling.length == 1 && (
+        {states.addFilling.length === 1 && (
           <>
             <h3>Recheio adicional: {states.addFilling.slice(0)}</h3>
           </>
         )}
-        {allFillings.length === 1 && findOnlyAddFilling ? (
-          <h3> =Valor do adicional: {formatPrice(valueAddFillings)}</h3>
-        ) : (
-          <h3> Valor do adicional: {formatPrice(valueAddFillings / 2)}</h3>
-        )}
+        <h3> Valor adicional de recheio: {formatPrice(valueAddFillings)}</h3>
         {states.priceGlitter && (
           <>
             <h3>Adicional de glitter: {formatPrice(states.priceGlitter)}</h3>

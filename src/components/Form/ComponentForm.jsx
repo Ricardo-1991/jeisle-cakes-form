@@ -3,13 +3,7 @@ import "../Form/FormStyle.css";
 import avatar from "../../images/avatar-jeisle.jpeg";
 import balaoMenu from "../../images/balao-menu.png";
 import { BsExclamationTriangleFill, BsFileArrowDown } from "react-icons/bs";
-import {
-  GiFruitBowl,
-  GiGrapes,
-  GiLemon,
-  GiPineapple,
-  GiStrawberry,
-} from "react-icons/gi";
+import { GiStrawberry } from "react-icons/gi";
 import { ResumeModal } from "../ResumeModal/ResumeModal";
 import { PriceTableModal } from "../PriceTableModal/PriceTableModal";
 import { RenderGlitter } from "../RenderGlitter/RenderGlitter";
@@ -17,6 +11,7 @@ import { ComponentCreditCardPrice } from "../ComponentCreditCardPrice/ComponentC
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Footer } from "../Footer/Footer";
+import { useEffect } from "react";
 
 AOS.init();
 
@@ -222,6 +217,7 @@ export function ComponentForm() {
   }
 
   function handlePriceGlitter(price) {
+    // console.log(price);
     setPriceGlitter(price);
   }
 
@@ -229,6 +225,7 @@ export function ComponentForm() {
   const onlyAddFilling = filling.filter(
     (filling, index) => filling === addFilling[index] && filling !== undefined
   );
+
   const findOnlyAddFilling = allFillings.find(
     (filling, index) => filling === onlyAddFilling[index]
   );
@@ -243,7 +240,9 @@ export function ComponentForm() {
         return acumulator + currentValueFillings;
       }
 
-      if (allFillings.length === 2) {
+      if (allFillings.length === 2 && currFilling === "Morango") {
+        return acumulator + currentValueFillings;
+      } else {
         return acumulator + currentValueFillings / 2;
       }
     }, 0);
@@ -253,6 +252,7 @@ export function ComponentForm() {
   }
 
   let total = totalPriceOfCake();
+
   if (Number.isNaN(total)) {
     total = cakeSize[diameterState] + priceGlitter;
   }
@@ -336,6 +336,7 @@ export function ComponentForm() {
             data-aos-duration="600"
           >
             <h2>Deseja tematizar o bolo?</h2>
+            <p>(Se sim, digite o tema do bolo)</p>
             <div className="container-label">
               <label>
                 <input
