@@ -65,10 +65,10 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
 
             <tr>
               <td>Morango</td>
-              <td>R$8,00</td>
-              <td>R$16,00</td>
-              <td>R$24,00</td>
-              <td>R$32,00</td>
+              <td>R$15,00</td>
+              <td>R$30,00</td>
+              <td>R$45,00</td>
+              <td>R$60,00</td>
             </tr>
 
             <tr>
@@ -109,6 +109,14 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
               <td>R$20,00</td>
               <td>R$30,00</td>
               <td>R$40,00</td>
+            </tr>
+
+            <tr>
+              <td>Brigadeiro de Morango</td>
+              <td>R$5,00</td>
+              <td>R$10,00</td>
+              <td>R$15,00</td>
+              <td>R$20,00</td>
             </tr>
           </tbody>
         </table>

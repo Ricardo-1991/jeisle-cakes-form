@@ -11,7 +11,6 @@ import { ComponentCreditCardPrice } from "../ComponentCreditCardPrice/ComponentC
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Footer } from "../Footer/Footer";
-import { useEffect } from "react";
 
 AOS.init();
 
@@ -52,10 +51,10 @@ const aditionalFilling = {
   },
 
   Morango: {
-    15: 8,
-    20: 16,
-    25: 24,
-    30: 32,
+    15: 15,
+    20: 30,
+    25: 45,
+    30: 60,
   },
 
   Nozes: {
@@ -91,6 +90,13 @@ const aditionalFilling = {
     25: 30,
     30: 40,
   },
+
+  "Brigadeiro de Morango": {
+    15: 5,
+    20: 10,
+    25: 15,
+    30: 20,
+  },
 };
 
 export function ComponentForm() {
@@ -107,7 +113,7 @@ export function ComponentForm() {
   const [theme, setTheme] = useState("");
   const [textArea, setTextArea] = useState("");
   const [top, setTop] = useState();
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("Escolha uma opção");
   const [time, setTime] = useState(null);
 
   const [diameterState, setDiameter] = useState(null);
@@ -115,6 +121,7 @@ export function ComponentForm() {
   const [filling, setFilling] = useState([]);
   const [addFilling, setAddFilling] = useState([]);
   const [installments, setInstallments] = useState("");
+  const [creditFlag, setCreditFlag] = useState("MasterCard/Visa");
 
   const [handleResumeModal, setHandleResumeModal] = useState(false);
   const [handlePriceTableModal, setHandlePriceTableModal] = useState(false);
@@ -147,7 +154,7 @@ export function ComponentForm() {
       alert("Selecione pelo menos um recheio");
       inputFilling.current.focus();
       return false;
-    } else if (paymentMethod == "") {
+    } else if (paymentMethod == "Escolha uma opção") {
       alert("Selecione pelo menos um método de pagamento");
       return false;
     } else if (
@@ -217,7 +224,6 @@ export function ComponentForm() {
   }
 
   function handlePriceGlitter(price) {
-    // console.log(price);
     setPriceGlitter(price);
   }
 
@@ -258,30 +264,78 @@ export function ComponentForm() {
   }
 
   const installmentsPrice = {
+    totalPriceCreditCardEloAmexHiper: {
+      "1x": Number(total / (1 - (4.68/100))).toFixed(2),
+      "2x": Number(total / (1 - (10.38/100))).toFixed(2),
+      "3x": Number(total / (1 - (12.38/100))).toFixed(2),
+      "4x": Number(total / (1 - (13.38/100))).toFixed(2),
+      "5x": Number(total / (1 - (14.38/100))).toFixed(2),
+      "6x": Number(total / (1 - (15.38/100))).toFixed(2),
+      "7x": Number(total / (1 - (16.38/100))).toFixed(2),
+      "8x": Number(total / (1 - (17.38/100))).toFixed(2),
+      "9x": Number(total / (1 - (18.38/100))).toFixed(2),
+      "10x": Number(total / (1 - (19.38/100))).toFixed(2),
+      "11x": Number(total / (1 - (19.38/100))).toFixed(2), 
+      "12x": Number(total / (1 - (19.38/100))).toFixed(2), 
+    },
+
+    installmentsEloAmexHiper: {
+      "1x": Number(total / (1 - (4.68/100))),
+      "2x": Number((total / (1 - (10.38/100))) / 2).toFixed(2),
+      "3x": Number((total / (1 - (12.38/100))) / 3).toFixed(2),
+      "4x": Number((total / (1 - (13.38/100))) / 4).toFixed(2),
+      "5x": Number((total / (1 - (14.38/100))) / 5).toFixed(2),
+      "6x": Number((total / (1 - (15.38/100))) / 6).toFixed(2),
+      "7x": Number((total / (1 - (16.38/100))) / 7).toFixed(2),
+      "8x": Number((total / (1 - (17.38/100))) / 8).toFixed(2),
+      "9x": Number((total / (1 - (18.38/100))) / 9).toFixed(2),
+      "10x": Number(((total / (1 - (19.38/100))) / 10)).toFixed(2),
+      "11x": Number((total / (1 - (19.38/100))) / 11).toFixed(2),
+      "12x": Number((total / (1 - (19.38/100))) / 12).toFixed(2)
+    },
+
     totalPriceCreditCard: {
-      "1x": Number(total + (total * 2.9) / 100).toFixed(2),
-      "2x": Number(total + (total * 4.59) / 100).toFixed(2),
-      "3x": Number(total + (total * 5.23) / 100).toFixed(2),
-      "4x": Number(total + (total * 5.87) / 100).toFixed(2),
-      "5x": Number(total + (total * 6.51) / 100).toFixed(2),
-      "6x": Number(total + (total * 7.15) / 100).toFixed(2),
+      "1x": Number(total / (1 - (3.49/100))).toFixed(2),
+      "2x": Number(total / (1 - (8.99/100))).toFixed(2),
+      "3x": Number(total / (1 - (10.99/100))).toFixed(2),
+      "4x": Number(total / (1 - (11.99/100))).toFixed(2),
+      "5x": Number(total / (1 - (12.99/100))).toFixed(2),
+      "6x": Number(total / (1 - (13.99/100))).toFixed(2),
+      "7x": Number(total / (1 - (14.99/100))).toFixed(2),
+      "8x": Number(total / (1 - (15.99/100))).toFixed(2),
+      "9x": Number(total / (1 - (16.99/100))).toFixed(2),
+      "10x": Number(total / (1 - (17.99/100))).toFixed(2),
+      "11x": Number(total / (1 - (17.99/100))).toFixed(2), 
+      "12x": Number(total / (1 - (17.99/100))).toFixed(2), 
     },
 
     installments: {
-      "1x": Number(total + (total * 2.9) / 100),
-      "2x": Number((total + (total * 4.59) / 100) / 2).toFixed(2),
-      "3x": Number((total + (total * 5.23) / 100) / 3).toFixed(2),
-      "4x": Number((total + (total * 5.87) / 100) / 4).toFixed(2),
-      "5x": Number((total + (total * 6.51) / 100) / 5).toFixed(2),
-      "6x": Number((total + (total * 7.15) / 100) / 6).toFixed(2),
+      "1x": Number(total / (1 - (3.49/100))),
+      "2x": Number((total / (1 - (8.99/100))) / 2).toFixed(2),
+      "3x": Number((total / (1 - (10.99/100))) / 3).toFixed(2),
+      "4x": Number((total / (1 - (11.99/100))) / 4).toFixed(2),
+      "5x": Number((total / (1 - (12.99/100))) / 5).toFixed(2),
+      "6x": Number((total / (1 - (13.99/100))) / 6).toFixed(2),
+      "7x": Number((total / (1 - (14.99/100))) / 7).toFixed(2),
+      "8x": Number((total / (1 - (15.99/100))) / 8).toFixed(2),
+      "9x": Number((total / (1 - (16.99/100))) / 9).toFixed(2),
+      "10x": Number((total / (1 - (17.99/100))) / 10).toFixed(2),
+      "11x": Number((total / (1 - (17.99/100))) / 11).toFixed(2),
+      "12x": Number((total / (1 - (17.99/100))) / 12).toFixed(2)
     },
   };
 
-  let oldTotal = total; // armazena o valor anterior de total
+  let oldTotal = total; 
 
-  installments
-    ? (total = installmentsPrice.totalPriceCreditCard[installments])
-    : (total = oldTotal);
+  if(creditFlag === "MasterCard/Visa") {
+    installments
+      ? (total = installmentsPrice.totalPriceCreditCard[installments])
+      : (total = oldTotal);
+  } else if(creditFlag === "Elo/Amex/HiperCard") {
+    installments
+      ? (total = installmentsPrice.totalPriceCreditCardEloAmexHiper[installments])
+      : (total = oldTotal);
+  }
 
   if (installments === "Escolha uma opção") {
     total = oldTotal;
@@ -293,6 +347,10 @@ export function ComponentForm() {
 
   function formHandleInstallment(handleInstallments) {
     setInstallments(handleInstallments);
+  }
+
+  function formHandleCreditFlag (handleCreditFlag){
+    setCreditFlag(handleCreditFlag)
   }
 
   return (
@@ -712,23 +770,6 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="recheio"
-                  value="Brigadeiro de Morango"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Brigadeiro de Morango")
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro de Morango</span>
-              </label>
-            </div>
-
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheio"
                   value="Brigadeiro Meio Amargo"
                   onChange={changeFilling}
                   checked={
@@ -998,6 +1039,23 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="recheioAdd"
+                  value="Brigadeiro de Morango"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro de Morango")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro de Morango</span>
+              </label>
+            </div>
+
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheioAdd"
                   value="Nozes"
                   onChange={changeFilling}
                   checked={filling.find((val) => val == "Nozes") ? true : false}
@@ -1059,8 +1117,9 @@ export function ComponentForm() {
           </section>
 
           <ComponentCreditCardPrice
-            states={{ paymentMethod, total, installmentsPrice }}
+            states={{ paymentMethod, creditFlag, total, installmentsPrice }}
             formHandleInstallment={formHandleInstallment}
+            formHandleCreditFlag={formHandleCreditFlag}
           />
 
           <section
@@ -1111,6 +1170,7 @@ export function ComponentForm() {
           total,
           installmentsPrice,
           installments,
+          creditFlag
         }}
         allFillings={allFillings}
         findOnlyAddFilling={findOnlyAddFilling}

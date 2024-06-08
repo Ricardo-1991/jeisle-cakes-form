@@ -3,7 +3,7 @@ import "../RenderGlitter/StylesRenderGlitter.css";
 export function RenderGlitter({ states, clickCheckBox }) {
   function handleChangeGlitter(evt) {
     const isChecked = evt.target.checked;
-    isChecked ? clickCheckBox(Number(evt.target.value)) : clickCheckBox(0);
+    isChecked ? clickCheckBox(Number(evt.target.value)) : clickCheckBox(null);
   }
 
   return (

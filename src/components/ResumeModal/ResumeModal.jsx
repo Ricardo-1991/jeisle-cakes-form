@@ -20,7 +20,6 @@ export function ResumeModal({
     const currentValueFillings = states.aditionalFilling[filling]
       ? states.aditionalFilling[filling][states.diameterState]
       : 0;
-
     if (allFillings.length === 1 && findOnlyAddFilling) {
       return acumulator + currentValueFillings;
     }
@@ -158,23 +157,30 @@ export function ResumeModal({
         : ""
     }
       
-     
     %0a______________________________
     %0a_Data prevista para retirada do bolo_: *${userForeCastDate}*
     %0a_Hora prevista para retirada do bolo_: %0a*${states.time}hrs*
     %0a_Método de pagamento_: ${
-      states.paymentMethod == "Credito"
-        ? `*${objectPaymentMethod[states.paymentMethod]}* %0a_Parcelas_: *${
-            states.installments
-          } de ${formatPrice(
-            states.installmentsPrice.installments[states.installments]
-          )}* %0a_Total_: *${formatPrice(
-            states.installmentsPrice.totalPriceCreditCard[states.installments]
-          )}*`
-        : `*${
-            objectPaymentMethod[states.paymentMethod]
-          }* %0a%0a_Total_: *${formatPrice(states.total)}*`
+      states.paymentMethod == "Credito" ? 
+      `*${objectPaymentMethod[states.paymentMethod]}* %0a_Parcelas_: *${
+        states.installments
+      } de ${formatPrice(
+        states.creditFlag === "MasterCard/Visa" 
+          ? states.installmentsPrice.installments[states.installments]
+          : states.installmentsPrice.installmentsEloAmexHiper[states.installments]
+      )}* 
+      
+      %0a_Total_: *${
+        formatPrice(
+          states.creditFlag === "MasterCard/Visa" 
+            ? states.installmentsPrice.totalPriceCreditCard[states.installments]
+            : states.installmentsPrice.totalPriceCreditCardEloAmexHiper[states.installments]
+        )
+      }*`
+      : 
+      `*${objectPaymentMethod[states.paymentMethod]}* %0a%0a_Total_: *${formatPrice(states.total)}*`
     }
+    %0a_Bandeira do cartão_: *${states.creditFlag}*
     ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ""}
     `;
   }
@@ -268,21 +274,35 @@ export function ResumeModal({
         )}
         {states.paymentMethod == "Credito" && (
           <>
+          {states.creditFlag === "MasterCard/Visa" &&(
+            <>
             <h3>
               Parcelas: {states.installments} de{" "}
               {formatPrice(
                 states.installmentsPrice.installments[states.installments]
               )}
             </h3>
-
             <h3>
               Valor Total:{" "}
+              {formatPrice(states.installmentsPrice.totalPriceCreditCard[states.installments])}
+            </h3>
+            </>
+          )}
+
+      {states.creditFlag === "Elo/Amex/HiperCard" &&(
+            <>
+            <h3>
+              Parcelas: {states.installments} de{" "}
               {formatPrice(
-                states.installmentsPrice.totalPriceCreditCard[
-                  states.installments
-                ]
+                states.installmentsPrice.installmentsEloAmexHiper[states.installments]
               )}
             </h3>
+            <h3>
+              Valor Total:{" "}
+              {formatPrice(states.installmentsPrice.totalPriceCreditCardEloAmexHiper[states.installments])}
+            </h3>
+            </>
+          )}
           </>
         )}
       </div>

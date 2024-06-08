@@ -153,6 +153,16 @@ input[type="date"] {
   text-align: center;
 }
 
+.inputCreditFlag {
+  display: flex;
+  gap: 2rem;
+}
+
+.inputCreditFlag div {
+  display: flex;
+  gap: 0.3rem;
+}
+
 .form-section-input-select select {
   padding: 0.5rem;
 }
