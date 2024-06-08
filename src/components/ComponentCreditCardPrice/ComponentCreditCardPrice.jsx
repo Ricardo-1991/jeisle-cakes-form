@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { SiMastercard } from "react-icons/si";
 import { FaCcAmex } from "react-icons/fa";
+import { FaCcVisa } from "react-icons/fa";
 
 export function ComponentCreditCardPrice({ states, formHandleInstallment, formHandleCreditFlag }) {
   const [installments, setInstallments] = useState("");
@@ -31,6 +32,7 @@ export function ComponentCreditCardPrice({ states, formHandleInstallment, formHa
           <section className="form-section-input-creditCard inputCreditFlag">
             <div>
             <SiMastercard color="#FF6408" size={21}/>
+            <FaCcVisa color="#085BA2" size={21}/>
               <label htmlFor="option1">MasterCard/Visa</label>
               <input type="radio" id="option1" value="MasterCard/Visa" defaultChecked onChange={handleRadioChangeCreditFlag} name="paymentcard" />
             </div>
