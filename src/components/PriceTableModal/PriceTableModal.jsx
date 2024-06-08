@@ -118,6 +118,14 @@ export function PriceTableModal({ isOpen, onRequestClose }) {
               <td>R$15,00</td>
               <td>R$20,00</td>
             </tr>
+
+            <tr>
+              <td>Brigadeiro C/ Chocolate Branco</td>
+              <td>R$5,00</td>
+              <td>R$10,00</td>
+              <td>R$15,00</td>
+              <td>R$20,00</td>
+            </tr>
           </tbody>
         </table>
       </div>

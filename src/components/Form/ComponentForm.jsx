@@ -97,6 +97,19 @@ const aditionalFilling = {
     25: 15,
     30: 20,
   },
+
+  "Brigadeiro de Morango": {
+    15: 5,
+    20: 10,
+    25: 15,
+    30: 20,
+  },
+  "Brigadeiro c/ Chocolate Branco": {
+    15: 5,
+    20: 10,
+    25: 15,
+    30: 20,
+  }
 };
 
 export function ComponentForm() {
@@ -735,24 +748,6 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="recheio"
-                  value="Brigadeiro c/ Chocolate Branco"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find(
-                      (val) => val == "Brigadeiro c/ Chocolate Branco"
-                    )
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro c/ Chocolate Branco</span>
-              </label>
-            </div>
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheio"
                   value="Brigadeiro de Churros"
                   onChange={changeFilling}
                   checked={
@@ -1061,6 +1056,25 @@ export function ComponentForm() {
                   checked={filling.find((val) => val == "Nozes") ? true : false}
                 />
                 <span> - Nozes</span>
+              </label>
+            </div>
+
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheioAdd"
+                  value="Brigadeiro c/ Chocolate Branco"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find(
+                      (val) => val == "Brigadeiro c/ Chocolate Branco"
+                    )
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro c/ Chocolate Branco</span>
               </label>
             </div>
 
