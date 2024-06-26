@@ -119,13 +119,14 @@ export function ComponentForm() {
   const inputDiameter = useRef(false);
   const inputBatter = useRef(false);
   const inputFilling = useRef(false);
+  const inputTop = useRef(false);
 
   const [dateForeCast, setDateForecast] = useState(null);
 
   const [name, setName] = useState("");
   const [theme, setTheme] = useState("");
   const [textArea, setTextArea] = useState("");
-  const [top, setTop] = useState();
+  const [top, setTop] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("Escolha uma opção");
   const [time, setTime] = useState(null);
 
@@ -146,6 +147,10 @@ export function ComponentForm() {
     if (name == "") {
       alert("Digite o seu nome antes de prosseguir.");
       inputDiameter.current.focus();
+      return false;
+    } else if (top == ""){
+      alert("Selecione se o bolo acompanhará um topo ou não.");
+      inputTop.current.focus();
       return false;
     } else if (dateForeCast == null) {
       alert("Selecione uma data que deseja para a retirada do bolo.");
@@ -433,11 +438,12 @@ export function ComponentForm() {
                 <select
                   name="topo"
                   id="topo"
+                  ref={inputTop}
                   onChange={(evt) => setTop(evt.target.value)}
                 >
                   <option>Escolha a opção</option>
-                  <option value={top}>Sim</option>
-                  <option value={top}>Não</option>
+                  <option>Sim</option>
+                  <option>Não</option>
                 </select>
               </label>
             </div>

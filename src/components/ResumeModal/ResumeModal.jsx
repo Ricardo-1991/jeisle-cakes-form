@@ -180,7 +180,8 @@ export function ResumeModal({
       : 
       `*${objectPaymentMethod[states.paymentMethod]}* %0a%0a_Total_: *${formatPrice(states.total)}*`
     }
-    %0a_Bandeira do cartão_: *${states.creditFlag}*
+
+    ${states.paymentMethod == "Credito" ?  `%0a_Bandeira do cartão_: *${states.creditFlag}*` : ''} 
     ${states.textArea ? ` %0a%0a_Observações_:%0a*${states.textArea}*` : ""}
     `;
   }
