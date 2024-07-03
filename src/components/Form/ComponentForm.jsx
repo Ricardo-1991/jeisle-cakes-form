@@ -98,7 +98,7 @@ const aditionalFilling = {
     30: 20,
   },
 
-  "Brigadeiro de Morango": {
+  "Brigadeiro Gourmet": {
     15: 5,
     20: 10,
     25: 15,
@@ -771,22 +771,6 @@ export function ComponentForm() {
                 <input
                   type="checkbox"
                   name="recheio"
-                  value="Brigadeiro Meio Amargo"
-                  onChange={changeFilling}
-                  checked={
-                    filling.find((val) => val == "Brigadeiro Meio Amargo")
-                      ? true
-                      : false
-                  }
-                />
-                <span> - Brigadeiro Gourmet</span>
-              </label>
-            </div>
-            <div className="containerLabel">
-              <label>
-                <input
-                  type="checkbox"
-                  name="recheio"
                   value="Beijinho"
                   onChange={changeFilling}
                   checked={
@@ -1049,6 +1033,23 @@ export function ComponentForm() {
                   }
                 />
                 <span> - Brigadeiro de Morango</span>
+              </label>
+            </div>
+
+            <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="recheioAdd"
+                  value="Brigadeiro Gourmet"
+                  onChange={changeFilling}
+                  checked={
+                    filling.find((val) => val == "Brigadeiro Gourmet")
+                      ? true
+                      : false
+                  }
+                />
+                <span> - Brigadeiro Gourmet</span>
               </label>
             </div>
 
