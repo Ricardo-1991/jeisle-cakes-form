@@ -88,7 +88,7 @@ export function ResumeModal({
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    location.href = `https://api.whatsapp.com/send?phone=5573991373886&text=✅ *NOVO PEDIDO*:
+    location.href = `https://api.whatsapp.com/send?phone=5573982507282&text=✅ *NOVO PEDIDO*:
     %0a______________________________
     %0a📄 *RESUMO DO PEDIDO*
     
