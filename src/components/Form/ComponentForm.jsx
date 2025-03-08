@@ -21,6 +21,13 @@ const cakeSize = {
   30: 340,
 };
 
+const aditionalBatterRedVelvet = {
+  15: 10,
+  20: 20,
+  25: 30,
+  30: 40,
+}
+
 const aditionalFilling = {
   Abacaxi: {
     15: 8,
@@ -271,8 +278,12 @@ export function ComponentForm() {
       }
     }, 0);
 
-    const totalPrice = cakeValue + valueFillings + priceGlitter;
-    return totalPrice;
+    const redVelvetExtra = batterState.includes("Massa Red Velvet")
+    ? aditionalBatterRedVelvet[diameterState] || 0
+    : 0;
+
+  const totalPrice = Number(cakeValue + valueFillings + redVelvetExtra + priceGlitter);
+  return totalPrice;
   }
 
   let total = totalPriceOfCake();
@@ -679,6 +690,33 @@ export function ComponentForm() {
           </section>
 
           {/* --- */}
+
+          <section
+            role="group"
+            className="form-section-two"
+            aria-labelledby="checkbox-group"
+            data-aos="fade-down"
+            data-aos-duration="600"
+          >
+            <h2>Massas com valor adicional</h2>
+             <div className="containerLabel">
+              <label>
+                <input
+                  type="checkbox"
+                  name="massa"
+                  value="Massa Red Velvet"
+                  onChange={changeBatter}
+                  checked={
+                    batterState.find((val) => val == "Massa Red Velvet")
+                      ? true
+                      : false
+                  }
+                />
+                <span>- Massa Red Velvet</span>
+              </label>
+            </div>
+
+          </section>
 
           <section
             role="group"
@@ -1185,6 +1223,7 @@ export function ComponentForm() {
           textArea,
           dateForeCast,
           aditionalFilling,
+          aditionalBatterRedVelvet,
           cakeSize,
           priceGlitter,
           paymentMethod,

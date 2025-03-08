@@ -115,7 +115,6 @@ export function ResumeModal({
         ? `${states.filling.slice(1)}`
         : `${states.filling.join(" e ")}`
     }*
-
     %0a%0a*_Subtotal_*: 
     %0a_Valor do diâmetro do bolo_: *${formatPrice(
       states.cakeSize[states.diameterState]
@@ -126,13 +125,12 @@ export function ResumeModal({
         ? `%0a_Adicional de Glitter_: *${formatPrice(states.priceGlitter)}*`
         : ""
     }
-
     ${
       states.top != "Escolha a opção" || states.top == "undefined"
         ? `%0a_Adicional de Topo_: *${states.top}*`
         : ""
     }
-
+    ${states.batterState.includes("Massa Red Velvet") ? `%0a%0a_Valor da massa adicional_: *` + formatPrice(states.aditionalBatterRedVelvet[states.diameterState]) + `*` : ""}
     ${
       states.addFilling[0] == undefined && states.addFilling[1]
         ? `%0a_Recheio adicional_: *${states.addFilling.slice(
@@ -246,6 +244,12 @@ export function ResumeModal({
           <>
             <h3>Recheio adicional: {states.addFilling.slice(1)}</h3>
           </>
+        )}
+          {states.batterState.includes("Massa Red Velvet") && (
+          <h3>
+            Valor adicional da massa:{" "}
+            {formatPrice(states.aditionalBatterRedVelvet[states.diameterState])}
+          </h3>
         )}
         {states.addFilling[0] && states.addFilling[1] && (
           <>

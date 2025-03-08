@@ -14,10 +14,10 @@
   width: 100%;
   max-width: 576px;
   background: white;
-  padding: 3rem;
+  padding: 1rem;
   position: relative;
   border-radius: 0.25rem;
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 
 .react-modal-close {
@@ -38,7 +38,7 @@
 }
 
 .data-container h1 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .data-container h3 {
@@ -47,7 +47,7 @@
 
 .data-container h3,
 h1 {
-  line-height: 2.4rem;
+  line-height: 2.2rem;
 }
 
 button[type="submit"] {
