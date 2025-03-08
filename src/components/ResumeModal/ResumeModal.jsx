@@ -130,7 +130,7 @@ export function ResumeModal({
         ? `%0a_Adicional de Topo_: *${states.top}*`
         : ""
     }
-    ${states.batterState.includes("Massa Red Velvet") ? `%0a%0a_Valor da massa adicional_: *` + formatPrice(states.aditionalBatterRedVelvet[states.diameterState]) + `*` : ""}
+    ${states.batterState.includes("Massa Red Velvet") ? `%0a%0a_Massa adicional_: *Red Velvet - ` + formatPrice(states.aditionalBatterRedVelvet[states.diameterState]) + `*` : ""}
     ${
       states.addFilling[0] == undefined && states.addFilling[1]
         ? `%0a_Recheio adicional_: *${states.addFilling.slice(
