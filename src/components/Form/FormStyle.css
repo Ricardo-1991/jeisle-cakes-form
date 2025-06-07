@@ -323,6 +323,22 @@ option {
   }
 }
 
+@media (max-width: 480px) {
+  .form-section-one,
+  .form-section-two,
+  .form-section-three,
+  .form-section-four,
+  .warning-text,
+  .fruits-section,
+  .form-section-input-date,
+  .form-section-input-select,
+  .form-section-input-text,
+  .form-section-input-creditCard,
+  .alert-section {
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 370px) {
   input[type="date"] {
     width: 13rem;
