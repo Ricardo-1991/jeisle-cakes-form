@@ -5,7 +5,7 @@ import { BiMap } from "react-icons/bi";
 
 export const Header = () => {
   return (
-    <header className="header-container">
+    <header className="header-container" data-aos="fade-down" data-aos-duration="800">
       <div className="content-box-header">
         <div>
           <a href="">

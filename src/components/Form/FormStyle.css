@@ -21,7 +21,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   text-align: center;
   padding: 1rem;
 }
@@ -46,12 +46,13 @@ p {
 
 .alert-section {
   display: grid;
-  margin: 0 auto;
+  margin: 1rem auto;
   place-items: center;
   width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   height: 13rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   padding: 1.2rem;
 }
 .alert-section h3 {
@@ -69,7 +70,10 @@ p {
 
 .warning-text {
   width: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
 }
 
@@ -101,26 +105,32 @@ p {
   display: grid;
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2rem;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
 }
 
 .form-section-input-text {
   display: grid;
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2rem;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
 }
 
 .form-section-input-date {
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2rem;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
 }
 
 .form-section-input-date input {
@@ -146,18 +156,22 @@ input[type="date"] {
 .form-section-input-select {
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2rem;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
 }
 
 .form-section-input-creditCard {
   display: grid;
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 2rem;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
 }
 
 .form-section-input-creditCard select {
@@ -235,7 +249,7 @@ input[type="checkbox"]:checked::after {
 .button-resume-modal {
   width: 100%;
   padding: 1.5rem;
-  background: #33cc95;
+  background: var(--headers);
   color: #fff;
   border-radius: 0.5rem;
   border: 0;
@@ -248,7 +262,7 @@ input[type="checkbox"]:checked::after {
   margin: 1rem 0;
   width: 20rem;
   padding: 1rem;
-  background: #33cc95;
+  background: var(--headers);
   color: #fff;
   border-radius: 0.5rem;
   font-size: 1rem;
