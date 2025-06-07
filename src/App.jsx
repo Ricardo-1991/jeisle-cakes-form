@@ -10,7 +10,9 @@ function App() {
   return (
     <Container>
       <Header />
-      <ComponentForm />
+      <main className="main-content">
+        <ComponentForm />
+      </main>
     </Container>
   );
 }

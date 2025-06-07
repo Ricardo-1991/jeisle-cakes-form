@@ -19,16 +19,23 @@ p {
 .form-container {
   width: 100%;
   display: grid;
+  gap: 2rem;
   justify-content: center;
-  gap: 3rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
 }
 
 .container-img {
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   height: 33rem;
 }
@@ -46,7 +53,8 @@ p {
   display: grid;
   margin: 0 auto;
   place-items: center;
-  width: 80%;
+  width: 100%;
+  max-width: 32rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 13rem;
   border-radius: 2rem;
@@ -67,12 +75,16 @@ p {
 
 .warning-text {
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 1.5rem;
 }
 
 .fruits-section {
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   border-top: 1px solid #8d8d99;
@@ -98,6 +110,8 @@ p {
 .form-section-four {
   display: grid;
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -105,12 +119,16 @@ p {
 .form-section-input-text {
   display: grid;
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
 
 .form-section-input-date {
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -137,6 +155,8 @@ input[type="date"] {
 
 .form-section-input-select {
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -144,6 +164,8 @@ input[type="date"] {
 .form-section-input-creditCard {
   display: grid;
   width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -255,30 +277,9 @@ option {
 
 /* ---- */
 
+
 /* RESPONSIVIDADE */
 @media (max-width: 1080px) {
-  .form-section-one,
-  .form-section-two,
-  .form-section-three,
-  .form-section-four {
-    width: 30rem;
-  }
-  .warning-text {
-    width: 30rem;
-  }
-
-  .form-section-input-creditCard {
-    width: 30rem;
-  }
-
-  .form-section-input-text {
-    width: 30rem;
-  }
-
-  .form-section-input-select {
-    width: 30rem;
-  }
-
   h2 {
     font-size: 1.4rem;
   }
