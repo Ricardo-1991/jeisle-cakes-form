@@ -18,10 +18,12 @@ p {
 
 .form-container {
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   text-align: center;
+  padding: 1rem;
 }
 
 .container-img {
@@ -30,7 +32,7 @@ p {
   align-items: center;
   width: 50%;
   margin: 0 auto;
-  height: 33rem;
+  height: 24rem;
 }
 
 .imagem-avatar {
@@ -98,6 +100,8 @@ p {
 .form-section-four {
   display: grid;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -105,12 +109,16 @@ p {
 .form-section-input-text {
   display: grid;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
 
 .form-section-input-date {
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -137,6 +145,8 @@ input[type="date"] {
 
 .form-section-input-select {
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -144,6 +154,8 @@ input[type="date"] {
 .form-section-input-creditCard {
   display: grid;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 2rem;
 }
@@ -256,27 +268,17 @@ option {
 /* ---- */
 
 /* RESPONSIVIDADE */
-@media (max-width: 1080px) {
+@media (min-width: 768px) {
   .form-section-one,
   .form-section-two,
   .form-section-three,
-  .form-section-four {
-    width: 30rem;
-  }
-  .warning-text {
-    width: 30rem;
-  }
-
-  .form-section-input-creditCard {
-    width: 30rem;
-  }
-
-  .form-section-input-text {
-    width: 30rem;
-  }
-
-  .form-section-input-select {
-    width: 30rem;
+  .form-section-four,
+  .form-section-input-creditCard,
+  .form-section-input-text,
+  .form-section-input-select,
+  .warning-text,
+  .form-section-glitter {
+    max-width: 600px;
   }
 
   h2 {
@@ -301,10 +303,25 @@ option {
     width: 1.3rem;
     height: 1.3rem;
   }
+
   input[type="checkbox"]:checked::after {
     content: " ";
     width: 0.6rem;
     height: 0.6rem;
+  }
+}
+
+@media (min-width: 1080px) {
+  .form-section-one,
+  .form-section-two,
+  .form-section-three,
+  .form-section-four,
+  .form-section-input-creditCard,
+  .form-section-input-text,
+  .form-section-input-select,
+  .warning-text,
+  .form-section-glitter {
+    max-width: 700px;
   }
 }
 

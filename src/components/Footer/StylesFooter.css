@@ -3,25 +3,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.8rem;
+  padding: 1rem;
   position: sticky;
   bottom: 0;
   background-color: #dfecea;
-  height: 2.8rem;
 }
 
 .form-footer div {
   background-color: white;
-  padding: 5px;
+  padding: 0.5rem 1rem;
   border-radius: 3px;
   color: var(--headers);
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
-/* Reponsividade */
+@media (min-width: 768px) {
+  .form-footer div {
+    font-size: 1.2rem;
+  }
+}
 
-@media (max-width: 1080px) {
-  .form-footer {
-    padding: 1.5rem;
+@media (min-width: 1080px) {
+  .form-footer div {
+    font-size: 1.3rem;
   }
 }

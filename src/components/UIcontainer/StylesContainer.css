@@ -1,8 +1,8 @@
 :root {
-    --background: #b4d7d0;
-    --nameEnterprise: #71431f;
-    --headers: #db1d29;
-    --sectionCircle: #b3dbd4;
+  --background: #b4d7d0;
+  --nameEnterprise: #71431f;
+  --headers: #db1d29;
+  --sectionCircle: #b3dbd4;
 }
 
 * {
@@ -13,29 +13,31 @@
 
 .ui-container {
   width: 100%;
+  min-height: 100vh;
+  background: var(--background);
 }
 
+html {
+  font-size: 87.5%;
+}
 
-@media (max-width: 1875px) {
+@media (min-width: 768px) {
   html {
     font-size: 93.75%;
   }
-} 
+}
 
-@media (max-width: 1080px) {
+@media (min-width: 1080px) {
   html {
-    font-size: 70%;
+    font-size: 100%;
   }
-} 
+}
 
-@media (max-width: 370px) {
-  html {
-    font-size: 69%;
-  }
-} 
-
-body, input, textarea, button  {
-  font-family: 'Poppins', sans-serif;
+body,
+input,
+textarea,
+button {
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
 

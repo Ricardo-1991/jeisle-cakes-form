@@ -1,6 +1,6 @@
 .header-container {
   width: 100%;
-  height: 20rem;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,23 +12,23 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1120px;
+  max-width: 600px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .logo-empresa {
-  width: 100%;
-  height: 10rem;
+  width: 8rem;
 }
 
 .header-list {
   display: flex;
+  gap: 0.5rem;
 }
 
 .header-list li {
   list-style: none;
-  margin: 1rem;
 }
 
 .header-text h2 {
@@ -39,16 +39,16 @@
 }
 
 .header-text svg {
-  width: 1.4rem;
+  width: 1rem;
   position: relative;
-  top: 0.4rem;
+  top: 0.2rem;
 }
 
 /* Link / React-Icons */
 .div-icons {
   border: 2px solid var(--nameEnterprise);
   border-radius: 5px;
-  padding: 2px;
+  padding: 0.25rem;
   line-height: 1;
 }
 
@@ -61,48 +61,37 @@
 
 /* RESPONSIVIDADE */
 
-@media (max-width: 1080px) {
-  .header-text h2 {
-    font-size: 1.3rem;
+@media (min-width: 768px) {
+  .content-box-header {
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .header-text svg {
-    width: 1.5rem;
-    position: relative;
-    top: 0.6rem;
-  }
-}
-
-@media (max-width: 720px) {
   .logo-empresa {
-    width: 100%;
-    height: 10rem;
+    width: 12rem;
   }
 
   .header-text h2 {
     font-size: 1.2rem;
+  }
+
+  .header-text svg {
+    width: 1.4rem;
+    top: 0.3rem;
+  }
+}
+
+@media (min-width: 1080px) {
+  .header-text h2 {
+    font-size: 1.4rem;
   }
 
   .header-text svg {
     width: 1.6rem;
-    position: relative;
-    top: 0.6rem;
+    top: 0.4rem;
   }
-}
 
-@media (max-width: 370px) {
   .logo-empresa {
-    width: 100%;
-    height: 9.5rem;
-  }
-
-  .header-text h2 {
-    font-size: 1.2rem;
-  }
-
-  .header-text svg {
-    width: 1.5rem;
-    position: relative;
-    top: 0.6rem;
+    width: 14rem;
   }
 }
