@@ -13,6 +13,9 @@
 
 .ui-container {
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 
@@ -28,11 +31,20 @@
   }
 } 
 
+@media (max-width: 480px) {
+  html {
+    font-size: 62.5%;
+  }
+  .ui-container {
+    padding: 0 0.5rem;
+  }
+}
+
 @media (max-width: 370px) {
   html {
     font-size: 69%;
   }
-} 
+}
 
 body, input, textarea, button  {
   font-family: 'Poppins', sans-serif;

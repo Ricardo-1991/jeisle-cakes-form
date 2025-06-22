@@ -322,6 +322,48 @@ option {
   }
 }
 
+@media (max-width: 480px) {
+  .form-container {
+    gap: 2rem;
+  }
+
+  .container-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .imagem-avatar,
+  .imagem-balao {
+    width: 12rem;
+  }
+
+  .alert-section,
+  .warning-text,
+  .form-section-one,
+  .form-section-two,
+  .form-section-three,
+  .form-section-four,
+  .form-section-input-text,
+  .form-section-input-select,
+  .form-section-input-date,
+  .form-section-input-creditCard {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 370px) {
   input[type="date"] {
     width: 13rem;

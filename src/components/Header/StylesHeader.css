@@ -90,6 +90,23 @@
   }
 }
 
+@media (max-width: 480px) {
+  .header-container {
+    height: auto;
+    padding: 1rem 0;
+  }
+  .header-list {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .logo-empresa {
+    height: 8rem;
+  }
+  .header-text h2 {
+    font-size: 1.1rem;
+  }
+}
+
 @media (max-width: 370px) {
   .logo-empresa {
     width: 100%;

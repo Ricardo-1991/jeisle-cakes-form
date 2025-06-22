@@ -25,3 +25,14 @@
     padding: 1.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .form-footer {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .form-footer div {
+    font-size: 1rem;
+  }
+}
